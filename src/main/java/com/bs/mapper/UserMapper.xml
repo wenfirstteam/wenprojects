@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.mapper.UserMapper">
+
+	<select id="findPwdByUserName" parameterType="string"
+		resultType="com.bs.entity.User">
+		select * from user where username=#{userName}
+	</select>
+
+	<select id="findIsExist" parameterType="string" resultType="int">
+		select count(*) from user where username=#{userName}
+	</select>
+	<select id="findEmailByUserName" parameterType="string" resultType="string">
+		select email from user where username=#{userName}
+	</select>
+	
+	<insert id="insertUser" parameterType="com.bs.entity.User">
+		insert user(username,password,flag.email) value (#{userName},#{passWord},#{flag},#{email})
+	</insert>
+	<update id="updatePassword" parameterType="com.bs.entity.User">
+		update user set password=#{passWord} where username=#{userName}
+	</update>
+</mapper>

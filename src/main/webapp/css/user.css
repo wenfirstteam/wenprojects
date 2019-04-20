@@ -1,0 +1,125 @@
+.login-box {
+	width: 340px;
+	min-height: 372px;
+	background: #fff;
+	position: absolute;
+	top: 160px;
+	left: 750px;
+	padding: 0px 45px 25px;
+	box-shadow: 0 0 30px #eee;
+}
+
+.login-tit {
+	height: 59px;
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 20px;
+	width: 304px;
+	margin-left: 16px;
+}
+
+.login-account-c {
+	width: 73px;
+	font-size: 18px;
+	color: #262B33;
+	font-family: PingFangSC-Medium;
+	letter-spacing: 0;
+	background: #fff;
+	position: absolute;
+	top: 24px;
+	cursor: pointer;
+	height: 34px;
+	s
+}
+
+form, input, select, textarea {
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+}
+
+.border {
+	border-bottom: 1px solid #f0f0f0;
+	width: 304px;
+	margin-left: 16px;
+	height: 53px;
+}
+
+ul, div {
+	zoom: 1;
+}
+
+.form label {
+	padding-top: 12px;
+	font-size: 16px;
+	display: inline-block;
+	width: 64px;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	padding-top: 0px;
+	list-style: none;
+	color: #9fadc6;
+}
+
+.form .ipt {
+	display: inline-block;
+	font-size: 16px;
+	color: #333;
+	width: 229px;
+	padding: 15px 0px 20px 10px;
+}
+
+input, select {
+	vertical-align: middle;
+}
+
+input, textarea, select {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+input, button {
+	border: none;
+	background: none;
+	outline: none;
+}
+
+.login-btn {
+	width: 302px;
+	margin-left: 16px;
+	height: 43px;
+	line-height: 43px;
+	margin-top: 20px;
+	border-radius: 4px;
+	background: #1a8afa;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.login-forget {
+    margin: 18px auto;
+    width: 306px;
+}
+
+.login-forget a {
+    color: #1a8afa;
+}
+a {
+    text-decoration: none;
+}
+
+.fr {
+    float: right;
+}
+
+.advertisement-hotspot {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+}
+
+.ipt1{
+	font-size: 16px;
+}
