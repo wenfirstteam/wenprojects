@@ -1,27 +1,50 @@
 package com.bs.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bs.entity.User;
 import com.bs.result.ResponseResult;
 import com.bs.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/user")
 public class UserController
 {
 	@Autowired
 	private UserService userService;
-	/**
+	
+//	@Autowired
+//    private JavaMailSender javaMailSender;
+//
+//    @Value("${mail.smtp.username}")
+//    private String emailFrom;
+
+//    @Value("${mail.smtp.tousername}")
+//    private String toEmail;
+
+    /**
 	 * 登录
 	 * 
 	 * @param request
@@ -89,4 +112,30 @@ public class UserController
 			}
 		}
 	}
+
+	@Autowired
+	private JavaMailSenderImpl javaMailSender;
+	
+	/**
+	 * 发送邮件
+	 * @return
+	 */
+	@GetMapping("/email")
+	@ResponseBody
+	public ResponseResult sendEmail(String id) {
+	        MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
+	        MimeMessageHelper mMessageHelper;
+	        try {
+	            mMessageHelper=new MimeMessageHelper(mMessage,true);
+	            mMessageHelper.setFrom(javaMailSender.getUsername());//发件人邮箱
+	            mMessageHelper.setTo("359175524@qq.com");//收件人邮箱
+	            mMessageHelper.setSubject("Spring的邮件发送");//邮件的主题
+	            mMessageHelper.setText("aaa");//邮件的文本内容，true表示文本以html格式打开
+	            javaMailSender.send(mMessage);//发送邮件
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        } 
+	        log.info("send success");
+	        return ResponseResult.successAddData("send success");
+	    }
 }

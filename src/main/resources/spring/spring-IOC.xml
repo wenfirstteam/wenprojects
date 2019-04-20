@@ -10,14 +10,13 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<!-- 属性配置文件加载 classpath: web项目发布到服务器的，要指定编译路径 -->
 	<context:property-placeholder
-		location="classpath:db.properties" />
+		location="classpath:*.properties" />
 	<bean class="com.alibaba.druid.pool.DruidDataSource"
 		id="dataSource">
 		<property name="driverClassName" value="${jdbc_driver}"></property>
 		<property name="url" value="${jdbc_url}"></property>
 		<property name="username" value="${jdbc_user}"></property>
 		<property name="password" value="${jdbc_password}"></property>
-
 	</bean>
 	<!-- 会话工厂 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
@@ -54,4 +53,19 @@
 		</tx:advice> <aop:config> <aop:pointcut expression="execution(* com.issCollege.banbiShop.service.*.*(..))" 
 		id="txpointcut" /> <aop:advisor advice-ref="txadvice" pointcut-ref="txpointcut" 
 		/> </aop:config> </beans> -->
+		
+		<!--读取email属性文件-->
+		<!--配置邮件接口-->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.host}"/>
+        <property name="username" value="${mail.smtp.username}"/>
+        <property name="password" value="${mail.smtp.password}"/>
+        <property name="defaultEncoding" value="${mail.smtp.defaultEncoding}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
