@@ -28,4 +28,7 @@
 	</bean>
 	<!-- 启动切面注入代理 -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<!-- 加载配置文件，用于在代码中@Value获取，此处配置和spring-IOC不重复 -->
+	<context:property-placeholder location="classpath:*.properties" />
 </beans>
