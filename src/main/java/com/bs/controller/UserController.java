@@ -54,6 +54,8 @@ public class UserController
 	@PostMapping("/register")
 	public @ResponseBody ResponseResult register(@Valid User user)
 	{
+		//邮箱校验和长度这些在前端做，下面这个是邮箱的正则表达式，校验用正则
+		//https://blog.csdn.net/u013033112/article/details/80278602
 		if(user.getUserName().length() < 3)
 			return ResponseResult.failAddMessage("用户名为3~20位！");
 		if(user.getPassWord().length() < 6)
