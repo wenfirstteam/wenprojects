@@ -18,6 +18,8 @@ public class UserServiceImpl implements UserService
 
 	@Autowired
 	private UserMapper userMapper;
+	
+	private EmailUtil emailUtil;
 
 	@Override
 	public ResponseResult register(User user)
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService
 		for(int i = 0;i<=6;i++)
 			verify += rd.nextInt(10);
 		//发送验证码
-		EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为"+verify);
+//		EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为"+verify);
 		//验证成功后
 		return ResponseResult.successAddData(verify);
 	}
@@ -81,7 +83,7 @@ public class UserServiceImpl implements UserService
 			verify += rd.nextInt(10);
 		}
 		//這裡是有可能發送失敗的
-		return EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为:" + verify);
+		return emailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为:" + verify);
 	}
 
 }

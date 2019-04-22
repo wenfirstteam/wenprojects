@@ -24,7 +24,7 @@ public class EmailUtil {
 	 * 发送邮件
 	 * @return
 	 */
-	public static Boolean sendEmail(String toEmail, String subject, String text) {
+	public Boolean sendEmail(String toEmail, String subject, String text) {
 	        MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
 	        MimeMessageHelper mMessageHelper;
 	        try {
