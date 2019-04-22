@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService
 	public ResponseResult login(User user)
 	{
 		User userByName = userMapper.findPwdByUserName(user.getUserName());
-		if (userByName == null)
+		if (userByName == null) 
 		{
 			return ResponseResult.failAddMessage("用户名不存在！");
 		}

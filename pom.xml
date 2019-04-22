@@ -6,7 +6,7 @@
 	<artifactId>rcw</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<properties>
+	<properties> 
 		<spring-vison>5.1.2.RELEASE</spring-vison>
 		<mybatis-vison>3.4.6</mybatis-vison>
 	</properties>

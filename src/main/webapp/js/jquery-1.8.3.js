@@ -16,7 +16,7 @@ var
 	// A central reference to the root jQuery(document)
 	rootjQuery,
 
-	// The deferred used on DOM ready
+	// The deferred used on DOM ready 
 	readyList,
 
 	// Use the correct document accordingly with window argument (sandbox)

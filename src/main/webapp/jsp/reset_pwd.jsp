@@ -337,7 +337,7 @@ a, input:focus {
 					<div>
 						<input id="submitbtn" type="submit" class="confirm-btn" value="确认">
 					</div>
-				</form>
+				</form> 
 			</div>
 		</div>
 	</div>

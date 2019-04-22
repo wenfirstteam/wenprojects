@@ -73,7 +73,7 @@ public class UserController
 	
 	
 	/**
-	 * 发送验证码
+	 * 发送验证码 
 	 * @param request
 	 * @param response
 	 * @throws IOException
