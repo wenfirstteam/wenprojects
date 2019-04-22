@@ -4,18 +4,18 @@
 
 	<select id="findPwdByUserName" parameterType="string"
 		resultType="com.bs.entity.User">
-		select * from user where username=#{userName}
+		select password from user where username=#{userName}
 	</select>
 
-	<select id="findIsExist" parameterType="string" resultType="int">
+	<select id="findIsExist" parameterType="com.bs.entity.User" resultType="int">
 		select count(*) from user where username=#{userName}
 	</select>
-	<select id="findEmailByUserName" parameterType="string" resultType="string">
+	<select id="findEmailByUserName" parameterType="string" resultType="com.bs.entity.User">
 		select email from user where username=#{userName}
 	</select>
 	
 	<insert id="insertUser" parameterType="com.bs.entity.User">
-		insert user(username,password,flag.email) value (#{userName},#{passWord},#{flag},#{email})
+		insert user(username,password,flag,email) value (#{userName},#{passWord},#{flag},#{email})
 	</insert>
 	<update id="updatePassword" parameterType="com.bs.entity.User">
 		update user set password=#{passWord} where username=#{userName}

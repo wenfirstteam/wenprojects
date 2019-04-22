@@ -16,6 +16,44 @@ body {
 	background-image: url(../pic/bg.jpg);
 }
 </style>
+<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+function register(){
+	var $name = $("#username").val();
+	var $pwd = $("#password").val();
+	var $type = $('input:radio:checked').val();
+	var $email = $("#email").val();
+	if ($name == "") {
+		alert("用户名不能为空！");
+		return;
+	}
+	if ($pwd == "") {
+		alert("密码不能为空！");
+		return;
+	}
+	if ($email == "") {
+		alert("邮箱不能为空！");
+		return;
+	}
+	$.ajax({
+		async:false,
+		url : "/rcw/user/register.action",
+		type : "POST",
+		data:{"userName":$name,"passWord":$pwd,"flag":$type,"email":$email},
+		success : function(msg) {
+			if (msg.status == 200)
+			{
+				alert("注册成功！");
+				window.location.href = "login.jsp";
+			}else
+				alert(msg.message);
+		},
+		error : function(data) {
+			alert(data+"");
+		}
+	}) ;
+}
+</script>
 </head>
 <body>
 	<div class="big-bg">
@@ -25,8 +63,7 @@ body {
 				<span class="login-account-c">用户注册</span>
 			</div>
 			<div class="user-login">
-				<form action="/rcw/user/register.action" id="form1"
-					class="inner_form">
+			<form antion="##" id="form1" class="inner_form" method="post">
 					<div class="form border">
 						<label for="loginName">用户名</label><input class="ipt"
 							id="username" name="username" type="text" />
@@ -49,8 +86,8 @@ body {
 					</div>
 					<div>
 						<input id="submit" name="submit" type="submit"
-							class="login-btn __ga__switchTag_loginBtn_001 "
-							value="确定">
+							class="login-btn __ga__switchTag_loginBtn_001 " onclick="register()"
+							value="确定" > 
 					</div>
 					<div class="login-forget">
 					<p>

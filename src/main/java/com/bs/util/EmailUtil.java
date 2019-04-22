@@ -6,10 +6,6 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.bs.result.ResponseResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailUtil {
 	
 	@Autowired
-	private JavaMailSenderImpl javaMailSender;
+	private static JavaMailSenderImpl javaMailSender;
 	
 	/**
 	 * @param toEmail 要发送到的邮箱地址
@@ -26,7 +22,7 @@ public class EmailUtil {
 	 * 发送邮件
 	 * @return
 	 */
-	public Boolean sendEmail(String toEmail, String subject, String text) {
+	public static Boolean sendEmail(String toEmail, String subject, String text) {
 	        MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
 	        MimeMessageHelper mMessageHelper;
 	        try {
