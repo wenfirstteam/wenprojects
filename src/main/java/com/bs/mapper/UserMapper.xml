@@ -20,8 +20,8 @@
 	<update id="updatePassword" parameterType="com.bs.entity.User">
 		update user set password=#{passWord} where username=#{userName}
 	</update>
-	`
-	<select id="findUser" resultType="com.bs.entity.User">
+	
+	<select id="getUser" parameterType="Integer" resultType="com.bs.entity.User">
 		select id,email 
 		from user
 		where id=#{id}
