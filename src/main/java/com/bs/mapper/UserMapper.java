@@ -1,9 +1,11 @@
 package com.bs.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import com.bs.entity.User;
 
+@Component
 public interface UserMapper
 {
 
