@@ -1,6 +1,7 @@
 package com.bs.serviceImpl;
 
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,22 @@ public class UserServiceImpl implements UserService
 		EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为"+verify);
 		//验证成功后
 		return ResponseResult.successAddData(verify);
+	}
+
+	@Override
+	public Boolean sendEmailById(Integer id) {
+		User user = userMapper.findUser(id);
+		if(user == null) {
+			return false;
+		}
+		//生成验证码
+		String verify = "";
+		Random rd = new Random();
+		for(int i = 0;i<=6;i++) {
+			verify += rd.nextInt(10);
+		}
+		//這裡是有可能發送失敗的
+		return EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为:" + verify);
 	}
 
 }

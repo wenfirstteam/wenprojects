@@ -35,4 +35,9 @@ public class ResponseResult {
 		result.setData(obj);
 		return result;
 	}
+	
+	public static ResponseResult isSuccess(Boolean result) {
+		//返回一个带200或500状态码的结果对象
+		return result ? success() : fail();
+	}
 }

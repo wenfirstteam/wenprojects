@@ -1,5 +1,7 @@
 package com.bs.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.bs.entity.User;
 
 public interface UserMapper
@@ -14,5 +16,7 @@ public interface UserMapper
 	public User findEmailByUserName(String userName);
 
 	public int updatePassword(User user);  
+	
+	public User findUser(@Param("id") Integer id);
 
 }

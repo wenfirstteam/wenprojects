@@ -3,12 +3,31 @@ package com.bs.entity;
 public class User
 {
 
+	/**
+	 * 鐢ㄦ埛id
+	 */
 	private Integer id;
+	
+	/**
+	 * 鐢ㄦ埛璐﹀彿
+	 */
 	private String userName;
+	
+	/**
+	 * 鐧诲綍瀵嗙爜
+	 */
 	private String passWord;
-	//0：求职者  1：公司  2：系统管理
+	
+	/**
+	 * 鏍囧織
+	 */
 	private Integer flag;
+	
+	/**
+	 * 鐢靛瓙閭
+	 */
 	private String email;
+	
 	public Integer getId()
 	{
 		return id;
