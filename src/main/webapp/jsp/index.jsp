@@ -5,10 +5,8 @@
 <html>
 <head>
 <title>汉中人才网</title>
-<link href="https://static.zhipin.com/zhipin/v149/web/geek/css/main.css"
-	type="text/css" rel="stylesheet">
-<link rel="canonical" href="https://www.zhipin.com/">
 <meta name="applicable-device" content="pc">
+<link href="../css/index.css" rel="stylesheet" type="text/css">
 <meta name="mobile-agent"
 	content="format=html5;url=https://m.zhipin.com/">
 <style type="text/css">
@@ -19,6 +17,19 @@ body {
 	font-family: Arial, Helvetica, sans-serif, simsun;
 	background-image: url(../pic/index.jpg);
 }
+
+.button1 { /* 按钮美化 */
+	width: 70px; /* 宽度 */
+	height: 49px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 15px; /* 字体大小 */
+}
 </style>
 </head>
 <body>
@@ -26,7 +37,7 @@ body {
 	<div id="header">
 		<div class="inner home-inner">
 			<div class="logo">
-				<font size="3" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
+				<font size="6" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
 			</div>
 			<div class="nav-city">
 				<div class="city-box">
@@ -58,7 +69,8 @@ body {
 				<div class="search-form ">
 					<form action="/job_detail/" method="get">
 						<div class="logo">
-							<font size="3" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
+							<font size="6" face="微软雅黑" color="#00d7c6"><B>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B></font>
 						</div>
 						<div class="search-form-con">
 							<div class="position-sel" class="search_box_sel_jobtype">
@@ -74,7 +86,7 @@ body {
 							value="101110100" /> <input type="hidden" name="industry"
 							class="industry-code" value="" /> <input type="hidden"
 							name="position" class="position-code" value="" />
-						<button class="btn btn-search" class="search_box_index">搜索</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button1">搜索</button>
 						<div class="suggest-result">
 							<ul>
 							</ul>
@@ -86,26 +98,26 @@ body {
 							</div>
 						</div>
 					</form>
-				</div>
+				</div><br>
 				<div class="search-hot">
-					<b>热门职位:</b> <a href="/c101110100/?query=Java&industry=&position="
-						class="hot-position-1">Java</a> <a
+					<font face="微软雅黑" color="#000000"><B>热门职位:</B></font> <a href="/c101110100/?query=Java&industry=&position="
+						class="hot-position-1"><font face="微软雅黑" color="#efffee">Java</font></a> <a
 						href="/c101110100/?query=PHP&industry=&position="
-						class="hot-position-2">PHP</a> <a
+						class="hot-position-2"><font face="微软雅黑" color="#efffee">PHP</font></a> <a
 						href="/c101110100/?query=C%2B%2B&industry=&position="
-						class="hot-position-3">C++</a> <a
+						class="hot-position-3"><font face="微软雅黑" color="#efffee">C++</font></a> <a
 						href="/c101110100/?query=web前端&industry=&position="
-						class="hot-position-4">web前端</a> <a
+						class="hot-position-4"><font face="微软雅黑" color="#efffee">web前端</font></a> <a
 						href="/c101110100/?query=iOS&industry=&position="
-						class="hot-position-5">iOS</a> <a
+						class="hot-position-5"><font face="微软雅黑" color="#efffee">iOS</a></font> <a
 						href="/c101110100/?query=Android&industry=&position="
-						class="hot-position-6">Android</a> <a
+						class="hot-position-6"><font face="微软雅黑" color="#efffee">Android</font></a> <a
 						href="/c101110100/?query=产品经理&industry=&position="
-						class="hot-position-7">产品经理</a> <a
+						class="hot-position-7"><font face="微软雅黑" color="#efffee">产品经理</font></a> <a
 						href="/c101110100/?query=UI设计师&industry=&position="
-						class="hot-position-8">UI设计师</a> <a
+						class="hot-position-8"><font face="微软雅黑" color="#efffee">UI设计师</font></a> <a
 						href="/c101110100/?query=产品运营&industry=&position="
-						class="hot-position-9">产品运营</a>
+						class="hot-position-9"><font face="微软雅黑" color="#efffee">产品运营</font></a>
 				</div>
 			</div>
 		</div>
@@ -479,89 +491,8 @@ body {
 							</ul>
 						</div>
 					</dl>
-					<dl class="">
-						<dd>
-							<i class="icon-arrow-right"></i> <b>运营</b> <a
-								href="/c101110100-p130111/">新媒体运营</a> <a
-								href="/c101110100-p130102/">产品运营</a>
-						</dd>
-						<div class="menu-line"></div>
-						<div class="menu-sub">
-							<p class="menu-article">运营</p>
-							<ul>
-								<li>
-									<h4>运营</h4>
-									<div class="text">
-										<a class="search_130199" href="/c101110100-p130199/">运营</a> <a
-											class="search_130101" href="/c101110100-p130101/">用户运营</a> <a
-											class="search_130102" href="/c101110100-p130102/">产品运营</a> <a
-											class="search_130103" href="/c101110100-p130103/">数据运营</a> <a
-											class="search_130104" href="/c101110100-p130104/">内容运营</a> <a
-											class="search_130105" href="/c101110100-p130105/">活动运营</a> <a
-											class="search_130106" href="/c101110100-p130106/">商家运营</a> <a
-											class="search_130107" href="/c101110100-p130107/">品类运营</a> <a
-											class="search_130108" href="/c101110100-p130108/">游戏运营</a> <a
-											class="search_130109" href="/c101110100-p130109/" class="cur">网络推广</a>
-										<a class="search_130110" href="/c101110100-p130110/">网站运营</a>
-										<a class="search_130111" href="/c101110100-p130111/">新媒体运营</a>
-										<a class="search_130112" href="/c101110100-p130112/">社区运营</a>
-										<a class="search_130113" href="/c101110100-p130113/">微信运营</a>
-										<a class="search_130114" href="/c101110100-p130114/">微博运营</a>
-										<a class="search_130115" href="/c101110100-p130115/">策略运营</a>
-										<a class="search_130116" href="/c101110100-p130116/">线下拓展运营</a>
-										<a class="search_130117" href="/c101110100-p130117/">电商运营</a>
-										<a class="search_130118" href="/c101110100-p130118/">运营助理/专员</a>
-										<a class="search_130120" href="/c101110100-p130120/">内容审核</a>
-										<a class="search_130119" href="/c101110100-p130119/">销售运营</a>
-									</div>
-								</li>
-								<li>
-									<h4>编辑</h4>
-									<div class="text">
-										<a class="search_130299" href="/c101110100-p130299/">编辑</a> <a
-											class="search_130201" href="/c101110100-p130201/">副主编</a> <a
-											class="search_130202" href="/c101110100-p130202/">内容编辑</a> <a
-											class="search_130203" href="/c101110100-p130203/">文案策划</a> <a
-											class="search_130204" href="/c101110100-p130204/">网站编辑</a> <a
-											class="search_130205" href="/c101110100-p130205/" class="cur">记者</a>
-										<a class="search_130206" href="/c101110100-p130206/">采编</a>
-									</div>
-								</li>
-								<li>
-									<h4>客服</h4>
-									<div class="text">
-										<a class="search_130301" href="/c101110100-p130301/">售前咨询</a>
-										<a class="search_130302" href="/c101110100-p130302/">售后咨询</a>
-										<a class="search_130303" href="/c101110100-p130303/">网络客服</a>
-										<a class="search_130304" href="/c101110100-p130304/">客服经理</a>
-										<a class="search_130305" href="/c101110100-p130305/">客服专员/助理</a>
-										<a class="search_130306" href="/c101110100-p130306/">客服主管</a>
-										<a class="search_130307" href="/c101110100-p130307/">客服总监</a>
-										<a class="search_130308" href="/c101110100-p130308/">电话客服</a>
-										<a class="search_130309" href="/c101110100-p130309/">咨询热线/呼叫中心客服</a>
-									</div>
-								</li>
-								<li>
-									<h4>高端运营职位</h4>
-									<div class="text">
-										<a class="search_130499" href="/c101110100-p130499/">高端运营职位</a>
-										<a class="search_130401" href="/c101110100-p130401/">主编</a> <a
-											class="search_130402" href="/c101110100-p130402/" class="cur">运营总监</a>
-										<a class="search_130403" href="/c101110100-p130403/">COO</a> <a
-											class="search_130404" href="/c101110100-p130404/">客服总监</a> <a
-											class="search_130405" href="/c101110100-p130405/">运营经理/主管</a>
-									</div>
-								</li>
-								<li>
-									<h4>其他运营职位</h4>
-									<div class="text">
-										<a class="search_130501" href="/c101110100-p130501/">其他运营职位</a>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</dl>
-					<dl class="">
+					
+					<dl class="all-box">
 						<dd>
 							<i class="icon-arrow-right"></i> <b>市场</b> <a
 								href="/c101110100-p140101/">市场营销</a> <a
@@ -1017,7 +948,9 @@ body {
 							</ul>
 						</div>
 					</dl>
-					<dl class="">
+					
+					<div class="show-all">显示全部职位</div>
+					<dl class="all-box">
 						<dd>
 							<i class="icon-arrow-right"></i> <b>汽车</b> <a
 								href="/c101110100-p230201/">汽车销售</a> <a
@@ -1077,7 +1010,7 @@ body {
 							</ul>
 						</div>
 					</dl>
-					<dl class="">
+					<dl class="all-box">
 						<dd>
 							<i class="icon-arrow-right"></i> <b>教育培训</b> <a
 								href="/c101110100-p190101/">课程设计</a> <a
@@ -1185,8 +1118,88 @@ body {
 							</ul>
 						</div>
 					</dl>
-					<div class="show-all">显示全部职位</div>
-
+					<dl class="all-box">
+						<dd>
+							<i class="icon-arrow-right"></i> <b>运营</b> <a
+								href="/c101110100-p130111/">新媒体运营</a> <a
+								href="/c101110100-p130102/">产品运营</a>
+						</dd>
+						<div class="menu-line"></div>
+						<div class="menu-sub">
+							<p class="menu-article">运营</p>
+							<ul>
+								<li>
+									<h4>运营</h4>
+									<div class="text">
+										<a class="search_130199" href="/c101110100-p130199/">运营</a> <a
+											class="search_130101" href="/c101110100-p130101/">用户运营</a> <a
+											class="search_130102" href="/c101110100-p130102/">产品运营</a> <a
+											class="search_130103" href="/c101110100-p130103/">数据运营</a> <a
+											class="search_130104" href="/c101110100-p130104/">内容运营</a> <a
+											class="search_130105" href="/c101110100-p130105/">活动运营</a> <a
+											class="search_130106" href="/c101110100-p130106/">商家运营</a> <a
+											class="search_130107" href="/c101110100-p130107/">品类运营</a> <a
+											class="search_130108" href="/c101110100-p130108/">游戏运营</a> <a
+											class="search_130109" href="/c101110100-p130109/" class="cur">网络推广</a>
+										<a class="search_130110" href="/c101110100-p130110/">网站运营</a>
+										<a class="search_130111" href="/c101110100-p130111/">新媒体运营</a>
+										<a class="search_130112" href="/c101110100-p130112/">社区运营</a>
+										<a class="search_130113" href="/c101110100-p130113/">微信运营</a>
+										<a class="search_130114" href="/c101110100-p130114/">微博运营</a>
+										<a class="search_130115" href="/c101110100-p130115/">策略运营</a>
+										<a class="search_130116" href="/c101110100-p130116/">线下拓展运营</a>
+										<a class="search_130117" href="/c101110100-p130117/">电商运营</a>
+										<a class="search_130118" href="/c101110100-p130118/">运营助理/专员</a>
+										<a class="search_130120" href="/c101110100-p130120/">内容审核</a>
+										<a class="search_130119" href="/c101110100-p130119/">销售运营</a>
+									</div>
+								</li>
+								<li>
+									<h4>编辑</h4>
+									<div class="text">
+										<a class="search_130299" href="/c101110100-p130299/">编辑</a> <a
+											class="search_130201" href="/c101110100-p130201/">副主编</a> <a
+											class="search_130202" href="/c101110100-p130202/">内容编辑</a> <a
+											class="search_130203" href="/c101110100-p130203/">文案策划</a> <a
+											class="search_130204" href="/c101110100-p130204/">网站编辑</a> <a
+											class="search_130205" href="/c101110100-p130205/" class="cur">记者</a>
+										<a class="search_130206" href="/c101110100-p130206/">采编</a>
+									</div>
+								</li>
+								<li>
+									<h4>客服</h4>
+									<div class="text">
+										<a class="search_130301" href="/c101110100-p130301/">售前咨询</a>
+										<a class="search_130302" href="/c101110100-p130302/">售后咨询</a>
+										<a class="search_130303" href="/c101110100-p130303/">网络客服</a>
+										<a class="search_130304" href="/c101110100-p130304/">客服经理</a>
+										<a class="search_130305" href="/c101110100-p130305/">客服专员/助理</a>
+										<a class="search_130306" href="/c101110100-p130306/">客服主管</a>
+										<a class="search_130307" href="/c101110100-p130307/">客服总监</a>
+										<a class="search_130308" href="/c101110100-p130308/">电话客服</a>
+										<a class="search_130309" href="/c101110100-p130309/">咨询热线/呼叫中心客服</a>
+									</div>
+								</li>
+								<li>
+									<h4>高端运营职位</h4>
+									<div class="text">
+										<a class="search_130499" href="/c101110100-p130499/">高端运营职位</a>
+										<a class="search_130401" href="/c101110100-p130401/">主编</a> <a
+											class="search_130402" href="/c101110100-p130402/" class="cur">运营总监</a>
+										<a class="search_130403" href="/c101110100-p130403/">COO</a> <a
+											class="search_130404" href="/c101110100-p130404/">客服总监</a> <a
+											class="search_130405" href="/c101110100-p130405/">运营经理/主管</a>
+									</div>
+								</li>
+								<li>
+									<h4>其他运营职位</h4>
+									<div class="text">
+										<a class="search_130501" href="/c101110100-p130501/">其他运营职位</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</dl>
 					<div class="all-box">
 						<dl>
 							<dd>
@@ -1823,90 +1836,26 @@ body {
 					<div class="promotion-main">
 						<table data-sort="sortDisabled">
 							<tbody>
-								<tr class="firstRow">
-									<td valign="top" style="word-break: break-all;" rowspan="1"
-										colspan="2"><a
-										href="https://www.zhipin.com/gongsi/fe3d250b05c715cd1XJ809m5.html?class=search_list_company_1_custompage"
-										target="_blank" class="Banner-promotion-266844"><img
-											title="5c6d793d586c8c643bc504b8af467edc.png"
-											style="white-space: normal;" alt="入口banner.png"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190417/5c6d793d586c8c643bc504b8af467edc.png?x-oss-process=image/format,jpg" /></a><a
-										href="https://www.zhipin.com/gongsi/fe3d250b05c715cd1XJ809m5.html?class=search_list_company_1_custompage"
-										target="_blank" class="Banner-promotion-266844"></a></td>
-									<td width="307" valign="top" style="word-break: break-all;"
-										rowspan="2" colspan="1"><a style="white-space: normal;"
-										href="https://www.zhipin.com/zt/2019/luckin-second/pc/?sid=web_banner_rxkf04080421&shid=web_banner_rxkf04080421"
-										target="_blank" class="banner-promotion-activity-rxkf04080421"><img
-											title="136641c71f07e89986d5f634e4e5d62f.jpg"
-											alt="瑞幸咖啡头条banner.jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190404/136641c71f07e89986d5f634e4e5d62f.jpg?x-oss-process=image/format,jpg" /></a></td>
-								</tr>
-								<tr>
-									<td valign="top" style="word-break: break-all;" rowspan="1"
-										colspan="2"><a style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/798705cb4a55004703F639g~.html?class=search_rcmd_company_798705cb4a55004703F639g~"
-										target="_blank" class="Banner-promotion-45045"><img
-											src="https://img.bosszhipin.com/beijin/upload/image/20180803/75e97fea339d184951a10fe08f41116e.jpg?x-oss-process=image/format,jpg" /></a></td>
-								</tr>
-								<tr>
-									<td valign="top" style="word-break: break-all;" rowspan="1"
-										colspan="2"><a style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/a0eab56fce0c264f03B92dm8.html?class=search_rcmd_company_a0eab56fce0c264f03B92dm8"
-										target="_blank" class="Banner-promotion-447241"><img
-											title="6a12259cbf7d990b3ab9ed192e05704d.jpg"
-											alt="入口banner.jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190329/6a12259cbf7d990b3ab9ed192e05704d.jpg?x-oss-process=image/format,jpg" /></a><a
-										href="https://www.zhipin.com/gongsi/fe3d250b05c715cd1XJ809m5.html?class=search_list_company_1_custompage"
-										target="_blank" class="Banner-promotion-266844"></a></td>
-									<td width="307" valign="top" style="word-break: break-all;"><a
-										style="white-space: normal;"
-										href="https://www.zhipin.com/article/53.html?class=article-type-img-detail2"
-										target="_blank"
-										class="https://www.zhipin.com/article/53.html?class=article-type-img-detail2"><img
-											title="b8b7d2b8e0d3ff336b67eeafcbb5061c.jpg"
-											alt="跳槽吧水果-头条banner.jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190416/b8b7d2b8e0d3ff336b67eeafcbb5061c.jpg?x-oss-process=image/format,jpg" /></a></td>
-								</tr>
-								<tr>
-									<td valign="top" style="word-break: break-all;" rowspan="1"
-										colspan="2"><a style="white-space: normal;"
-										href="https://www.zhipin.com/zt/2019/iqiyi-vip/pc/?sid=web_banner_aiqiyi04150421&shid=web_banner_aiqiyi04150421"
-										target="_blank"
-										class="banner-promotion-activity-aiqiyi04150421"><img
-											title="c6e9f2088a1abbe81c1798bfeb5ec675.jpg"
-											alt="爱奇艺-二合一（入口banner）.jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190412/c6e9f2088a1abbe81c1798bfeb5ec675.jpg?x-oss-process=image/format,jpg" /></a></td>
-									<td width="307" valign="top" style="word-break: break-all;"><a
-										style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/c68ada9380b13fff1XZ-.html?class=company-intro"
-										target="_blank" class="Banner-promotion-224"><img
-											title="2e5efa5accbaa6ca6527774854ae4c1b.jpg"
-											alt="入口-banner.jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190412/2e5efa5accbaa6ca6527774854ae4c1b.jpg?x-oss-process=image/format,jpg" /></a></td>
-								</tr>
-								<tr>
-									<td width="307" valign="top" style="word-break: break-all;"><a
-										style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/5a5c0072d3fd43211nZ43d2_.html?class=search_rcmd_company_5a5c0072d3fd43211nZ43d2"
-										target="_blank" class="Banner-promotion-122602"><img
-											title="96317f6a3260a71c756be1b1a3e533be.jpg"
-											alt="入口banner(加深颜色).jpg"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190417/96317f6a3260a71c756be1b1a3e533be.jpg?x-oss-process=image/format,jpg" /></a></td>
-									<td width="307" valign="top" style="word-break: break-all;"><a
-										style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/27874ec7547ab0b91HRz3tS-.html?class=company-intro"
-										target="_blank" class="Banner-promotion-309593"><img
-											title="2be9eadb738d9e6158803843e7ac1239.png"
-											alt="入口banner.png"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190412/2be9eadb738d9e6158803843e7ac1239.png?x-oss-process=image/format,jpg" /></a></td>
-									<td width="307" valign="top" style="word-break: break-all;"><a
-										style="white-space: normal;"
-										href="https://www.zhipin.com/gongsi/4c337b8e8b3fa6243nd809U~.html?class=company-intro"
-										target="_blank" class="Banner-promotion-93688"><img
-											title="db61ed2e2ad61dbbeffb8beb4d0b3165.png"
-											alt="入口banner.png"
-											src="https://img.bosszhipin.com/beijin/upload/image/20190412/db61ed2e2ad61dbbeffb8beb4d0b3165.png?x-oss-process=image/format,jpg" /></a></td>
-								</tr>
+							
+							
+							
+							<div class="zlck cn">
+            <strong class="tle c_orange">职场资讯</strong>
+            <div class="msg">
+                <a class="tname at" target="_blank" href="//arts.51job.com/arts/05/428866.html" title="简历突出这三点才能打动HR！">
+					<strong>简历突出这三点才能打动HR！</strong>
+			   </a>
+				<p class="p">现在流行“高富帅”和“白富美”，因为养眼，因为赏心悦目。而写简历一定要“高顺强”，因为这样的简历...
+					<a target="_blank" href="//arts.51job.com/arts/05/428866.html">
+						<span style="color:#FF7300;">阅读全文&gt;&gt;</span>
+					</a>
+				</p>            </div>
+            <ul class="dcon"><li><a target="_blank" href="//arts.51job.com/arts/05/428864.html" title="求职刁难问题汇总！">求职刁难问题汇总！</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li><li><a target="_blank" href="//arts.51job.com/arts/05/428862.html" title="过不了试用期的六类人，有你吗？">过不了试用期的六类人，有...</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li><li><a target="_blank" href="//arts.51job.com/arts/05/428861.html" title="被裁了，面试时坦白会从宽吗？">被裁了，面试时坦白会从宽吗？</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li><li><a target="_blank" href="//arts.51job.com/arts/05/428858.html" title="这个离职原因，面试时我有点不敢讲">这个离职原因，面试时我有...</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li><li><a target="_blank" href="//arts.51job.com/arts/05/428856.html" title="残酷真相：裸辞第一天就贬值？！">残酷真相：裸辞第一天就贬...</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li><li><a target="_blank" href="//arts.51job.com/arts/05/428847.html" title="面试官问这个问题，是不是没话找话？！">面试官问这个问题，是不是...</a><img src="//img01.51jobcdn.com/im/2016/temp/new.png"></li></ul>		    <div class="clear"></div>
+		</div>
+							
+							
+							
+							
 							</tbody>
 						</table>
 						<p>
