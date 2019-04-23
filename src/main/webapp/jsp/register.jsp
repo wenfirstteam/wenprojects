@@ -25,15 +25,15 @@ function register(){
 	var $email = $("#email").val();
 	if ($name == "") {
 		alert("用户名不能为空！");
-		return;
+		return false;
 	} 
 	if ($pwd == "") {
 		alert("密码不能为空！");
-		return;
+		return false;
 	}
 	if ($email == "") {
 		alert("邮箱不能为空！");
-		return;
+		return false;
 	}
 	$.ajax({
 		async:false,
@@ -44,12 +44,17 @@ function register(){
 			if (msg.status == 200)
 			{
 				alert("注册成功！");
-				window.location.href = "login.jsp";
-			}else
+				setTimeout(function(){
+					window.location.href = "login.jsp";
+				},1);
+			}else{
 				alert(msg.message);
+				return false;
+			}
 		},
 		error : function(data) {
-			alert(data+"");
+			alert("系统异常!");
+			return false;
 		}
 	}) ;
 }
@@ -86,7 +91,7 @@ function register(){
 					</div>
 					<div>
 						<input id="submit" name="submit" type="submit"
-							class="login-btn __ga__switchTag_loginBtn_001 " onclick="register()"
+							class="login-btn __ga__switchTag_loginBtn_001 " onclick="return register();"
 							value="确定" > 
 					</div>
 					<div class="login-forget">

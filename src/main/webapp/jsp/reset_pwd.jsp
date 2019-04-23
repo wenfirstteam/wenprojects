@@ -275,7 +275,6 @@ a, input:focus {
 	}
 }
 </style>
-<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -291,7 +290,7 @@ a, input:focus {
 		<div class="content verifiTel">
 			<div class="title">找回密码</div>
 			<div class="form-wrapper form">
-				<form action="/rcw/user/resetPwd.action" method="post"
+				<form antion="##" method="post"
 					id="verificationOldTel" class="inner_form" data-ts="5xGY"
 					novalidate="novalidate">
 					<input type="hidden" id="bkurl" name="bkurl"
@@ -311,23 +310,25 @@ a, input:focus {
 
 					<div class="ipt-wrapper code-wrapper">
 						<label for="verifiCode">验 证 码</label>
+						<c:set var="flag" value="1">
 						<div class="code-ipt">
 							<input class="" id="verifiCode" name="verifiCode" type="text"
 								value="" placeholder="验证码" /> <a href="javascript:;"
-								class="btn btn-getCode" id="sendVerifiCode" onclick="verify()">获取验证码</a>
-						</div>
+								class="btn btn-getCode" id="sendVerifiCode" onclick="return verify();">
+								获取验证码</a>
+						</div><div id="test"></div>
 						<div class="ipt-warning" id="alertMessage_verifiCode"></div>
 					</div>
 
 					<div class="ipt-wrapper">
 						<label for="password">重置密码</label> <input id="password"
 							name="password" type="password" class="ipt" placeholder="新密码" />
-						<div class="ipt-warning" id="alertMessage_password"></div>
+						<div class="ipt-warning" id="password"></div>
 					</div>
 
 					<div class="ipt-wrapper">
 						<label for="passwordConfirm">确认密码</label> <input
-							id="passwordConfirm" type="password" class="ipt"
+							id="password1" type="password" class="ipt"
 							placeholder="确认密码" />
 						<div class="ipt-warning" id="alertMessage_passwordConfirm"></div>
 					</div>
@@ -335,25 +336,93 @@ a, input:focus {
 					<div id="alertMessage" class="message"></div>
 
 					<div>
-						<input id="submitbtn" type="submit" class="confirm-btn" value="确认">
+						<input id="submitbtn" type="submit" class="confirm-btn" value="确认" onclick="return ok();">
 					</div>
-				</form> 
+				</form>
 			</div>
 		</div>
 	</div>
 </body>
-<script>	
-	function verify(){
-		alert("xdsxsx");
-		var $name = $("#name");
-		var $email = $("#email");
+<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+<script>
+	var sendVerify = "";
+	function verify() {
+		var $name = $("#name").val();
+		var $email = $("#email").val();
+		if ($name =="")
+		{
+			alert("用户名不能为空！");
+			return false;
+		}
+		if ($email =="")
+		{
+			alert("邮箱不能为空！");
+			return false;
+		}
 		$.ajax({
-			async:false,
-			url:"/rcw/user/verify.action",
-			type:"POST",
-			data:{"userName":$name,"email":$email},
-			success:function(msg){
-				alert(msg.data);
+			async : false,
+			url : "/rcw/user/verify.action",
+			type : "GET",
+			data : {
+				"userName" : $name,
+				"email" : $email
+			},
+			success : function(msg) {
+				if(msg.status==200){
+					alert("dcdcsssssss");
+					alert(msg.data);
+					document.getElementById("test").innerHTML = "验证码已发送！";
+					sendVerify = msg.data;
+					$(function(){
+					    $('#name').attr('disabled',true);
+				   	 $('#email').attr('disabled',true);
+					});
+				}else
+					alert(msg.message);
+			},
+			error : function(data) {
+				document.getElementById("test").innerHTML = "发送失败！";
+				alert("系统异常！");
+			}
+		});
+	}
+	function ok(){
+		var $name = $("#name").val();
+		var $password = $("#password").val();
+		var $password1 = $("#password1").val();
+		var $verifiCode = $("#verifiCode").val();
+		if ($verifiCode != sendVerify ||$verifiCode=="")
+		{
+			document.getElementById("test").innerHTML = "验证码错误，请重新输入！";
+			return false;
+		}else{
+			document.getElementById("test").innerHTML = "";
+		}
+		if($password.length<6)
+		{
+			alert("密码必须为6~20位！");
+			return false;
+		}
+		 if($password != $password1) {
+		        alert("两次密码不一致，请重新输入");
+		        return false;
+		 }
+		$.ajax({
+			async : false,
+			url : "/rcw/user/updataPwd.action",
+			type : "POST",
+			data : {
+				"userName" : $name,
+				"passWord": $password
+			},
+			success : function(msg) {
+				if (msg.status == 200)
+				{
+					alert("密码重置成功！");
+					setTimeout(function(){
+						window.location.href = "login.jsp";
+					},1);
+				}
 			},
 			error : function(data) {
 				alert("系统异常！");

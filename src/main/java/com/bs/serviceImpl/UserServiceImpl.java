@@ -1,7 +1,7 @@
 package com.bs.serviceImpl;
 
+import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService
 
 	@Autowired
 	private UserMapper userMapper;
-	
+	@Autowired
 	private EmailUtil emailUtil;
 
 	@Override
@@ -51,39 +51,30 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public ResponseResult sendVerify(User user)
-	{
-		//根据账号查到的用户
+	public String sendEmailById(User user) {
 		User u = userMapper.findEmailByUserName(user.getUserName());
 		if(u == null)
-			return ResponseResult.failAddMessage("用户名输入有误，请重新输入！");
-		if(u.getEmail().equals(user.getEmail()))
-			return ResponseResult.failAddMessage("邮箱输入有误，请重新输入！");
+			return "用户名输入有误，请重新输入！";
+		if(!u.getEmail().equals(user.getEmail()))
+			return "邮箱输入有误，请重新输入！";
 		//生成验证码
 		String verify = "";
 		Random rd = new Random();
-		for(int i = 0;i<=6;i++)
-			verify += rd.nextInt(10);
-		//发送验证码
-//		EmailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为"+verify);
-		//验证成功后
-		return ResponseResult.successAddData(verify);
-	}
-
-	@Override
-	public Boolean sendEmailById(Integer id) {
-		User user = userMapper.findUser(id);
-		if(user == null) {
-			return false;
-		}
-		//生成验证码
-		String verify = "";
-		Random rd = new Random();
-		for(int i = 0;i<=6;i++) {
+		for(int i = 0;i<6;i++) {
 			verify += rd.nextInt(10);
 		}
 		//這裡是有可能發送失敗的
-		return emailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为:" + verify);
+		Map<String,String> result = emailUtil.sendEmail(user.getEmail(), "汉中人才网", "您正在修改密码，验证码为:" + verify);
+		if("fail".equals(result.get("senResult")))
+			return "验证码发送失败，请稍后再试！";
+		return verify;
+	}
+
+	@Override
+	public boolean updatePwd(User user)
+	{
+		int result = userMapper.updatePwd(user);
+		return result > 0;
 	}
 
 }

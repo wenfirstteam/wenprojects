@@ -24,11 +24,11 @@ body {
 		var $pwd = $("#password").val();
 		if ($name == "") {
 			alert("用户名不能为空！");
-			return;
+			return false;
 		} 
 		if ($pwd == "") {
 			alert("密码不能为空！");
-			return;
+			return false;
 		}
 		$.ajax({
 			async : false,
@@ -40,13 +40,17 @@ body {
 			},
 			success : function(msg) {
 				if (msg.status == 200) {
-					alert("登录成功！");
-					window.location.href = "index.jsp";
-				} else
+					setTimeout(function(){
+						window.location.href = "index.jsp";
+					},1);
+				} else{
 					alert(msg.message);
+					return false;
+				}
 			},
-			error : function(data) {
+			error : function(msg) {
 				alert("系统异常！");
+				return false;
 			}
 		});
 	}
@@ -75,7 +79,7 @@ body {
 					<div>
 						<input id="submit" name="submit" type="submit"
 							class="login-btn __ga__switchTag_loginBtn_001 " value="登录"
-							onclick="login()">
+							onclick="return login();">
 					</div>
 					<div class="login-forget">
 						<p>

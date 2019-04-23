@@ -12,7 +12,7 @@ public interface UserService
 
 	ResponseResult login(User user);
 
-	ResponseResult sendVerify(User user);  
- 
-	Boolean sendEmailById(Integer id);
+	String sendEmailById(User user);
+
+	boolean updatePwd(User user);
 }

@@ -1,5 +1,8 @@
 package com.bs.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -15,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailUtil {
 	
 	@Autowired
-	private static JavaMailSenderImpl javaMailSender;
+	private JavaMailSenderImpl javaMailSender;
 	
 	/**
 	 * @param toEmail 要发送到的邮箱地址
@@ -24,9 +27,10 @@ public class EmailUtil {
 	 * 发送邮件
 	 * @return
 	 */
-	public Boolean sendEmail(String toEmail, String subject, String text) {
+	public Map<String,String> sendEmail(String toEmail, String subject, String text) {
 	        MimeMessage mMessage=javaMailSender.createMimeMessage();//创建邮件对象
 	        MimeMessageHelper mMessageHelper;
+	        Map<String,String> result = new HashMap<String,String>();
 	        try {
 	            mMessageHelper=new MimeMessageHelper(mMessage,true);
 	            mMessageHelper.setFrom(javaMailSender.getUsername());//发件人邮箱
@@ -35,10 +39,12 @@ public class EmailUtil {
 	            mMessageHelper.setText(text);//邮件的文本内容，true表示文本以html格式打开
 	            javaMailSender.send(mMessage);//发送邮件
 	        } catch (MessagingException e) {
+	        	result.put("sendResult", "fail");
 	            log.info("email send failed, message: " + e.getMessage());
-	            return false;
+	            return result;
 	        } 
 	        log.info("email send success");
-	        return true;
+	        result.put("sendResult", "success");
+			return result;
 	    }
 }
