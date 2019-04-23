@@ -62,7 +62,7 @@ function register(){
 </head>
 <body>
 	<div class="big-bg">
-	<img class="advertisement-hotspot" src="../pic/logo.png" style="left:2.549999999999999%;width:18.490000000000002%;top:4.02%;height:15.83%;"/>
+	<a href="index.jsp"><img class="advertisement-hotspot" src="../pic/logo.png" style="left:2.549999999999999%;width:18.490000000000002%;top:4.02%;height:15.83%;"/></a>
 		<div class="login-box clearfix">
 			<div class="login-tit">
 				<span class="login-account-c">用户注册</span>
