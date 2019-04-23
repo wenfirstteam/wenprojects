@@ -49,7 +49,7 @@ body {
 							href="https://news.zhipin.com/">资讯</a></li>
 				</ul>
 			</div>
-		</div>
+		</div> 
 	</div>
 	<!-- 搜索 -->
 	<div class="column-search-panel">

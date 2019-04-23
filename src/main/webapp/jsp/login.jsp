@@ -15,7 +15,7 @@ body {
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif, simsun;
 	background-image: url(../pic/bg.jpg);
-}
+} 
 </style>
 <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
