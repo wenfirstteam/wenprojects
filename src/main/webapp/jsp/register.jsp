@@ -44,9 +44,15 @@ function register(){
 			if (msg.status == 200)
 			{
 				alert("注册成功！");
-				setTimeout(function(){
-					window.location.href = "login.jsp";
-				},1);
+				if($type==0){
+					setTimeout(function(){
+						window.location.href = "find/editResume.jsp?username="+msg.data.userName+"&id="+msg.data.id; 
+					},1);
+				}else{
+					setTimeout(function(){
+						window.location.href = "company/editIntroduce.jsp?username="+msg.data.userName; 
+					},1);
+				}
 			}else{
 				alert(msg.message);
 				return false;

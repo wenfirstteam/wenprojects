@@ -3,6 +3,9 @@ package com.bs.serviceImpl;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +33,17 @@ public class UserServiceImpl implements UserService
 			return ResponseResult.failAddMessage("用户名已存在！");
 		}
 		int result = userMapper.insertUser(user);
-		if (result == 1)
-			return ResponseResult.success();
+		if (result == 1) {
+			User resultUser = userMapper.findUserByUserName(user.getUserName());
+			return ResponseResult.successAddData(resultUser);
+		}
 		return ResponseResult.failAddMessage("注册失败！");
 	}
 
 	@Override
-	public ResponseResult login(User user)
+	public ResponseResult login(User user, HttpServletRequest request)
 	{
-		User userByName = userMapper.findPwdByUserName(user.getUserName());
+		User userByName = userMapper.findUserByUserName(user.getUserName());
 		if (userByName == null) 
 		{
 			return ResponseResult.failAddMessage("用户名不存在！");
@@ -47,12 +52,14 @@ public class UserServiceImpl implements UserService
 		{
 			return ResponseResult.failAddMessage("密码错误！");
 		}
-		return ResponseResult.success();
+		HttpSession session = request.getSession();
+		session.setAttribute("username", user.getUserName());
+		return ResponseResult.successAddData(userByName); 
 	}
 
 	@Override
 	public String sendEmailById(User user) {
-		User u = userMapper.findEmailByUserName(user.getUserName());
+		User u = userMapper.findUserByUserName(user.getUserName());
 		if(u == null)
 			return "用户名输入有误，请重新输入！";
 		if(!u.getEmail().equals(user.getEmail()))

@@ -2,18 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mapper.UserMapper">
 
-	<select id="findPwdByUserName" parameterType="string"
+	<select id="findUserByUserName" parameterType="com.bs.entity.User"
 		resultType="com.bs.entity.User">
-		select password from user where username=#{userName}
+		select id,username,password,flag,email from user where username=#{userName}
 	</select>
 
 	<select id="findIsExist" parameterType="com.bs.entity.User" resultType="int">
 		select count(*) from user where username=#{userName}
 	</select>
-	<select id="findEmailByUserName" parameterType="string" resultType="com.bs.entity.User">
-		select email from user where username=#{userName}
-	</select>
-	
 	<insert id="insertUser" parameterType="com.bs.entity.User">
 		insert user(username,password,flag,email) value (#{userName},#{passWord},#{flag},#{email})
 	</insert>

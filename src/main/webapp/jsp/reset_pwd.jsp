@@ -369,7 +369,6 @@ a, input:focus {
 			},
 			success : function(msg) {
 				if(msg.status==200){
-					alert("dcdcsssssss");
 					alert(msg.data);
 					document.getElementById("test").innerHTML = "验证码已发送！";
 					sendVerify = msg.data;

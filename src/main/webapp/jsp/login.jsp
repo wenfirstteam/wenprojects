@@ -40,9 +40,20 @@ body {
 			},
 			success : function(msg) {
 				if (msg.status == 200) {
-					setTimeout(function(){
-						window.location.href = "index.jsp";
-					},1);
+					if(msg.data.flag==0){
+						setTimeout(function(){
+							window.location.href = "index.jsp";
+						},1);
+					}else if(msg.data.flag==1){
+						setTimeout(function(){
+							window.location.href = "company.jsp";
+						},1);
+					}else{
+						setTimeout(function(){
+							window.location.href = "manager.jsp";
+						},1);
+					}
+					
 				} else{
 					alert(msg.message);
 					return false;

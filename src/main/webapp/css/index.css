@@ -22,7 +22,7 @@
 li {
     list-style: none;
 }
-body, a, li, input, button, textarea {
+body, a, li, input, button,  {
     font-family: "microsoft yahei" !important;
 }
 user agent stylesheet
@@ -5150,7 +5150,6 @@ keyframes circle { 0%{
 .pop-report textarea {
 	height: 114px;
 	padding: 12px 18px !important;
-	min-width: 283px;
 	border: 1px solid #e3e7ed;
 	resize: none;
 	display: block;
@@ -7051,7 +7050,7 @@ input::-ms-clear, input::-ms-reveal {
 
 .profile_form .sparklight_box .btns .cancle {
 	background: #c6c6c6;
-	margin-right: 12px
+	margin-right: 0px
 }
 
 .profile_form .sparklight_box .btns .confirm {
@@ -7831,29 +7830,6 @@ input::-ms-clear, input::-ms-reveal {
 	color: #61687c
 }
 
-.slider-box .pic {
-	width: 840px;
-	height: 98px;
-	margin: 20px auto 0;
-	overflow: hidden
-}
-
-.slider-box .pic-all {
-	width: 860px;
-	overflow: hidden
-}
-
-.slider-box .pic a {
-	width: 98px;
-	height: 98px;
-	float: left;
-	margin-right: 10px;
-	background: #fff;
-	overflow: hidden;
-	-webkit-transition: none;
-	transition: none
-}
-
 .slider-box .pic a:hover .tit {
 	color: #18c3b1
 }
@@ -7906,6 +7882,7 @@ input::-ms-clear, input::-ms-reveal {
 	height: 578px
 }
 
+
 .promotion-main img {
 	display: block
 }
@@ -7926,14 +7903,9 @@ input::-ms-clear, input::-ms-reveal {
 	width: 100% !important
 }
 
-.promotion-main tr {
-	min-height: 114px
-}
-
 .promotion-main td {
 	padding-right: 2px;
 	padding-bottom: 2px;
-	width: auto;
 	vertical-align: top
 }
 

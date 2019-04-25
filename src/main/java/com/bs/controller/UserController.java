@@ -1,9 +1,9 @@
 package com.bs.controller;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ public class UserController
 	 * @throws IOException
 	 */
 	@PostMapping("/login")
-	public @ResponseBody ResponseResult login(@Valid User user)
+	public @ResponseBody ResponseResult login(@Valid User user,HttpServletRequest request)
 	{
-		return userService.login(user);
+		return userService.login(user,request);
 	}
 	
 	
@@ -89,5 +89,29 @@ public class UserController
 		if(result)
 			return ResponseResult.success();
 		return ResponseResult.fail();
+	}
+	
+	
+	/**
+	 * 判断是否登录
+	 * @return
+	 */
+	@GetMapping("/isLogin")
+	public @ResponseBody ResponseResult findLogin(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("username") != null)
+			return ResponseResult.successAddData(session.getAttribute("username"));
+		return ResponseResult.fail();
+	}
+	
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	@GetMapping("/logOut")
+	public @ResponseBody ResponseResult logOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
+		return ResponseResult.success();
 	}
 }

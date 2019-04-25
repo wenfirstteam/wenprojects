@@ -8,14 +8,12 @@ import com.bs.entity.User;
 public interface UserMapper
 {
 
-	public User findPwdByUserName(String userName);
+	public User findUserByUserName(String userName);
 
 	public int findIsExist(User user);
 
 	public int insertUser(User user);
 
-	public User findEmailByUserName(String userName);
+	public int updatePwd(User user);
 
-	public int updatePwd(User user);  
-	
 }
