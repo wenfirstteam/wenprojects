@@ -78,6 +78,7 @@
 		var $project_experience1 = $("#project_experience1").val();
 		var $project_experience2 = $("#project_experience2").val();
 		var $evaluate = $("#evaluate").val();
+		alert($userId);
 		if($name==""){
 			alert("姓名不能为空！");
 			return false;
@@ -90,6 +91,10 @@
 			alert("电话不能为空！");
 			return false;
 		}
+		if($tel.length>11){
+			alert("电话最多11位！");
+			return false;
+		}
 		if($school==""){
 			alert("学校不能为空");
 			return false;
@@ -100,11 +105,26 @@
 		}
 		$.ajax({
 			async:false,
-			url:
-			type:
-			data:
+			url:"/rcw/resume/addResume.action",
+			type:"POST",
+			data:{"userId":$userId,"name":$name,"sex":$sex,"age":$age,"telphone":$tel,"degree":$degree,
+				"jobAge":$job_age,"advantage":$advantage,"position":$position,"salary":$salary,
+				"school":$school,"professional":$professional,"project_experience1":$project_experience1,
+				"project_experience2":$project_experience2,
+				"work_experience1":$work_experience1,"work_experience2":$work_experience2,"evaluate":$evaluate},
 			success:function(msg){
-				
+				alert("进入success");
+				if (msg.status == 200)
+				{
+					alert("完善成功，请登录！");
+						setTimeout(function(){
+							window.location.href = "../login.jsp";
+						},1);
+						return true;
+				}else{
+					alert(msg.message);
+					return false;
+				}
 			},
 			error : function(data) {
 				alert("系统异常!");
@@ -148,7 +168,7 @@
 				</h2>
 			</div>
 			<div class="profile-manage">
-			<p style="display:none;" id="userId"><%=id %></p>
+			<input style="display:none;" id="userId" value="<%=id %>">
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
@@ -173,8 +193,8 @@
 						<em>*</em>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input id="age" type="text"
-							name="age" placeholder="输入年龄" class="ipt required"></span>
+						<span class="ipt-wrap"><input id="age" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+							name="age" placeholder="输入年龄（此处只能输入数字）" class="ipt required"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -183,7 +203,7 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input type="text" name="tel"
-							id="tel" class="ipt required" placeholder="输入电话号码"></span>
+							id="tel" class="ipt required" placeholder="输入电话号码（此处只能输入数字）"  oninput="value=value.replace(/[^\d]/g,'')"></span>
 					</div>
 				</div>
 				<div class="form-row">

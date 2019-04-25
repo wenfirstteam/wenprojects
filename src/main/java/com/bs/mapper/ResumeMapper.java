@@ -1,6 +1,10 @@
 package com.bs.mapper;
 
-public class ResumeMapper
+import com.bs.entity.Resume;
+
+public interface ResumeMapper
 {
+
+	int addResume(Resume resume); 
 
 }
