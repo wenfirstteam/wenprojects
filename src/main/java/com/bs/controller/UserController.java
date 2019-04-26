@@ -1,7 +1,5 @@
 package com.bs.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,7 +16,11 @@ import com.bs.result.ResponseResult;
 import com.bs.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * <p>ClassName: UserController</p>
+ * <p>Description: [用户相关接口]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Slf4j
 @Controller
 @RequestMapping("/user")
@@ -27,12 +29,12 @@ public class UserController
 	@Autowired
 	private UserService userService;
 
-    /**
-	 * 登录
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws IOException
+	/**
+	 * <p>Title: login</p>  
+	 * <p>Description: [用户登录]</p> 
+	 * @param user,request
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@PostMapping("/login")
 	public @ResponseBody ResponseResult login(@Valid User user,HttpServletRequest request)
@@ -42,11 +44,11 @@ public class UserController
 	
 	
 	/**
-	 * 注册
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws IOException
+	 * <p>Title: register</p>  
+	 * <p>Description: [用户注册]</p> 
+	 * @param user
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@PostMapping("/register")
 	public @ResponseBody ResponseResult register(@Valid User user)
@@ -63,8 +65,11 @@ public class UserController
 	}
 	
 	/**
-	 * 发送邮件
-	 * @return
+	 * <p>Title: sendEmail</p>  
+	 * <p>Description: [发送邮件]</p> 
+	 * @param user
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@GetMapping("/verify")
 	@ResponseBody
@@ -80,8 +85,11 @@ public class UserController
 		return ResponseResult.success();
 	}
 	/**
-	 * 修改密码
-	 * @return
+	 * <p>Title: updataPwd</p>  
+	 * <p>Description: [更新密码]</p> 
+	 * @param user
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@PostMapping("/updataPwd")
 	public @ResponseBody ResponseResult updataPwd(@Valid User user) {
@@ -91,10 +99,12 @@ public class UserController
 		return ResponseResult.fail();
 	}
 	
-	
 	/**
-	 * 判断是否登录
-	 * @return
+	 * <p>Title: findLogin</p>  
+	 * <p>Description: [查询是否登录]</p> 
+	 * @param request
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@GetMapping("/isLogin")
 	public @ResponseBody ResponseResult findLogin(HttpServletRequest request) {
@@ -105,8 +115,11 @@ public class UserController
 	}
 	
 	/**
-	 * 退出登录
-	 * @return
+	 * <p>Title: logOut</p>  
+	 * <p>Description: [退出登录]</p> 
+	 * @param request
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@GetMapping("/logOut")
 	public @ResponseBody ResponseResult logOut(HttpServletRequest request) {

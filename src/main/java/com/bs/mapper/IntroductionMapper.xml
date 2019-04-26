@@ -6,6 +6,6 @@
 		insert
 		introduction(userId,company_name,name,position,email,telphone,address)
 		value
-		(#{UserId},#{CompanyName},#{name},#{position},#{email},#{telphone},#{address})
+		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address})
 	</insert>
 </mapper>

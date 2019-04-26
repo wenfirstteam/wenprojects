@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bs.entity.Introduction;
 import com.bs.result.ResponseResult;
 import com.bs.service.IntroductionService;
-
+/**
+ * <p>ClassName: IntroductionCotroller</p>
+ * <p>Description: [公司简介相关接口]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Controller
 @RequestMapping("/introduction")
 public class IntroductionCotroller
@@ -19,8 +23,15 @@ public class IntroductionCotroller
 	@Autowired
 	private IntroductionService introductionService;
 
+	/**
+	 * <p>Title: addIntroduction</p>  
+	 * <p>Description: [添加公司简介]</p> 
+	 * @param introduction
+	 * @return ResponseResult
+	 * @throws
+	 */
 	@PostMapping("/addIntroduction")
-	public @ResponseBody ResponseResult addCompany(@Valid Introduction introduction )
+	public @ResponseBody ResponseResult addIntroduction(@Valid Introduction introduction )
 	{
 		String result;
 		try {

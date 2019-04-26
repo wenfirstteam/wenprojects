@@ -14,7 +14,11 @@ import com.bs.mapper.UserMapper;
 import com.bs.result.ResponseResult;
 import com.bs.service.UserService;
 import com.bs.util.EmailUtil;
-
+/**
+ * <p>ClassName: UserServiceImpl</p>
+ * <p>Description: [用户相关功能实现]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Service
 public class UserServiceImpl implements UserService
 {

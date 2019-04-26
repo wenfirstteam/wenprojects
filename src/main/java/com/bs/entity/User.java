@@ -1,7 +1,11 @@
 package com.bs.entity;
 
 import lombok.Data;
-
+/**
+ * <p>ClassName: User</p>
+ * <p>Description: [用户实体类]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Data
 public class User
 {
@@ -22,7 +26,7 @@ public class User
 	private String passWord;
 	
 	/**
-	 * 标志
+	 * 用户类型（0：求职者 1：公司 2：系统管理）
 	 */
 	private Integer flag;
 	

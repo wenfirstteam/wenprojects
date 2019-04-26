@@ -40,14 +40,14 @@
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 	<script type="text/javascript">
 	function save() {
-		var $id = $("#id");
-		var $company_name = $("#company_name");
-		var $name = $("#name");
-		var $tel = $("#tel");
-		var $position = $("#position");
-		var $people = $("#people");
-		var $email = $("#email");
-		var $address = $("#address");
+		var $id = $("#userId").val();
+		var $company_name = $("#company_name").val();
+		var $name = $("#name").val();
+		var $tel = $("#tel").val();
+		var $position = $("#position").val();
+		var $people = $("#people").val();
+		var $email = $("#email").val();
+		var $address = $("#address").val();
 		$.ajax({
 			async : false,
 			url : "/rcw/introduction/addIntroduction.action",
