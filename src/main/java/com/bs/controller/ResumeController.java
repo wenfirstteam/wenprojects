@@ -12,6 +12,11 @@ import com.bs.entity.Resume;
 import com.bs.result.ResponseResult;
 import com.bs.service.ResumeService;
 
+/**
+ * <p>ClassName: ResumeController</p>
+ * <p>Description: [简历相关接口]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Controller
 @RequestMapping("/resume")
 public class ResumeController
@@ -20,8 +25,11 @@ public class ResumeController
 	private ResumeService resumeService;
 
 	/**
-	 * 添加简历
-	 * @return
+	 * <p>Title: addResume</p>  
+	 * <p>Description: [添加简历]</p> 
+	 * @param resume
+	 * @return ResponseResult
+	 * @throws
 	 */
 	@PostMapping("/addResume")
 	public @ResponseBody ResponseResult addResume(@Valid Resume resume) {

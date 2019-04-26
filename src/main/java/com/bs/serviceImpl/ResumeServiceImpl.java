@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 import com.bs.entity.Resume;
 import com.bs.mapper.ResumeMapper;
 import com.bs.service.ResumeService;
+
+/**
+ * <p>ClassName: ResumeServiceImpl</p>
+ * <p>Description: [简历相关功能实现]</p> 
+ * <p>2019年4月26日</p>
+ */
 @Service
 public class ResumeServiceImpl implements ResumeService
 {
@@ -15,10 +21,7 @@ public class ResumeServiceImpl implements ResumeService
 	@Override
 	public String addResume(Resume resume)
 	{
-		int result = resumeMapper.addResume(resume);
-		if(result == 1)
-			return "";
-		return "提交失败！";
+		return resumeMapper.addResume(resume) == 1 ? "" : "提交失败！";
 	}
 
 }

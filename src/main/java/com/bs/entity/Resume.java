@@ -3,9 +3,9 @@ package com.bs.entity;
 import lombok.Data;
 
 /**
- * 简历
- * @author Administrator
- *
+ * <p>ClassName: Resume</p>
+ * <p>Description: [简历实体类]</p> 
+ * <p>2019年4月26日</p>
  */
 @Data
 public class Resume
