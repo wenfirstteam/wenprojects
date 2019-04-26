@@ -23,6 +23,7 @@
 	color: #1E90FF; /* 字体颜色 */
 	font-size: 15px; /* 字体大小 */
 }
+
 .button2 { /* 按钮美化 */
 	width: 70px; /* 宽度 */
 	height: 30px; /* 高度 */
@@ -36,10 +37,56 @@
 	font-size: 15px; /* 字体大小 */
 }
 </style>
-<script type="text/javascript">
+<script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+	function save() {
+		var $id = $("#id");
+		var $company_name = $("#company_name");
+		var $name = $("#name");
+		var $tel = $("#tel");
+		var $position = $("#position");
+		var $people = $("#people");
+		var $email = $("#email");
+		var $address = $("#address");
+		$.ajax({
+			async : false,
+			url : "/rcw/introduction/addIntroduction.action",
+			type : "POST",
+			data : {
+				"UserId" : $id,
+				"CompanyName" : $company_name,
+				"name" : $name,
+				"position" : $position,
+				"email" : $email,
+				"telphone" : $tel,
+				"address" : $address,
+				"people" : $people
+			},
+			success : function(msg) {
+				if (msg.status == 200) {
+					alert("完善成功，请登录！");
+					setTimeout(function() {
+						window.location.href = "../login.jsp";
+					}, 1);
+					return true;
+				} else {
+					alert(msg.message);
+					return false;
+				}
+			},
+			error : function(data) {
+				alert("系统异常!");
+				return false;
+			}
+		});
+	}
 </script>
 </head>
 <body class="page-single">
+	<%
+		String username = request.getParameter("username");
+		Integer id = Integer.parseInt(request.getParameter("id"));
+	%>
 	<div id="header">
 		<div class="inner home-inner">
 			<div class="logo">
@@ -51,8 +98,11 @@
 				</div>
 			</div>
 			<div class="user-nav">
-				<div vertical-align="middle">
-					<font size="3" color="white"></font>
+				<!--未登录-->
+				<div class="btns" vertical-align="middle">
+					<div>
+						<font color="white" size="3"><%=username%></font>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,6 +115,7 @@
 				</h2>
 			</div>
 			<div class="profile-manage">
+				<input style="display: none;" id="userId" value="<%=id%>">
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>公司名称：
@@ -102,16 +153,18 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t">公司规模：</div>
+					<div class="t">
+						<em>*</em>公司规模：
+					</div>
 					<div class="c">
-						<span class="ipt-wrap"> <select
-							class="ipt required" name="people">
-								<option value="store">1~50</option>
-								<option value="customer">50~100</option>
-								<option value="customer">100~400</option>
-								<option value="customer">400~1000</option>
-								<option value="customer">1000~10000</option>
-								<option value="customer">10000以上</option>
+						<span class="ipt-wrap"> <select class="ipt required"
+							name="people" id="people">
+								<option value="1~50">1~50</option>
+								<option value="50~100">50~100</option>
+								<option value="100~400">100~400</option>
+								<option value="400~1000">400~1000</option>
+								<option value="1000~10000">1000~10000</option>
+								<option value="10000以上">10000以上</option>
 						</select></span>
 					</div>
 				</div>
@@ -120,8 +173,8 @@
 						<em>*</em>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="position"
-							id="position" class="ipt required" placeholder="填写公司邮箱"></span>
+						<span class="ipt-wrap"><input type="text" name="email"
+							id="email" class="ipt required" placeholder="填写公司邮箱"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -129,21 +182,20 @@
 						<em>*</em>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="position"
-							id="position" class="ipt required" placeholder="填写公司具体地址"></span>
+						<span class="ipt-wrap"><input type="text" name="address"
+							id="address" class="ipt required" placeholder="填写公司具体地址"></span>
 					</div>
 				</div>
 
 				<div class="btns" align="right">
-					<button id="add" class="button2" onclick="">提交</button>
+					<button id="add" class="button2" onclick="return save();">提交</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="side-tip">
-					<img
-						src="../../pic/edit.png" />
+					<img src="../../pic/edit.png" />
 					<p>完善资料，让人更加了解企业</p>
 
 				</div>

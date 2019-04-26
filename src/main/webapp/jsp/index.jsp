@@ -40,7 +40,6 @@ $(function(){
 		data:{},
 		type:"GET",
 		success:function(msg){
-			alert("success");
 			if(msg.status == 200)
 			{
 				document.getElementById("isLogin").innerHTML = msg.data;

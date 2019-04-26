@@ -23,6 +23,7 @@
 	color: #1E90FF; /* 字体颜色 */
 	font-size: 15px; /* 字体大小 */
 }
+
 .button2 { /* 按钮美化 */
 	width: 70px; /* 宽度 */
 	height: 30px; /* 高度 */
@@ -60,10 +61,10 @@
 			document.getElementById("add1").innerHTML = "+工作经历";
 		}
 	}
-	function save(){
+	function save() {
 		var $userId = $("#userId").val();
 		var $name = $("#name").val();
-		var $sex = $('input:radio:checked').val();  //0： 男 1：女
+		var $sex = $('input:radio:checked').val(); //0： 男 1：女
 		var $age = $("#age").val();
 		var $tel = $("#tel").val();
 		var $degree = $("#degree").val();
@@ -79,49 +80,61 @@
 		var $project_experience2 = $("#project_experience2").val();
 		var $evaluate = $("#evaluate").val();
 		alert($userId);
-		if($name==""){
+		if ($name == "") {
 			alert("姓名不能为空！");
 			return false;
 		}
-		if($age==""){
+		if ($age == "") {
 			alert("年龄不能为空！");
 			return false;
 		}
-		if($tel==""){
+		if ($tel == "") {
 			alert("电话不能为空！");
 			return false;
 		}
-		if($tel.length>11){
+		if ($tel.length > 11) {
 			alert("电话最多11位！");
 			return false;
 		}
-		if($school==""){
+		if ($school == "") {
 			alert("学校不能为空");
 			return false;
 		}
-		if($position==""){
+		if ($position == "") {
 			alert("期望职位不能为空！");
 			return false;
 		}
 		$.ajax({
-			async:false,
-			url:"/rcw/resume/addResume.action",
-			type:"POST",
-			data:{"userId":$userId,"name":$name,"sex":$sex,"age":$age,"telphone":$tel,"degree":$degree,
-				"jobAge":$job_age,"advantage":$advantage,"position":$position,"salary":$salary,
-				"school":$school,"professional":$professional,"project_experience1":$project_experience1,
-				"project_experience2":$project_experience2,
-				"work_experience1":$work_experience1,"work_experience2":$work_experience2,"evaluate":$evaluate},
-			success:function(msg){
-				alert("进入success");
-				if (msg.status == 200)
-				{
+			async : false,
+			url : "/rcw/resume/addResume.action",
+			type : "POST",
+			data : {
+				"userId" : $userId,
+				"name" : $name,
+				"sex" : $sex,
+				"age" : $age,
+				"telphone" : $tel,
+				"degree" : $degree,
+				"jobAge" : $job_age,
+				"advantage" : $advantage,
+				"position" : $position,
+				"salary" : $salary,
+				"school" : $school,
+				"professional" : $professional,
+				"project_experience1" : $project_experience1,
+				"project_experience2" : $project_experience2,
+				"work_experience1" : $work_experience1,
+				"work_experience2" : $work_experience2,
+				"evaluate" : $evaluate
+			},
+			success : function(msg) {
+				if (msg.status == 200) {
 					alert("完善成功，请登录！");
-						setTimeout(function(){
-							window.location.href = "../login.jsp";
-						},1);
-						return true;
-				}else{
+					setTimeout(function() {
+						window.location.href = "../login.jsp";
+					}, 1);
+					return true;
+				} else {
 					alert(msg.message);
 					return false;
 				}
@@ -129,18 +142,17 @@
 			error : function(data) {
 				alert("系统异常!");
 				return false;
-			}	
+			}
 		});
 	}
-	
 </script>
 </head>
 
 <body class="page-single">
-<%  
-	String username = request.getParameter("username"); 
-	Integer id = Integer.parseInt(request.getParameter("id")); 
-%>
+	<%
+		String username = request.getParameter("username");
+		Integer id = Integer.parseInt(request.getParameter("id"));
+	%>
 	<div id="header">
 		<div class="inner home-inner">
 			<div class="logo">
@@ -152,14 +164,16 @@
 				</div>
 			</div>
 			<div class="user-nav">
-                <!--未登录-->
-                <div class="btns" vertical-align="middle" >
-                    <div><font color="white" size="3"><%=username %></font></div>
-                </div>
-        </div>
+				<!--未登录-->
+				<div class="btns" vertical-align="middle">
+					<div>
+						<font color="white" size="3"><%=username%></font>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
+
 	<div id="main">
 		<div id="container">
 			<div class="profile-progress">
@@ -168,7 +182,7 @@
 				</h2>
 			</div>
 			<div class="profile-manage">
-			<input style="display:none;" id="userId" value="<%=id %>">
+				<input style="display: none;" id="userId" value="<%=id%>">
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
@@ -193,8 +207,9 @@
 						<em>*</em>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input id="age" type="text" oninput="value=value.replace(/[^\d]/g,'')"
-							name="age" placeholder="输入年龄（此处只能输入数字）" class="ipt required"></span>
+						<span class="ipt-wrap"><input id="age" type="text"
+							oninput="value=value.replace(/[^\d]/g,'')" name="age"
+							placeholder="输入年龄（此处只能输入数字）" class="ipt required"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -203,14 +218,17 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input type="text" name="tel"
-							id="tel" class="ipt required" placeholder="输入电话号码（此处只能输入数字）"  oninput="value=value.replace(/[^\d]/g,'')"></span>
+							id="tel" class="ipt required" placeholder="输入电话号码（此处只能输入数字）"
+							oninput="value=value.replace(/[^\d]/g,'')"></span>
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t"><em>*</em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：</div>
+					<div class="t">
+						<em>*</em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：
+					</div>
 					<div class="c">
-						<span class="ipt-wrap"> <select
-							class="ipt required" name="degree" id="degree">
+						<span class="ipt-wrap"> <select class="ipt required"
+							name="degree" id="degree">
 								<option value="初中及以下">初中及以下</option>
 								<option value="中专/中技">中专/中技</option>
 								<option value="高中">高中</option>
@@ -222,7 +240,9 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t"><em>*</em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：</div>
+					<div class="t">
+						<em>*</em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：
+					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="school" type="text"
 							name="school" placeholder="输入毕业学校" class="ipt required"></span>
@@ -236,17 +256,21 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t"><em>*</em>期望职位：</div>
+					<div class="t">
+						<em>*</em>期望职位：
+					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="position" type="text"
 							name="position" placeholder="输入行业" class="ipt required"></span>
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t"><em>*</em>工作年限：</div>
+					<div class="t">
+						<em>*</em>工作年限：
+					</div>
 					<div class="c">
-						<span class="ipt-wrap"> <select
-							class="ipt required" name="job_age" id="job_age">
+						<span class="ipt-wrap"> <select class="ipt required"
+							name="job_age" id="job_age">
 								<option value="应届毕业生">应届毕业生</option>
 								<option value="1~3年">1~3年</option>
 								<option value="3~5年">3~5年</option>
@@ -259,7 +283,8 @@
 					<div class="t">期望薪资：</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="salary" type="text"
-							name="salary" placeholder="输入理想薪资" class="ipt required"></span>
+							oninput="value=value.replace(/[^\d]/g,'')" name="salary"
+							placeholder="输入理想薪资" class="ipt required"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -337,8 +362,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="side-tip">
-					<img
-						src="../../pic/edit.png" />
+					<img src="../../pic/edit.png" />
 					<p>完善资料，让企业更加了解你</p>
 
 				</div>

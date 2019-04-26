@@ -50,7 +50,7 @@ function register(){
 					},1);
 				}else{
 					setTimeout(function(){
-						window.location.href = "company/editIntroduce.jsp?username="+msg.data.userName; 
+						window.location.href = "company/editIntroduce.jsp?username="+msg.data.userName+"&id="+msg.data.id;
 					},1);
 				}
 			}else{
