@@ -6,5 +6,7 @@ public interface IntroductionMapper
 {
 
 	int addIntroduce(Introduction introduction); 
+	
+	Integer updateIntroduce(Introduction introduction);
 
 }

@@ -46,4 +46,9 @@ public class Introduction
 	 * 公司规模
 	 */
 	private String people;
+	
+	/**
+	 * 公司头像
+	 */
+	private String icon;
 }

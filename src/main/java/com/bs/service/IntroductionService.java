@@ -17,5 +17,15 @@ public interface IntroductionService
 	 * @throws
 	 */
 	String addIntroduce(Introduction introduction); 
+	
+	/**
+	 * <p>Title: updateIntroduce</p>  
+	 * <p>Description: [更新公司头像]</p> 
+	 * @param id
+	 * @param icon
+	 * @return Boolean
+	 * @throws
+	 */
+	Boolean updateIntroduce(String id, String icon);
 
 }

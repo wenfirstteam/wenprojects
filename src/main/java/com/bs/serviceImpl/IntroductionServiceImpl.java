@@ -25,5 +25,13 @@ public class IntroductionServiceImpl implements IntroductionService
 			return "";
 		return "提交失败！";
 	}
+	
+	@Override
+	public Boolean updateIntroduce(String id, String icon) {
+		Introduction introduction = new Introduction();
+		introduction.setIcon(icon);
+		introduction.setId(Integer.parseInt(id));
+		return introductionMapper.updateIntroduce(introduction) != 0;
+	}
 
 }

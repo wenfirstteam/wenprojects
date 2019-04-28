@@ -40,4 +40,13 @@ public class ResponseResult {
 		//返回一个带200或500状态码的结果对象
 		return result ? success() : fail();
 	}
+	
+	public static ResponseResult isSuccessAndMessage(Boolean result) {
+		//返回一个带200或500状态码的结果对象
+		ResponseResult success = success();
+		success.setMessage("操作成功");
+		ResponseResult fail = fail();
+		fail.setMessage("操作失败");
+		return result ? success : fail;
+	}
 }
