@@ -1,6 +1,16 @@
 package com.bs.mapper;
 
-public class PositionMapper
+import java.util.List;
+
+import com.bs.entity.Position;
+
+public interface PositionMapper
 {
+
+	int addPosition(Position position);
+
+	List<Position> findIntroduce(Position position);
+
+	int deletePosition(Integer id);  
 
 }

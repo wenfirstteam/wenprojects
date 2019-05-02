@@ -38,8 +38,9 @@
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	function save() {
+//		var $icon = $("#pic").val();
 		var $id = $("#userId").val();
 		var $company_name = $("#company_name").val();
 		var $name = $("#name").val();
@@ -48,6 +49,35 @@
 		var $people = $("#people").val();
 		var $email = $("#email").val();
 		var $address = $("#address").val();
+		
+		if ($company_name == "") {
+			alert("公司名称不能为空！");
+			return false;
+		}
+		if ($name == "") {
+			alert("代表人姓名不能为空！");
+			return false;
+		}
+		if ($tel == "") {
+			alert("电话不能为空！");
+			return false;
+		}
+		if ($tel.length > 11) {
+			alert("电话最多11位！");
+			return false;
+		}
+		if ($position == "") {
+			alert("代表人职位不能为空！");
+			return false;
+		}
+		if ($email == "") {
+			alert("公司邮箱不能为空！");
+			return false;
+		}
+		if ($address == "") {
+			alert("公司地址不能为空！");
+			return false;
+		}
 		$.ajax({
 			async : false,
 			url : "/rcw/introduction/addIntroduction.action",
@@ -114,8 +144,18 @@
 					请完善公司基本信息：<span class="step-num"></span>
 				</h2>
 			</div>
+			<form action="##" method="post"   
+						enctype="multipart/form-data">
 			<div class="profile-manage">
 				<input style="display: none;" id="userId" value="<%=id%>">
+				<!-- <div class="form-row">
+					<div class="t">
+						<em>*</em>公司图片：
+					</div>
+					<div class="c">
+						<span class="ipt-wrap"><input id="pic" type="file" name="pic" class="ipt required"></span>
+					</div>
+				</div> -->
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>公司名称：
@@ -139,8 +179,8 @@
 						<em>*</em>代表人电话：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="tel"
-							id="tel" class="ipt required" placeholder="填写代表人电话"></span>
+						<span class="ipt-wrap"><input type="text" name="tel" oninput="value=value.replace(/[^\d]/g,'')" 
+							id="tel" class="ipt required" placeholder="填写代表人电话（此处只能输入数字）"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -199,6 +239,7 @@
 					<p>完善资料，让人更加了解企业</p>
 
 				</div>
+				</form>
 			</div>
 			<div class="form-row form-footer"></div>
 

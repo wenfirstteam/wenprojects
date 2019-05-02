@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mapper.ResumeMapper">
 	<insert id="addResume" parameterType="com.bs.entity.Resume">
-	insert
+	insert into
 	resume(userId,name,sex,age,telphone,degree,job_age,advantage,position,salary,school,professional,
 	project_experience1,project_experience2,work_experience1,work_experience2,evaluate)
 	value

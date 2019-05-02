@@ -46,11 +46,11 @@ function register(){
 				alert("注册成功！");
 				if($type==0){
 					setTimeout(function(){
-						window.location.href = "find/editResume.jsp?username="+msg.data.userName+"&id="+msg.data.id; 
+						window.location.href = "find/addResume.jsp?username="+msg.data.userName+"&id="+msg.data.id; 
 					},1);
 				}else{
 					setTimeout(function(){
-						window.location.href = "company/editIntroduce.jsp?username="+msg.data.userName+"&id="+msg.data.id;
+						window.location.href = "company/addIntroduce.jsp?username="+msg.data.userName+"&id="+msg.data.id;
 					},1);
 				}
 			}else{

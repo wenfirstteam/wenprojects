@@ -1,5 +1,11 @@
 package com.bs.serviceImpl;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * <p>ClassName: PositionServiceImpl</p>
@@ -7,9 +13,47 @@ import org.springframework.stereotype.Service;
  * <p>2019年4月26日</p>
  */
 
-import com.bs.service.PositionServicce;
+import com.bs.entity.Position;
+import com.bs.mapper.PositionMapper;
+import com.bs.service.PositionService;
+
 @Service
-public class PositionServiceImpl implements PositionServicce
+public class PositionServiceImpl implements PositionService
 {
+	@Autowired
+	private PositionMapper positionMapper;
+
+	@Override
+	public String addPosition(Position position)
+	{
+		int result = positionMapper.addPosition(position);
+		if (result == 1)
+			return "";
+		return "提交失败！";
+	}
+
+	@Override
+	public String findPosition(Position position, HttpServletRequest request)
+	{
+		List<Position> positionList = null;
+		try {
+			positionList = positionMapper.findIntroduce(position);
+			HttpSession session = request.getSession();
+			session.setAttribute("positionList", positionList); 
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "查询失败！";
+		}
+		return "";
+	}
+
+	@Override
+	public String deletePosition(Integer id)
+	{
+		int result = positionMapper.deletePosition(id);
+		if (result == 1)
+			return "";
+		return "取消失败！";
+	}
 
 }

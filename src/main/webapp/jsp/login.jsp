@@ -46,14 +46,13 @@ body {
 						},1);
 					}else if(msg.data.flag==1){
 						setTimeout(function(){
-							window.location.href = "company.jsp";
+							window.location.href = "company/company.jsp";
 						},1);
 					}else{
 						setTimeout(function(){
 							window.location.href = "manager.jsp";
 						},1);
 					}
-					
 				} else{
 					alert(msg.message);
 					return false;

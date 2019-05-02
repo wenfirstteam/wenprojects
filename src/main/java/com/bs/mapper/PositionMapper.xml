@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mapper.PositionMapper">
+	<resultMap type="com.bs.entity.Position" id="position">
+		<id column="id" property="id" />
+		<result column="userId" property="userId" />
+		<result column="publish_position" property="position" />
+		<result column="publish_position" property="jobNature" />
+		<result column="job_age" property="jobAge" />
+		<result column="degree" property="degree" />
+		<result column="salary_low" property="salaryLow" />
+		<result column="salary_high" property="salaryHigh" />
+		<result column="skills_required" property="skillsRequired" />
+		<result column="job_description" property="jobDescription" />
+		<result column="people_number" property="peopleNumber" />
+		<result column="publish" property="publish" />
+	</resultMap>
 
+	<insert id="addPosition" parameterType="com.bs.entity.Position">
+		insert into
+		publish_position(userId,publish_position,job_nature,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish)
+		value
+		(#{userId},#{position},#{jobNature},#{jobAge},#{degree},#{salaryLow},#{salaryHigh},#{skillsRequired},#{jobDescription},#{peopleNumber},2)
+	</insert>
+
+	<select id="findIntroduce"
+		parameterType="com.bs.entity.Position" resultMap="position">
+		select
+		id,userId,publish_position,publish_position,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish
+		from publish_position
+		<where>
+			<if test="userId!=null">userId=#{userId}</if>
+			<if test="position!=null">and position like '%''#{position}''%'</if>
+			<if test="jobNature!=null">and job_nature=#{jobNature}</if>
+			<if test="jobAge!=null">and job_age=#{jobAge}</if>
+			<if test="degree!=null">and degree=#{degree}</if>
+			<if test="salaryLow!=null">and salary_low=#{salaryLow}</if>
+			<if test="salaryHigh!=null">and salary_high=#{salaryHigh}</if>
+			<if test="peopleNumber!=null">and people_number=#{peopleNumber}</if>
+			<if test="publish!=null">and publish=#{publish}</if>
+		</where>
+	</select>
+	<delete id="deletePosition" parameterType="int">
+		delete from publish_position where id=#{id}
+	</delete>
 </mapper>

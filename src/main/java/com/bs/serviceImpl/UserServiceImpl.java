@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService
 			return ResponseResult.failAddMessage("密码错误！");
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("username", user.getUserName());
+		session.setAttribute("user", userByName);
 		return ResponseResult.successAddData(userByName); 
 	}
 

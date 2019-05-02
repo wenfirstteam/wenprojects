@@ -42,7 +42,8 @@ $(function(){
 		success:function(msg){
 			if(msg.status == 200)
 			{
-				document.getElementById("isLogin").innerHTML = msg.data;
+				document.getElementById("info").innerHTML = "我的资料";
+				document.getElementById("isLogin").innerHTML = msg.data.userName;
 				document.getElementById("isLogin1").innerHTML = "退出";
 				$('#login1').attr('onclick',"logOut()");
 			}else{
@@ -95,9 +96,11 @@ function logOut(){
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 					<li class=""><a class="header-job"
-						href="https://www.zhipin.com/job_detail/">职位</a></li>
+						href="find/position.jsp">职位</a></li>
 					<li class=""><a class="header_brand"
 						href="https://www.zhipin.com/gongsi/">公司</a></li>
+					<li class=""><a class="header-article"
+						href="resume.jsp"><div id="info"></div></a></li>
 					<li class=""><a class="header-article"
 						href="https://news.zhipin.com/">资讯</a></li>
 				</ul>
@@ -128,7 +131,7 @@ function logOut(){
 							</div>
 							<p class="ipt-wrap">
 								<input type="text" name="query" class="ipt-search"
-									maxlength="50" autocomplete="off" placeholder="搜索职位、公司">
+									maxlength="50" autocomplete="off" placeholder="搜索职位">
 							</p>
 						</div>
 						<input type="hidden" name="city" class="city-code"

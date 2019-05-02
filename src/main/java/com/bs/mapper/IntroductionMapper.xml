@@ -3,10 +3,10 @@
 <mapper namespace="com.bs.mapper.IntroductionMapper">
 	<insert id="addIntroduce"
 		parameterType="com.bs.entity.Introduction">
-		insert
-		introduction(userId,company_name,name,position,email,telphone,address)
+		insert into
+		introduction(userId,company_name,name,position,email,telphone,address,people)
 		value
-		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address})
+		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address},#{people})
 	</insert>
 
 	<update id="updateIntroduce" parameterType="com.bs.entity.Introduction">

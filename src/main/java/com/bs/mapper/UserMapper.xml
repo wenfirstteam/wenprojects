@@ -11,7 +11,7 @@
 		select count(*) from user where username=#{userName}
 	</select>
 	<insert id="insertUser" parameterType="com.bs.entity.User">
-		insert user(username,password,flag,email) value (#{userName},#{passWord},#{flag},#{email})
+		insert into user(username,password,flag,email) value (#{userName},#{passWord},#{flag},#{email})
 	</insert>
 	<update id="updatePwd" parameterType="com.bs.entity.User">
 		update user set password=#{passWord} where username=#{userName}

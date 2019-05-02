@@ -51,7 +51,83 @@
 	font-size: 15px; /* 字体大小 */
 }
 </style>
+<script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
+function logOut(){
+	$.ajax({
+		async : false,
+		url: "/rcw/user/logOut.action",
+		data:{},
+		type:"GET",
+		success:function(msg){
+			setTimeout(function(){
+				window.location.href = "../login.jsp";
+			},1);
+		},
+		error:function(msg){
+			alert("系统异常！");
+		}
+	});
+}
+function save(){
+	var $userId = $("#userId").val();
+	var $position_name = $("#position_name").val();
+	var $job_nature = $("#job_nature").val();
+	var $job_age = $("#job_age").val();
+	var $degree = $("#degree").val();
+	var $salary_low = $("#salary_low").val();
+	var $salary_high = $("#salary_high").val();
+	var $number = $("#number").val();
+	var $skills_required = $("#skills_required").val();
+	var $job_description = $("#job_description").val();
+	if ($position_name == "") {
+		alert("职位名称不能为空！");
+		return false;
+	}
+	if ($salary_low == "") {
+		alert("最低薪资不能为空！");
+		return false;
+	}
+	if ($salary_high == "") {
+		alert("最高薪资不能为空！");
+		return false;
+	}
+	if (parseInt($salary_high) <= parseInt($salary_low)) {
+		alert("最高薪资必须大于最低薪资！");
+		return false;
+	}
+	if ($number == "") {
+		alert("招聘人数不能为空！");
+		return false;
+	}
+	if ($skills_required == "") {
+		alert("技能要求不能为空！");
+		return false;
+	}
+	$.ajax({
+		async : false,
+		url:"/rcw/position/addPosition.action", 
+		type:"POST",
+		data:{"userId":$userId,"position":$position_name,"jobNature":$job_nature,"jobAge":$job_age,"degree":$degree,
+			"salaryLow":$salary_low,"salaryHigh":$salary_high,"skillsRequired":$skills_required,"jobDescription":$job_description,"peopleNumber":$number},
+		success : function(msg) {
+			if (msg.status == 200) {
+				alert("发布成功！");
+				setTimeout(function() {
+					window.location.href = "company.jsp";
+				}, 1);
+				return true;
+			} else {
+				alert(msg.message);
+				return false;
+			}
+		},
+		error : function(data) {
+			alert("系统异常!");
+			return false;
+		}
+	});
+}
 </script>
 </head>
 <body class="page-single">
@@ -66,10 +142,12 @@
 				</div>
 			</div>
 			<div class="user-nav">
-				<div vertical-align="middle">
-					<font size="3" color="white"></font>
-				</div>
-			</div>
+                <!--未登录-->
+                <div class="btns" vertical-align="middle" >
+                    <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
+                    <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
+                </div>
+        </div>
 		</div>
 	</div>
 	<div id="main">
@@ -88,6 +166,7 @@
                 </ul>
             </div>
 			<div class="profile-manage">
+				<input style="display: none;" id="userId" value="${user.id}">
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>职位名称：
@@ -98,41 +177,45 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t">工作性质：</div>
+					<div class="t"><em>*</em>工作性质：</div>
 					<div class="c">
 						<span class="ipt-wrap"> <select
-							class="ipt required" name="job_nature">
-								<option value="store">全职</option>
-								<option value="customer">兼职</option>
-								<option value="customer">实习</option>
+							class="ipt required" name="job_nature" id="job_nature">
+								<option value="全职">不限</option>
+								<option value="全职">全职</option>
+								<option value="兼职<">兼职</option>
+								<option value="实习">实习</option>
 						</select></span>
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t">工作年限：</div>
+					<div class="t"><em>*</em>工作年限：</div>
 					<div class="c">
 						<span class="ipt-wrap"> <select
-							class="ipt required" name="job_age">
-								<option value="store">应届毕业生</option>
-								<option value="customer">1~3年</option>
-								<option value="customer">3~5年</option>
-								<option value="customer">5~10年</option>
-								<option value="customer">10年以上</option>
+							class="ipt required" name="job_age" id="job_age">
+								<option value="不限">不限</option>
+								<option value="应届毕业生">应届毕业生</option>
+								<option value="1年以内">1年以内</option>
+								<option value="1~3年">1~3年</option>
+								<option value="3~5年">3~5年</option>
+								<option value="5~10年">5~10年</option>
+								<option value="10年以上">10年以上</option>
 						</select></span>
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：</div>
+					<div class="t"><em>*</em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：</div>
 					<div class="c">
 						<span class="ipt-wrap"> <select
-							class="ipt required" name="type" placeholder="qin">
-								<option value="store">初中及以下</option>
-								<option value="customer">中专/中技</option>
-								<option value="customer">高中</option>
-								<option value="customer">大专</option>
-								<option value="customer">本科</option>
-								<option value="customer">硕士</option>
-								<option value="customer">博士</option>
+							class="ipt required" name="degree" id="degree" >
+								<option value="不限">不限</option>
+								<option value="初中及以下">初中及以下</option>
+								<option value="中专/中技">中专/中技</option>
+								<option value="高中">高中</option>
+								<option value="大专">大专</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
 						</select></span>
 					</div>
 				</div>
@@ -141,9 +224,9 @@
 						<em>*</em>薪资范围：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input id="salary_low" type="text"
+						<span class="ipt-wrap"><input id="salary_low" type="text" oninput="value=value.replace(/[^\d]/g,'')"
 							name="salary_low" placeholder="最低" class="ipt1">&nbsp;&nbsp;~</span>&nbsp;&nbsp;
-							<input id="salary_high" type="text"
+							<input id="salary_high" type="text" oninput="value=value.replace(/[^\d]/g,'')"
 							name="salary_high" placeholder="最高" class="ipt1">
 					</div>
 				</div>
@@ -157,7 +240,7 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="t">技能要求：</div>
+					<div class="t"><em>*</em>技能要求：</div>
 					<div class="c">
 						<span class="ipt-wrap"><textarea rows="6" id="skills_required"
 								name="skills_required" placeholder="支持此职位需要的技能（最多250字）"
@@ -173,7 +256,11 @@
 					</div>
 				</div>
 				<div class="btns" align="right">
-					<button id="add" class="button2" onclick="">提交</button>
+					<button id="add" class="button2" onclick="return save();">提交</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="company.jsp">取消</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -109,8 +109,8 @@ public class UserController
 	@GetMapping("/isLogin")
 	public @ResponseBody ResponseResult findLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("username") != null)
-			return ResponseResult.successAddData(session.getAttribute("username"));
+		if(session.getAttribute("user") != null)
+			return ResponseResult.successAddData(session.getAttribute("user"));
 		return ResponseResult.fail();
 	}
 	
@@ -124,7 +124,7 @@ public class UserController
 	@GetMapping("/logOut")
 	public @ResponseBody ResponseResult logOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.removeAttribute("username");
+		session.removeAttribute("user");
 		return ResponseResult.success();
 	}
 }
