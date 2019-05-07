@@ -1,5 +1,7 @@
 package com.bs.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bs.entity.Introduction;
 /**
  * <p>ClassName: IntroductionService</p>
@@ -27,5 +29,25 @@ public interface IntroductionService
 	 * @throws
 	 */
 	Boolean updateIntroduce(String id, String icon);
+
+	/**
+	 * <p>Title: updateIntroduce</p>  
+	 * <p>Description: [查询公司信息简介]</p> 
+	 * @param introduction
+	 * @param request
+	 * @return String
+	 * @throws
+	 */
+	String findIntroduction(Introduction introduction, HttpServletRequest request);
+
+	/**
+	 * <p>Title: updateIntroduce</p>  
+	 * <p>Description: [修改司信息简介]</p> 
+	 * @param introduction
+	 * @param request
+	 * @return String
+	 * @throws
+	 */
+	String updateIntroduction(Introduction introduction);  
 
 }

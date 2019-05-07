@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mapper.IntroductionMapper">
+	<resultMap type="com.bs.entity.Introduction"
+		id="introduction">
+		<id column="id" property="id" />
+		<result column="userId" property="userId" />
+		<result column="company_name" property="companyName" />
+		<result column="name" property="name" />
+		<result column="position" property="position" />
+		<result column="email" property="email" />
+		<result column="telphone" property="telphone" />
+		<result column="address" property="address" />
+		<result column="people" property="people" />
+	</resultMap>
 	<insert id="addIntroduce"
 		parameterType="com.bs.entity.Introduction">
 		insert into
@@ -9,7 +21,8 @@
 		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address},#{people})
 	</insert>
 
-	<update id="updateIntroduce" parameterType="com.bs.entity.Introduction">
+	<update id="updateIntroduce"
+		parameterType="com.bs.entity.Introduction">
 		UPDATE INTRODUCTION
 		<trim prefix="set" suffixOverrides=",">
 			<if test="userId!=null">user_id=#{userId},</if>
@@ -24,4 +37,20 @@
 		</trim>
 		WHERE id=#{id}
 	</update>
+
+	<select id="findIntroduce"
+		parameterType="com.bs.entity.Introduction" resultMap="introduction">
+		select id,userId,company_name,name,position,email,telphone,address,people
+		from introduction
+		<where>
+			<if test="userId!=null">userId=#{userId}</if>
+			<if test="companyName!=null">and company_name like '%''#{companyName}''%'</if>
+			<if test="name!=null">and name=#{name}</if>
+			<if test="position!=null">and position=#{position}</if>
+			<if test="email!=null">and email=#{email}</if>
+			<if test="telphone!=null">and telphone=#{telphone}</if>
+			<if test="address!=null">and address=#{address}</if>
+			<if test="people!=null">and people=#{people}</if>
+		</where>
+	</select>
 </mapper>

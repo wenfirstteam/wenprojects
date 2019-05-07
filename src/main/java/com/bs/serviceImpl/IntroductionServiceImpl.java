@@ -1,10 +1,15 @@
 package com.bs.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bs.entity.Introduction;
+import com.bs.entity.Position;
 import com.bs.mapper.IntroductionMapper;
 import com.bs.service.IntroductionService;
 /**
@@ -32,6 +37,30 @@ public class IntroductionServiceImpl implements IntroductionService
 		introduction.setIcon(icon);
 		introduction.setId(Integer.parseInt(id));
 		return introductionMapper.updateIntroduce(introduction) != 0;
+	}
+
+	@Override
+	public String findIntroduction(Introduction introduction, HttpServletRequest request)
+	{
+		List<Position> introductionList = null;
+		try {
+			introductionList = introductionMapper.findIntroduce(introduction);
+			HttpSession session = request.getSession();
+			session.setAttribute("introductionList", introductionList); 
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "查询失败！";
+		}
+		return "";
+	}
+
+	@Override
+	public String updateIntroduction(Introduction introduction)
+	{
+		int result = introductionMapper.updateIntroduce(introduction);
+		if(result == 1)
+			return "";
+		return "提交失败！";
 	}
 
 }

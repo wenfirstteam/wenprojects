@@ -60,14 +60,14 @@ public class PostionCortroller
 	}
 
 	/**
-	 * <p>Title: findPosition</p> 
-	 * <p>Description: [查找职位]</p> 
+	 * <p>Title: findPositionFromCompany</p> 
+	 * <p>Description: [根据公司查找职位]</p> 
 	 * @param position request
 	 *  @return ResponseResult 
 	 *  @throws
 	 */
-	@GetMapping("/findPosition")
-	public @ResponseBody ResponseResult findPosition(@Valid Position position, HttpServletRequest request)
+	@GetMapping("/findPositionFromCompany")
+	public @ResponseBody ResponseResult findPositionFromCompany(@Valid Position position, HttpServletRequest request)
 	{
 		String result = null;
 		try
@@ -75,6 +75,28 @@ public class PostionCortroller
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user"); 
 			position.setUserId(user.getId());
+			result = positionServicce.findPosition(position,request);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if ("".equals(result))
+			return ResponseResult.success();
+		return ResponseResult.failAddMessage(result);
+	}
+	
+	/**
+	 * <p>Title: findPosition</p> 
+	 * <p>Description: [根据条件查找职位]</p> 
+	 * @param position request
+	 *  @return ResponseResult 
+	 *  @throws
+	 */
+	@GetMapping("/findPositionFormUser")
+	public @ResponseBody ResponseResult findPositionFormUser(@Valid Position position, HttpServletRequest request)
+	{
+		String result = null;
+		try
+		{
 			result = positionServicce.findPosition(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();

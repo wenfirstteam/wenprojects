@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
-@RequestMapping("/introduction")
+@RequestMapping("/uplode")
 public class ImageController
 {
 	@Autowired

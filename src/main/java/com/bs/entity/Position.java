@@ -1,5 +1,7 @@
 package com.bs.entity;
 
+import java.util.Date;
+
 import lombok.Data;
 
 /**
@@ -59,4 +61,9 @@ public class Position
 	 * 是否通过审核（0：未通过 1：通过 2：待审核）
 	 */
 	private Integer publish;
+	
+	/**
+	 * 发布时间
+	 */
+	private Date publishTime;
 }

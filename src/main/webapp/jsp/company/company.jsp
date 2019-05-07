@@ -47,7 +47,7 @@ body {
 $(function(){
 	$.ajax({
 		async : false,
-		url: "/rcw/position/findPosition.action",
+		url: "/rcw/position/findPositionFromCompany.action",
 		data:{},
 		type:"GET",
 		success:function(msg){
@@ -60,7 +60,7 @@ $(function(){
 			alert("系统异常！");
 		}
 	});
-})
+});
 function logOut(){
 	$.ajax({
 		async : false,
@@ -80,7 +80,7 @@ function logOut(){
 function publish(publish){
 	$.ajax({
 		async : false,
-		url: "/rcw/position/findPosition.action",
+		url: "/rcw/position/findPositionFromCompany.action",
 		data:{"publish":publish},
 		type:"GET",
 		success:function(msg){
@@ -129,7 +129,7 @@ function cancel(id){
 					<li class=""><a class="header_brand"
 						href="info.jsp">我的资料</a></li>
 					<li class=""><a class="header-article"
-						href="https://news.zhipin.com/">资讯</a></li>
+						href="">资讯</a></li>
 				</ul>
 			</div>
         <div class="user-nav">

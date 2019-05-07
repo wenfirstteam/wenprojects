@@ -68,12 +68,13 @@ function logOut(){
 					<li class=""><a class="header_brand"
 						href="info.jsp">我的资料</a></li>
 					<li class=""><a class="header-article"
-						href="https://news.zhipin.com/">资讯</a></li>
+						href="">资讯</a></li>
 				</ul>
 			</div>
         <div class="user-nav">
                 <!--未登录-->
                 <div class="btns" vertical-align="middle" >
+                 <input style="display: none;" id="userId" value="${user.id}">
                     <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
                     <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
                     <a href="add_position.jsp" ka="header-login" id="login1" class="btn btn-outline">发布职位<div id="isLogin1"></div></a>

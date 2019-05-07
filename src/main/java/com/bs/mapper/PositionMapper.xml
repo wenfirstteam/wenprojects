@@ -5,7 +5,7 @@
 		<id column="id" property="id" />
 		<result column="userId" property="userId" />
 		<result column="publish_position" property="position" />
-		<result column="publish_position" property="jobNature" />
+		<result column="job_nature" property="jobNature" />
 		<result column="job_age" property="jobAge" />
 		<result column="degree" property="degree" />
 		<result column="salary_low" property="salaryLow" />
@@ -14,30 +14,30 @@
 		<result column="job_description" property="jobDescription" />
 		<result column="people_number" property="peopleNumber" />
 		<result column="publish" property="publish" />
+		<result column="publish_time" property="publishTime" />
 	</resultMap>
 
 	<insert id="addPosition" parameterType="com.bs.entity.Position">
 		insert into
-		publish_position(userId,publish_position,job_nature,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish)
+		publish_position(userId,publish_position,job_nature,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish,publish_time)
 		value
-		(#{userId},#{position},#{jobNature},#{jobAge},#{degree},#{salaryLow},#{salaryHigh},#{skillsRequired},#{jobDescription},#{peopleNumber},2)
+		(#{userId},#{position},#{jobNature},#{jobAge},#{degree},#{salaryLow},#{salaryHigh},#{skillsRequired},#{jobDescription},#{peopleNumber},2,NOW())
 	</insert>
 
 	<select id="findIntroduce"
 		parameterType="com.bs.entity.Position" resultMap="position">
 		select
-		id,userId,publish_position,publish_position,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish
+		id,userId,publish_position,job_nature,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish,publish_time
 		from publish_position
 		<where>
-			<if test="userId!=null">userId=#{userId}</if>
-			<if test="position!=null">and position like '%''#{position}''%'</if>
-			<if test="jobNature!=null">and job_nature=#{jobNature}</if>
-			<if test="jobAge!=null">and job_age=#{jobAge}</if>
-			<if test="degree!=null">and degree=#{degree}</if>
-			<if test="salaryLow!=null">and salary_low=#{salaryLow}</if>
-			<if test="salaryHigh!=null">and salary_high=#{salaryHigh}</if>
-			<if test="peopleNumber!=null">and people_number=#{peopleNumber}</if>
-			<if test="publish!=null">and publish=#{publish}</if>
+			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="position!=null and position!=''">and publish_position like '%${position}%'</if>
+			<if test="jobNature!=null and jobNature!=''">and job_nature=#{jobNature}</if>
+			<if test="jobAge!=null and jobAge!=''">and job_age=#{jobAge}</if>
+			<if test="degree!=null and degree!=''">and degree=#{degree}</if>
+			<if test="salaryLow!=null and salaryLow!=''">and salary_high <![CDATA[ >= ]]> #{salaryLow}</if>
+			<if test="peopleNumber!=null and peopleNumber!=''">and people_number=#{peopleNumber}</if>
+			<if test="publish!=null and publish!=''">and publish=#{publish}</if>
 		</where>
 	</select>
 	<delete id="deletePosition" parameterType="int">

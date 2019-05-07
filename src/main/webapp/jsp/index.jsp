@@ -91,7 +91,7 @@ function logOut(){
 			<div class="nav">
 				<ul>
 					<li class="cur"><a class="header-home"
-						href="https://www.zhipin.com/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
@@ -110,9 +110,8 @@ function logOut(){
                 <div class="btns" vertical-align="middle" >
                     <a href="" ka="header-register" id="login" class="btn btn-outline"><div id="isLogin"></div></a>
                     <a href="" ka="header-login" id="login1" class="btn btn-outline"><div id="isLogin1"></div></a>
-                </div>
+                </div></div>
         </div>
-	</div>
 	</div>
 	<!-- 搜索 -->
 	<div class="column-search-panel">

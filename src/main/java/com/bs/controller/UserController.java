@@ -124,7 +124,7 @@ public class UserController
 	@GetMapping("/logOut")
 	public @ResponseBody ResponseResult logOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.removeAttribute("user");
+		session.invalidate();                                   //清除session的所有值
 		return ResponseResult.success();
 	}
 }
