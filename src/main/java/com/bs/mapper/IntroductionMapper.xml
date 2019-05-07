@@ -16,9 +16,9 @@
 	<insert id="addIntroduce"
 		parameterType="com.bs.entity.Introduction">
 		insert into
-		introduction(userId,company_name,name,position,email,telphone,address,people)
+		introduction(userId,company_name,name,position,email,telphone,address,people,icon)
 		value
-		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address},#{people})
+		(#{userId},#{companyName},#{name},#{position},#{email},#{telphone},#{address},#{people},#{icon})
 	</insert>
 
 	<update id="updateIntroduce"
@@ -40,7 +40,7 @@
 
 	<select id="findIntroduce"
 		parameterType="com.bs.entity.Introduction" resultMap="introduction">
-		select id,userId,company_name,name,position,email,telphone,address,people
+		select id,userId,company_name,name,position,email,telphone,address,people,icon
 		from introduction
 		<where>
 			<if test="userId!=null">userId=#{userId}</if>

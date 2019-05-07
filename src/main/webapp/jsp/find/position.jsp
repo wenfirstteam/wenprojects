@@ -67,6 +67,21 @@ body {
 				alert("系统异常！");
 			}
 		});
+		$.ajax({
+			async : false,
+			url : "/rcw/position/findPositionFormUser.action",
+			data : {},
+			type : "GET",
+			success : function(msg) {
+				if(msg.status != 200)
+				{
+					alert("查询载入出现错误，请刷新网页重试！");
+				}
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
 	})
 	function logOut() {
 		$.ajax({
@@ -137,7 +152,7 @@ body {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 						<li class="cur"><a class="header-job" href="">职位</a></li>
-						<li class=""><a class="header_brand" href="">公司</a></li>
+						<li class=""><a class="header_brand" href="find_company.jsp">公司</a></li>
 						<li class=""><a class="header-article" href="resume.jsp"><div
 									id="info"></div></a></li>
 						<li class=""><a class="header-article"

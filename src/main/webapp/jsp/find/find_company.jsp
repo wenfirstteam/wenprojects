@@ -129,10 +129,10 @@ body {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
-						<li class="cur"><a class="header-job"
-							href="https://www.zhipin.com/job_detail/">职位</a></li>
-						<li class=""><a class="header_brand"
-							href="https://www.zhipin.com/gongsi/">公司</a></li>
+						<li class=""><a class="header-job" href="position.jsp">职位</a></li>
+						<li class="cur"><a class="header_brand" href="">公司</a></li>
+						<li class=""><a class="header-article" href="resume.jsp"><div
+									id="info"></div></a></li>
 						<li class=""><a class="header-article"
 							href="https://news.zhipin.com/">资讯</a></li>
 					</ul>

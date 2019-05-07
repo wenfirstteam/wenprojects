@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
-@RequestMapping("/uplode")
+@RequestMapping("/upload")
 public class ImageController
 {
 	@Autowired
@@ -40,7 +40,7 @@ public class ImageController
 	 * @throws
 	 */
 	@PostMapping("/upload")
-	public @ResponseBody ResponseResult updateIntroductionIcon(@RequestParam("file") MultipartFile file, String id)
+	public @ResponseBody ResponseResult updateIntroductionIcon(@RequestParam("file") MultipartFile file)
 	{
 		if (file.isEmpty()) {
 			return ResponseResult.failAddMessage("上传失败，请检查文件");
@@ -60,7 +60,7 @@ public class ImageController
 			log.info("upload failed ,cause by : {}", e.getMessage());
 			return ResponseResult.failAddMessage("上传失败，请检查文件");
 		}
-		Boolean result = introductionService.updateIntroduce(id, filePath + "/" + tarFileName);
-		return ResponseResult.isSuccessAndMessage(result);
+//		Boolean result = introductionService.updateIntroduce(id, filePath + "/" + tarFileName);
+		return ResponseResult.successAddData(tarFileName); 
 	}
 }

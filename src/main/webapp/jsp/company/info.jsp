@@ -173,7 +173,7 @@ function logOut(){
                         </div>
                         <div class="item-form"></div>
                     </div>
-                    
+                    </form>
                 </div>
             </div>
         </div>

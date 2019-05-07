@@ -39,8 +39,31 @@
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
+	var icon = "";
+	function fileBtn() {
+		document.getElementById('pic').click();
+	}
+
+	function upload(file) {
+		let img = document.getElementById('img');
+		let formData = new FormData();
+		let temp = file.files[0];
+		if (temp) {
+			formData.append('file', temp);
+			img.src = window.URL.createObjectURL(temp);
+			$.ajax({
+				url : "/rcw/upload/upload.action",
+				type : "POST",
+				data : formData,
+				processData : false, // 告诉jQuery不要去处理发送的数据
+				contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+				success : function(result) {
+					icon = result.data;
+				}
+			});
+		}
+	}
 	function save() {
-//		var $icon = $("#pic").val();
 		var $id = $("#id").val();
 		var $company_name = $("#company_name").val();
 		var $name = $("#name").val();
@@ -49,7 +72,7 @@
 		var $people = $("#people").val();
 		var $email = $("#email").val();
 		var $address = $("#address").val();
-		
+
 		if ($company_name == "") {
 			alert("公司名称不能为空！");
 			return false;
@@ -90,7 +113,8 @@
 				"email" : $email,
 				"telphone" : $tel,
 				"address" : $address,
-				"people" : $people
+				"people" : $people,
+				"icon" : icon
 			},
 			success : function(msg) {
 				if (msg.status == 200) {
@@ -110,18 +134,18 @@
 			}
 		});
 	}
-	function logOut(){
+	function logOut() {
 		$.ajax({
 			async : false,
-			url: "/rcw/user/logOut.action",
-			data:{},
-			type:"GET",
-			success:function(msg){
-				setTimeout(function(){
+			url : "/rcw/user/logOut.action",
+			data : {},
+			type : "GET",
+			success : function(msg) {
+				setTimeout(function() {
 					window.location.href = "../login.jsp";
-				},1);
+				}, 1);
 			},
-			error:function(msg){
+			error : function(msg) {
 				alert("系统异常！");
 			}
 		});
@@ -141,28 +165,29 @@
 			</div>
 			<div class="nav">
 				<ul>
-					<li class=""><a class="header-home"
-						href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
+					<li class=""><a class="header-home" href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
-					<li class=""><a class="header-job"
-						href="company_talent.jsp">牛人</a></li>
-					<li class="cur"><a class="header_brand"
-						href="info.jsp">我的资料</a></li>
-					<li class=""><a class="header-article"
-						href="">资讯</a></li>
+					<li class=""><a class="header-job" href="company_talent.jsp">牛人</a></li>
+					<li class="cur"><a class="header_brand" href="info.jsp">我的资料</a></li>
+					<li class=""><a class="header-article" href="">资讯</a></li>
 				</ul>
 			</div>
-	<div class="user-nav">
-                <!--未登录-->
-                <div class="btns" vertical-align="middle" >
-                    <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
-                    <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
-                    <a href="add_position.jsp" ka="header-login" id="login1" class="btn btn-outline">发布职位<div id="isLogin1"></div></a>
-                </div>
-        </div>
-	</div>
+			<div class="user-nav">
+				<!--未登录-->
+				<div class="btns" vertical-align="middle">
+					<a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div
+							id="isLogin"></div></a> <a href="" ka="header-login"
+						onclick="return logOut();" id="login1" class="btn btn-outline">退出
+						<div id="isLogin1"></div>
+					</a> <a href="add_position.jsp" ka="header-login" id="login1"
+						class="btn btn-outline">发布职位
+						<div id="isLogin1"></div>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="main">
 		<div id="container">
@@ -171,25 +196,33 @@
 					修改信息：<span class="step-num"></span>
 				</h2>
 			</div>
-			<form action="##" method="post"   
-						enctype="multipart/form-data">
 			<div class="profile-manage">
-				<input style="display: none;" id="id" value="${introductionList[0].id }">
-				<!-- <div class="form-row">
+				<input style="display: none;" id="id"
+					value="${introductionList[0].id }">
+				<div class="form-row">
+					<div class="c">
+						<img src="/img/${introductionList[0].icon }" id="img"
+							style="width: 100px; height: 100px;">
+					</div>
+				</div>
+				<div class="form-row">
 					<div class="t">
-						<em>*</em>公司图片：
+						<em>*</em>公司头像：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input id="pic" type="file" name="pic" class="ipt required"></span>
+						<span class="ipt-wrap"><input id="pic" type="file"
+							name="pic" class="ipt required" onchange="upload(this)"></span>
+						<button class="button2" onclick="fileBtn();" style="display: none">上传</button>
 					</div>
-				</div> -->
+				</div>
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>公司名称：
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="company_name" type="text"
-							name="company_name" placeholder="填写公司名称" class="ipt required" value="${introductionList[0].companyName }"></span>
+							name="company_name" placeholder="填写公司名称" class="ipt required"
+							value="${introductionList[0].companyName }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -198,7 +231,8 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="name" type="text"
-							name="name" placeholder="填写代表人姓名" class="ipt required" value="${introductionList[0].name }"></span>
+							name="name" placeholder="填写代表人姓名" class="ipt required"
+							value="${introductionList[0].name }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -206,8 +240,10 @@
 						<em>*</em>代表人电话：
 					</div>
 					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="tel" oninput="value=value.replace(/[^\d]/g,'')" 
-							id="tel" class="ipt required" placeholder="填写代表人电话（此处只能输入数字）" value="${introductionList[0].telphone }"></span>
+						<span class="ipt-wrap"><input type="text" name="tel"
+							oninput="value=value.replace(/[^\d]/g,'')" id="tel"
+							class="ipt required" placeholder="填写代表人电话（此处只能输入数字）"
+							value="${introductionList[0].telphone }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -216,7 +252,8 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input type="text" name="position"
-							id="position" class="ipt required" placeholder="填写代表人职位" value="${introductionList[0].position }"></span>
+							id="position" class="ipt required" placeholder="填写代表人职位"
+							value="${introductionList[0].position }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -225,7 +262,7 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"> <select class="ipt required"
-							name="people" id="people"  value="${introductionList[0].people }">
+							name="people" id="people" value="${introductionList[0].people }">
 								<option value="1~50">1~50</option>
 								<option value="50~100">50~100</option>
 								<option value="100~400">100~400</option>
@@ -241,7 +278,8 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input type="text" name="email"
-							id="email" class="ipt required" placeholder="填写公司邮箱" value="${introductionList[0].email }"></span>
+							id="email" class="ipt required" placeholder="填写公司邮箱"
+							value="${introductionList[0].email }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -250,7 +288,8 @@
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input type="text" name="address"
-							id="address" class="ipt required" placeholder="填写公司具体地址" value="${introductionList[0].address }"></span>
+							id="address" class="ipt required" placeholder="填写公司具体地址"
+							value="${introductionList[0].address }"></span>
 					</div>
 				</div>
 

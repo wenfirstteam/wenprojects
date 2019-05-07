@@ -39,35 +39,32 @@
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-	function uplode(){
-		var $pic = $("#pic").val();
-		$.ajax({
-			async : false,
-			url : "/rcw/uplode/uplode.action",
-			type : "POST",
-			data : {
-				"file" : $pic,
-			},
-			success : function(msg) {
-				if (msg.status == 200) {
-					alert("完善成功，请登录！");
-					setTimeout(function() {
-						window.location.href = "../login.jsp";
-					}, 1);
-					return true;
-				} else {
-					alert(msg.message);
-					return false;
+	var icon = "";
+	function fileBtn() {
+		document.getElementById('pic').click();
+	}
+
+	function upload(file) {
+		alert("dddddddd");
+		let img = document.getElementById('img');
+		let formData = new FormData();
+		let temp = file.files[0];
+		if (temp) {
+			formData.append('file', temp);
+			img.src = window.URL.createObjectURL(temp);
+			$.ajax({
+				url : "/rcw/upload/upload.action",
+				type : "POST",
+				data : formData,
+				processData : false, // 告诉jQuery不要去处理发送的数据
+				contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+				success : function(result) {
+					icon = result.data;
 				}
-			},
-			error : function(data) {
-				alert("系统异常!");
-				return false;
-			}
-		});
-	} 
+			});
+		}
+	}
 	function save() {
-//		var $icon = $("#pic").val();
 		var $id = $("#userId").val();
 		var $company_name = $("#company_name").val();
 		var $name = $("#name").val();
@@ -76,7 +73,11 @@
 		var $people = $("#people").val();
 		var $email = $("#email").val();
 		var $address = $("#address").val();
-		
+
+		if (icon == "") {
+			alert("公司头像不能为空！");
+			return false;
+		}
 		if ($company_name == "") {
 			alert("公司名称不能为空！");
 			return false;
@@ -117,7 +118,8 @@
 				"email" : $email,
 				"telphone" : $tel,
 				"address" : $address,
-				"people" : $people
+				"people" : $people,
+				"icon" : icon
 			},
 			success : function(msg) {
 				if (msg.status == 200) {
@@ -171,105 +173,110 @@
 					请完善公司基本信息：<span class="step-num"></span>
 				</h2>
 			</div>
-			
+
 			<div class="profile-manage">
 				<input style="display: none;" id="userId" value="<%=id%>">
-				<form action="##" method="post"   
-						enctype="multipart/form-data">
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>公司图片：
-					</div>
+					<div class="form-row">
 					<div class="c">
-						<span class="ipt-wrap"><input id="pic" type="file" name="pic" class="ipt required"></span>
-					<button class="button2" onclick="uplode();">上传</button>
+						<img src="../../pic/pic.jpg" id="img" style="width: 100px;height:100px;">
+						</div>
 					</div>
-				</div>
-				
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>公司名称：
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>公司头像：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input id="pic" type="file"
+								name="pic" class="ipt required" onchange="upload(this)"></span>
+							<button class="button2" onclick="fileBtn();" style="display: none">上传</button>
+						</div>
 					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input id="company_name" type="text"
-							name="company_name" placeholder="填写公司名称" class="ipt required"></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>代表人姓名：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input id="name" type="text"
-							name="name" placeholder="填写代表人姓名" class="ipt required"></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>代表人电话：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="tel" oninput="value=value.replace(/[^\d]/g,'')" 
-							id="tel" class="ipt required" placeholder="填写代表人电话（此处只能输入数字）"></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>代表人职位：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="position"
-							id="position" class="ipt required" placeholder="填写代表人职位"></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>公司规模：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"> <select class="ipt required"
-							name="people" id="people">
-								<option value="1~50">1~50</option>
-								<option value="50~100">50~100</option>
-								<option value="100~400">100~400</option>
-								<option value="400~1000">400~1000</option>
-								<option value="1000~10000">1000~10000</option>
-								<option value="10000以上">10000以上</option>
-						</select></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="email"
-							id="email" class="ipt required" placeholder="填写公司邮箱"></span>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="t">
-						<em>*</em>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
-					</div>
-					<div class="c">
-						<span class="ipt-wrap"><input type="text" name="address"
-							id="address" class="ipt required" placeholder="填写公司具体地址"></span>
-					</div>
-				</div>
 
-				<div class="btns" align="right">
-					<button id="add" class="button2" onclick="return save();">提交</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</div>
-				<div class="side-tip">
-					<img src="../../pic/edit.png" />
-					<p>完善资料，让人更加了解企业</p>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>公司名称：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input id="company_name"
+								type="text" name="company_name" placeholder="填写公司名称"
+								class="ipt required"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>代表人姓名：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input id="name" type="text"
+								name="name" placeholder="填写代表人姓名" class="ipt required"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>代表人电话：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input type="text" name="tel"
+								oninput="value=value.replace(/[^\d]/g,'')" id="tel"
+								class="ipt required" placeholder="填写代表人电话（此处只能输入数字）"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>代表人职位：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input type="text" name="position"
+								id="position" class="ipt required" placeholder="填写代表人职位"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>公司规模：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"> <select class="ipt required"
+								name="people" id="people">
+									<option value="1~50">1~50</option>
+									<option value="50~100">50~100</option>
+									<option value="100~400">100~400</option>
+									<option value="400~1000">400~1000</option>
+									<option value="1000~10000">1000~10000</option>
+									<option value="10000以上">10000以上</option>
+							</select></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input type="text" name="email"
+								id="email" class="ipt required" placeholder="填写公司邮箱"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="t">
+							<em>*</em>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+						</div>
+						<div class="c">
+							<span class="ipt-wrap"><input type="text" name="address"
+								id="address" class="ipt required" placeholder="填写公司具体地址"></span>
+						</div>
+					</div>
 
-				</div>
-				</form>
+					<div class="btns" align="right">
+						<button id="add" class="button2" onclick="return save();">提交</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</div>
+					<div class="side-tip">
+						<img src="../../pic/edit.png" />
+						<p>完善资料，让人更加了解企业</p>
+
+					</div>
 			</div>
 			<div class="form-row form-footer"></div>
 

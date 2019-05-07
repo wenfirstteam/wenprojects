@@ -98,7 +98,7 @@ function logOut(){
 					<li class=""><a class="header-job"
 						href="find/position.jsp">职位</a></li>
 					<li class=""><a class="header_brand"
-						href="https://www.zhipin.com/gongsi/">公司</a></li>
+						href="find/find_company.jsp">公司</a></li>
 					<li class=""><a class="header-article"
 						href="resume.jsp"><div id="info"></div></a></li>
 					<li class=""><a class="header-article"
