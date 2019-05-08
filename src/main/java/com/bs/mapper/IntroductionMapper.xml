@@ -12,6 +12,7 @@
 		<result column="telphone" property="telphone" />
 		<result column="address" property="address" />
 		<result column="people" property="people" />
+		<result column="icon" property="icon" />
 	</resultMap>
 	<insert id="addIntroduce"
 		parameterType="com.bs.entity.Introduction">
@@ -43,14 +44,14 @@
 		select id,userId,company_name,name,position,email,telphone,address,people,icon
 		from introduction
 		<where>
-			<if test="userId!=null">userId=#{userId}</if>
-			<if test="companyName!=null">and company_name like '%''#{companyName}''%'</if>
-			<if test="name!=null">and name=#{name}</if>
-			<if test="position!=null">and position=#{position}</if>
-			<if test="email!=null">and email=#{email}</if>
-			<if test="telphone!=null">and telphone=#{telphone}</if>
-			<if test="address!=null">and address=#{address}</if>
-			<if test="people!=null">and people=#{people}</if>
+			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="companyName!=null and companyName!=''">and company_name like '%${companyName}%'</if>
+			<if test="name!=null and name!=''">and name=#{name}</if>
+			<if test="position!=null and position!=''">and position=#{position}</if>
+			<if test="email!=null and email!=''">and email=#{email}</if>
+			<if test="telphone!=null and telphone!=''">and telphone=#{telphone}</if>
+			<if test="address!=null and address!=''">and address=#{address}</if>
+			<if test="people!=null and people!=''">and people=#{people}</if>
 		</where>
 	</select>
 </mapper>

@@ -91,7 +91,7 @@ body {
 			type : "GET",
 			success : function(msg) {
 				setTimeout(function() {
-					window.location.href = "login.jsp";
+					window.location.href = "../login.jsp";
 				}, 1);
 			},
 			error : function(msg) {

@@ -93,4 +93,25 @@ public class IntroductionCotroller
 			return ResponseResult.success();
 		return ResponseResult.failAddMessage(result);
 	}
+	/**
+	 * <p>Title: findIntroductionUser</p>  
+	 * <p>Description: [根据条件查询公司]</p> 
+	 * @param introduction
+	 * @return ResponseResult
+	 * @throws
+	 */
+	@GetMapping("/findIntroductionUser")
+	public @ResponseBody ResponseResult findIntroductionUser(@Valid Introduction introduction, HttpServletRequest request)
+	{
+		String result = null;
+		try
+		{
+			result = introductionService.findIntroduction(introduction, request);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if ("".equals(result))
+			return ResponseResult.success();
+		return ResponseResult.failAddMessage(result);
+	}
 }

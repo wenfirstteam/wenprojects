@@ -201,7 +201,7 @@
 					value="${introductionList[0].id }">
 				<div class="form-row">
 					<div class="c">
-						<img src="/img/${introductionList[0].icon }" id="img"
+						<img src="/icon/${introductionList[0].icon }" id="img"
 							style="width: 100px; height: 100px;">
 					</div>
 				</div>
