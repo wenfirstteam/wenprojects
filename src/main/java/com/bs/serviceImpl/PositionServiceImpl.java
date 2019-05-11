@@ -56,4 +56,13 @@ public class PositionServiceImpl implements PositionService
 		return "取消失败！";
 	}
 
+	@Override
+	public String updatePosition(Position position)
+	{
+		int result = positionMapper.updatePosition(position);
+		if(result == 1)
+			return "";
+		return "提交失败！";
+	}
+
 }

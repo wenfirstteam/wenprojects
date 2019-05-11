@@ -15,5 +15,7 @@ public interface PositionService
 
 	String findPosition(Position position, HttpServletRequest request);
 
-	String deletePosition(Integer id);   
+	String deletePosition(Integer id);
+
+	String updatePosition(Position position);    
 }

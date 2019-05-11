@@ -53,7 +53,8 @@ body {
 			type : "GET",
 			success : function(msg) {
 				if (msg.status == 200) {
-					document.getElementById("isLogin").innerHTML = msg.data;
+					document.getElementById("info").innerHTML = "我的资料";
+					document.getElementById("isLogin").innerHTML = msg.data.userName;
 					document.getElementById("isLogin1").innerHTML = "退出";
 					$('#login1').attr('onclick', "logOut()");
 				} else {

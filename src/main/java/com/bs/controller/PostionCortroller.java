@@ -34,7 +34,7 @@ public class PostionCortroller
 {
 
 	@Autowired
-	private PositionService positionServicce;
+	private PositionService positionService;
 
 	/**
 	 * <p>Title: addPosition</p> 
@@ -49,7 +49,7 @@ public class PostionCortroller
 		String result;
 		try
 		{
-			result = positionServicce.addPosition(position);
+			result = positionService.addPosition(position);
 		} catch (Exception e)
 		{
 			return ResponseResult.failAddMessage("输入有误，请重新输入!");
@@ -75,7 +75,7 @@ public class PostionCortroller
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user"); 
 			position.setUserId(user.getId());
-			result = positionServicce.findPosition(position,request);
+			result = positionService.findPosition(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -97,7 +97,7 @@ public class PostionCortroller
 		String result = null;
 		try
 		{
-			result = positionServicce.findPosition(position,request);
+			result = positionService.findPosition(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -119,7 +119,29 @@ public class PostionCortroller
 		String result = null;
 		try
 		{
-			result = positionServicce.deletePosition(id);
+			result = positionService.deletePosition(id);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if ("".equals(result))
+			return ResponseResult.success();
+		return ResponseResult.failAddMessage(result);
+	}
+	
+	/**
+	 * <p>Title: updatePosition</p> 
+	 * <p>Description: [修改职位信息]</p> 
+	 * @param position request
+	 *  @return ResponseResult 
+	 *  @throws
+	 */
+	@PostMapping("/updatePosition")
+	public @ResponseBody ResponseResult updatePosition(@Valid Position position)
+	{
+		String result = null;
+		try
+		{
+			result = positionService.updatePosition(position);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

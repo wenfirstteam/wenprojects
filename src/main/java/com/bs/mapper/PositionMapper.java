@@ -12,5 +12,7 @@ public interface PositionMapper
 	List<Position> findIntroduce(Position position);
 
 	int deletePosition(Integer id);  
+	
+	int updatePosition(Position position);
 
 }

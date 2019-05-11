@@ -49,7 +49,7 @@ public class IntroductionCotroller
 	}
 	
 	/**
-	 * <p>Title: addIntroduction</p>  
+	 * <p>Title: findIntroduction</p>  
 	 * <p>Description: [查询公司信息简介]</p> 
 	 * @param introduction request
 	 * @return ResponseResult

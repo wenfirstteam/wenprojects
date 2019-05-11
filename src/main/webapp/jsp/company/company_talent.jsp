@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8">
-    <title>汉中人才网-企业端</title>
-    <link href="../../css/index.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/x-icon"
+<meta charset="utf-8">
+<title>汉中人才网-企业端</title>
+<link href="../../css/index.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" type="image/x-icon"
 	href="//common-bucket.zhaopin.cn/passport/favicon.ico" media="screen" />
-	<style type="text/css">
+<style type="text/css">
 body {
 	padding: 0;
 	margin: 0;
@@ -28,308 +29,258 @@ body {
 	color: white; /* 字体颜色 */
 	font-size: 15px; /* 字体大小 */
 }
+
+.button2 { /* 按钮美化 */
+	width: 50px; /* 宽度 */
+	height: 29px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 15px; /* 字体大小 */
+}
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-function logOut(){
-	$.ajax({
-		async : false,
-		url: "/rcw/user/logOut.action",
-		data:{},
-		type:"GET",
-		success:function(msg){
-			setTimeout(function(){
-				window.location.href = "../login.jsp";
-			},1);
-		},
-		error:function(msg){
-			alert("系统异常！");
-		}
-	});
-}
+	$(function() {
+		$.ajax({
+			async : false,
+			url : "/rcw/resume/findResumeByCompany.action",
+			data : {},
+			type : "GET",
+			success : function(msg) {
+				if (msg.status != 200) {
+					alert("查询载入出现错误，请刷新网页重试！");
+				}
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
+	})
+	function logOut() {
+		$.ajax({
+			async : false,
+			url : "/rcw/user/logOut.action",
+			data : {},
+			type : "GET",
+			success : function(msg) {
+				setTimeout(function() {
+					window.location.href = "../login.jsp";
+				}, 1);
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
+	}
+	function find() {
+		var $position = $("#position").val();
+		var $jobAge = $("#job_age").val();
+		var $degree = $("#degree").val();
+		$.ajax({
+			async : false,
+			url : "/rcw/resume/findResumeByCompany.action",
+			data : {
+				"position" : $position,
+				"jobAge" : $jobAge,
+				"degree" : $degree,
+			},
+			type : "GET",
+			success : function(msg) {
+				if (msg.status != 200) {
+					alert("查询出现错误，请刷新网页重试！");
+				} else
+					setTimeout(function() {
+						window.location.href = "company_talent.jsp";
+					}, 1);
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
+	}
 </script>
 </head>
 <body>
-<div id="wrap" class="search-job-list-wrap">
-<div id="header">
-    <div class="inner home-inner">
-    <div class="logo">
-				<font size="6" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
-			</div>
-        <div class="nav">
-				<ul>
-					<li class=""><a class="header-home"
-						href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
-					<li class="cur"><a class="header-job"
-						href="">牛人</a></li>
-					<li class=""><a class="header_brand"
-						href="info.jsp">我的资料</a></li>
-					<li class=""><a class="header-article"
-						href="">资讯</a></li>
-				</ul>
-			</div>
-        <div class="user-nav">
-                <!--未登录-->
-                <div class="btns" vertical-align="middle" >
-                 <input style="display: none;" id="userId" value="${user.id}">
-                    <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
-                    <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
-                    <a href="add_position.jsp" ka="header-login" id="login1" class="btn btn-outline">发布职位<div id="isLogin1"></div></a>
-                </div>
-        </div>
-    </div>
-</div>   
-<div class="column-search-panel">
-		<div class="inner home-inner">
-			<div class="search-box">
-				<div class="search-form ">
-						<form action="/job_detail/" method="get">
-						<div class="logo">
-							<font size="6" face="微软雅黑" color="#00d7c6"><B>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B></font>
-						</div>
-						<div class="search-form-con">
-							<div class="position-sel" class="search_box_sel_jobtype">
-								<span class="label-text"><b>职位类型</b><i
-									class="icon-arrow-down"></i></span>
-							</div>
-							<p class="ipt-wrap">
-								<input type="text" name="query" class="ipt-search"
-									maxlength="50" autocomplete="off" placeholder="搜索职位">
-							</p>
-						</div>
-						<input type="hidden" name="city" class="city-code"
-							value="101110100" /> <input type="hidden" name="industry"
-							class="industry-code" value="" /> <input type="hidden"
-							name="position" class="position-code" value="" />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="button1">搜索</button>
-						<div class="suggest-result">
-							<ul>
-							</ul>
-						</div>
-						<div class="position-box">
-							<div class="dropdown-menu">
-								<div class="select-tree" data-level="3"></div>
-							</div>
-						</div>
-					</form>
+	<div id="wrap" class="search-job-list-wrap">
+		<div id="header">
+			<div class="inner home-inner">
+				<div class="logo">
+					<font size="6" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
 				</div>
-				<br>
+				<div class="nav">
+					<ul>
+						<li class=""><a class="header-home" href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
+						<li class="cur"><a class="header-job" href="">牛人</a></li>
+						<li class=""><a class="header_brand" href="info.jsp">我的资料</a></li>
+						<li class=""><a class="header-article" href="">资讯</a></li>
+					</ul>
+				</div>
+				<div class="user-nav">
+					<!--未登录-->
+					<div class="btns" vertical-align="middle">
+						<input style="display: none;" id="userId" value="${user.id}">
+						<a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div
+								id="isLogin"></div></a> <a href="" ka="header-login"
+							onclick="return logOut();" id="login1" class="btn btn-outline">退出
+							<div id="isLogin1"></div>
+						</a> <a href="add_position.jsp" ka="header-login" id="login1"
+							class="btn btn-outline">发布职位
+							<div id="isLogin1"></div>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div id="filter-box">
-        <div class="inner home-inner">
-            <div class="box-shadow-box"></div>
-            <div class="filter-select-box">
-                <div class="dropdown-wrap">
-                    
-                    <span class="dropdown-select">
-                        <input type="text" ka="sel-exp" value="工作经验" class="ipt" readonly>
-                        <i class="icon-select-arrow"></i>
-                        <div class="dropdown-menu">
-                            <ul>
-                                        <li><a href="/c101010100/" ka="sel-exp-0">不限</a></li>
-                                        <li><a href="/c101010100/e_102/" ka="sel-exp-102">应届生</a></li>
-                                        <li><a href="/c101010100/e_103/" ka="sel-exp-103">1年以内</a></li>
-                                        <li><a href="/c101010100/e_104/" ka="sel-exp-104">1-3年</a></li>
-                                        <li><a href="/c101010100/e_105/" ka="sel-exp-105">3-5年</a></li>
-                                        <li><a href="/c101010100/e_106/" ka="sel-exp-106">5-10年</a></li>
-                                        <li><a href="/c101010100/e_107/" ka="sel-exp-107">10年以上</a></li>
-                            </ul>
-                        </div>
-                    </span>
-                </div>
-                <div class="dropdown-wrap">
-                    
-                    <span class="dropdown-select">
-                            <input type="text" value="学历要求" ka="sel-degree" class="ipt" readonly>
-                        <i class="icon-select-arrow"></i>
-                        <div class="dropdown-menu">
-                            <ul>
-                                        <li><a href="/c101010100/" ka="sel-degree-0">不限</a></li>
-                                        <li><a href="/c101010100/d_209/" ka="sel-degree-209">初中及以下</a></li>
-                                        <li><a href="/c101010100/d_208/" ka="sel-degree-208">中专/中技</a></li>
-                                        <li><a href="/c101010100/d_206/" ka="sel-degree-206">高中</a></li>
-                                        <li><a href="/c101010100/d_202/" ka="sel-degree-202">大专</a></li>
-                                        <li><a href="/c101010100/d_203/" ka="sel-degree-203">本科</a></li>
-                                        <li><a href="/c101010100/d_204/" ka="sel-degree-204">硕士</a></li>
-                                        <li><a href="/c101010100/d_205/" ka="sel-degree-205">博士</a></li>
-                            </ul>
-                        </div>
-                    </span>
-                </div>
-                <div class="dropdown-wrap">
-                    
-                    <span class="dropdown-select">
-                            <input type="text" ka="sel-salary" value="薪资要求" class="ipt" readonly>
-                        <i class="icon-select-arrow"></i>
-                        <div class="dropdown-menu">
-                            <ul>
-                                        <li><a href="/c101010100/" ka="sel-salary-0">不限</a></li>
+		<div class="column-search-panel">
+			<div class="inner home-inner">
+				<div class="search-box">
+					<div class="search-form ">
+							<div class="logo">
+								<font size="6" face="微软雅黑" color="#00d7c6"><B>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</B></font>
+							</div>
+							<div class="search-form-con">
+								<div class="position-sel" class="search_box_sel_jobtype">
+									<span class="label-text"><b>牛人</b><i
+										class="icon-arrow-down"></i></span>
+								</div>
+								<p class="ipt-wrap">
+									<input type="text" name="position" class="ipt-search"
+										maxlength="50" autocomplete="off" placeholder="搜索牛人" id="position">
+								</p>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="button1"  onclick="find();">搜索</button>
+							<div class="suggest-result">
+								<ul>
+								</ul>
+							</div>
+							<div class="position-box">
+								<div class="dropdown-menu">
+									<div class="select-tree" data-level="3"></div>
+								</div>
+							</div>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div id="filter-box">
+			<div class="inner home-inner">
+				<div class="box-shadow-box"></div>
+				<div class="filter-select-box">
+					<div class="dropdown-wrap">
 
-                                        <li><a href="/c101010100/y_1/" ka="sel-salary-1">3k以下</a></li>
+						<span class="dropdown-select"> <select class="ipt required"
+							name="job_age" id="job_age">
+								<option value="">经验</option>
+								<option value="应届毕业生">应届毕业生</option>
+								<option value="1年以内">1年以内</option>
+								<option value="1~3年">1~3年</option>
+								<option value="3~5年">3~5年</option>
+								<option value="5~10年">5~10年</option>
+								<option value="10年以上">10年以上</option>
+						</select>
+						</span>
+					</div>
+					<div class="dropdown-wrap">
 
-                                        <li><a href="/c101010100/y_2/" ka="sel-salary-2">3-5k</a></li>
+						<span class="dropdown-select"> <select class="ipt required"
+							name="degree" id="degree">
+								<option value="">学历</option>
+								<option value="初中及以下">初中及以下</option>
+								<option value="中专/中技">中专/中技</option>
+								<option value="高中">高中</option>
+								<option value="大专">大专</option>
+								<option value="本科">本科</option>
+								<option value="硕士">硕士</option>
+								<option value="博士">博士</option>
+						</select>
+						</span>
+					</div>
+					<div class="dropdown-wrap">
+						<span class="dropdown-select">
+							<button class="button2" onclick="find();">搜索</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="main" class="inner home-inner">
+			<div class="job-box">
+				<!-- 广告 -->
+				<div class="sider">
 
-                                        <li><a href="/c101010100/y_3/" ka="sel-salary-3">5-10k</a></li>
 
-                                        <li><a href="/c101010100/y_4/" ka="sel-salary-4">10-15k</a></li>
-
-                                        <li><a href="/c101010100/y_5/" ka="sel-salary-5">15-20k</a></li>
-
-                                        <li><a href="/c101010100/y_6/" ka="sel-salary-6">20-30k</a></li>
-
-                                        <li><a href="/c101010100/y_7/" ka="sel-salary-7">30-50k</a></li>
-
-                                        <li><a href="/c101010100/y_8/" ka="sel-salary-8">50k以上</a></li>
-
-                            </ul>
-                        </div>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="main" class="inner home-inner">
-        <div class="job-box">
-        <!-- 广告 -->
-            <div class="sider">
-
-
-                <div class="promotion-img nomargin"><a href="/activity/personality/index.html" target="_blank" ka="ad_banner_0"><img src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg" alt="" /></a></div>
-                <div class="promotion-img"><a href="/app.html" target="_blank" ka="ad_banner_1"><img src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png" alt="" /></a></div>
-                <div class="promotion-img"><a href="/user/login.html?initType=3" target="_blank" ka="ad_banner_2"><img src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png" alt="" /></a></div>
-            </div>
-            <div class="job-list">
-                <div class="job-tab" style="display: none" data-filter="" data-keyword="" data-l3code="" data-rescount="433618" data-page="1" data-source="1">
-                    <a href="javascript:;" class="cur" ka="recommend-job-list">热门职位</a><a href="javascript:;" ka="new-job-list">最新职位</a>
-                </div>
-
-                    <div class="company-list">
-                    </div>
-                    <ul>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="/job_detail/c2cf94a2b99762eb1H1z3N21FFA~.html" data-jid="c2cf94a2b99762eb1H1z3N21FFA~" data-itemid="1" data-lid="1sD6k6heEGM.search" data-jobid="39970842" data-index="0" ka="search_list_1" target="_blank">
-                                                <div class="job-title">Java</div>
-                                                <span class="red">25k-50k·13薪</span>
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>北京 昌平区 昌平<em class="vline"></em>1-3年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="/gongsi/c1acbe1a3a26267703Z63d-_EA~~.html" ka="search_list_company_1_custompage" target="_blank">北京小小海星科技...</a></h3>
-                                            <p>互联网<em class="vline"></em>不需要融资<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="https://img.bosszhipin.com/beijin/mcs/useravatar/20190423/43905cc666a4dbc44a880899075c1c94d9e824b51e42adfc975a55adf240dabd_s.png?x-oss-process=image/resize,w_40,limit_0" />杨家浩<em class="vline"></em>HR</h3>
-                                        <p>发布于04月22日</p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/gchat/addRelation.json?jobId=c2cf94a2b99762eb1H1z3N21FFA~&lid=1sD6k6heEGM.search" redirect-url="/geek/new/index/chat?id=96302df5d741f82f0XRy2dy7FlA~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="/job_detail/102e9175881212ab1Hxz3dm5FVI~.html" data-jid="102e9175881212ab1Hxz3dm5FVI~" data-itemid="2" data-lid="1sD6k6heEGM.search" data-jobid="38964450" data-index="1" ka="search_list_2" target="_blank">
-                                                <div class="job-title">后台开发工程师</div>
-                                                <span class="red">18k-26k</span>
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>北京 朝阳区 国贸<em class="vline"></em>1-3年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="/gongsi/eac4304fba31df8d1XB63Nu4.html" ka="search_list_company_2_custompage" target="_blank">用友网络</a></h3>
-                                            <p>互联网<em class="vline"></em>已上市<em class="vline"></em>10000人以上</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="https://img2.bosszhipin.com/mcs/useravatar/20150409/3b6bcb86467dfd97a76a4f044ee7f65f8c7dd922ad47494fc02c388e12c00eac_s.jpg?x-oss-process=image/resize,w_40,limit_0" />范昕<em class="vline"></em>HR</h3>
-                                        <p>发布于04月17日</p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/gchat/addRelation.json?jobId=102e9175881212ab1Hxz3dm5FVI~&lid=1sD6k6heEGM.search" redirect-url="/geek/new/index/chat?id=33de58fec6fe26350nB83t0~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="/job_detail/341b48d9de838e381H1y29q9GFc~.html" data-jid="341b48d9de838e381H1y29q9GFc~" data-itemid="3" data-lid="1sD6k6heEGM.search" data-jobid="39807085" data-index="2" ka="search_list_3" target="_blank">
-                                                <div class="job-title">Java实习生</div>
-                                                <span class="red">1k-2k</span>
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>北京 朝阳区 东大桥<em class="vline"></em>经验不限<em class="vline"></em>大专</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="/gongsi/ce552c696dfb13d40XV90ty-.html" ka="search_list_company_3_custompage" target="_blank">上玄</a></h3>
-                                            <p>互联网<em class="vline"></em>天使轮<em class="vline"></em>20-99人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="https://img2.bosszhipin.com/boss/avatar/avatar_14.png?x-oss-process=image/resize,w_40,limit_0" />王胜<em class="vline"></em>人事</h3>
-                                        <p>发布于04月22日</p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/gchat/addRelation.json?jobId=341b48d9de838e381H1y29q9GFc~&lid=1sD6k6heEGM.search" redirect-url="/geek/new/index/chat?id=97e28d17193f9b301XV90tS_F1M~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="job-primary">
-                                    <div class="info-primary">
-                                        <h3 class="name">
-                                            <a href="/job_detail/18f8d56e4a5e94511HFz3d24EFc~.html" data-jid="18f8d56e4a5e94511HFz3d24EFc~" data-itemid="4" data-lid="1sD6k6heEGM.search" data-jobid="35960505" data-index="3" ka="search_list_4" target="_blank">
-                                                <div class="job-title">Java开发工程师</div>
-                                                <span class="red">20k-40k</span>
-                                                <div class="info-detail"></div>
-                                            </a>
-                                        </h3>
-                                        <p>北京  <em class="vline"></em>1-3年<em class="vline"></em>本科</p>
-                                    </div>
-                                    <div class="info-company">
-                                        <div class="company-text">
-                                            <h3 class="name"><a href="/gongsi/92e05e7431035db003Jz29U~.html" ka="search_list_company_4_custompage" target="_blank">新橙科技</a></h3>
-                                            <p>计算机软件<em class="vline"></em>不需要融资<em class="vline"></em>100-499人</p>
-                                        </div>
-                                    </div>
-                                    <div class="info-publis">
-                                        <h3 class="name"><img src="https://img.bosszhipin.com/beijin/mcs/useravatar/20190102/66b765b040fe4a11fa53e59efdf73d1acfcd208495d565ef66e7dff9f98764da_s.jpg?x-oss-process=image/resize,w_40,limit_0" />步秋焦<em class="vline"></em>招聘者</h3>
-                                        <p>发布于03月08日</p>
-                                    </div>
-                                    <a href="javascript:;" data-url="/gchat/addRelation.json?jobId=18f8d56e4a5e94511HFz3d24EFc~&lid=1sD6k6heEGM.search" redirect-url="/geek/new/index/chat?id=6c8b4debc0bbb52a1XV_2tW5EVY~" class="btn btn-startchat">立即沟通
-                                    </a>
-                                </div>
-                            </li>
-                         </ul>
-        <div class="page">
-            <a href="/c101010100/?page=0" ka="page-prev" class="prev"></a>
-        <a href="javascript:;" class="cur" ka="page-cur">1</a>
-        <a href="/c101010100/?page=2" ka="page-2">2</a>
-        <a href="/c101010100/?page=3" ka="page-3">3</a>
-        <span>...</span>
-            <a href="/c101010100/?page=2" ka="page-next" class="next"></a>
-        </div>
-            </div>
-        </div>
-    </div>
-<script src="../../js/main.js"></script>
-<input type="hidden" id="page_key_name" value="cpc_job_list" />
+					<div class="promotion-img nomargin">
+						<a href="/activity/personality/index.html" target="_blank"
+							ka="ad_banner_0"><img
+							src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg"
+							alt="" /></a>
+					</div>
+					<div class="promotion-img">
+						<a href="/app.html" target="_blank" ka="ad_banner_1"><img
+							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png"
+							alt="" /></a>
+					</div>
+					<div class="promotion-img">
+						<a href="/user/login.html?initType=3" target="_blank"
+							ka="ad_banner_2"><img
+							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png"
+							alt="" /></a>
+					</div>
+				</div>
+				<div class="job-list">
+					<ul>
+					<c:forEach items="${resumeList }" var="resume">
+						<li>
+							<div class="job-primary">
+								<div class="info-primary">
+									<h3 class="name">
+											<div class="job-title">${resume.name }</div>
+											<div class="info-detail"></div>
+									</h3>
+									工作年限：${resume.jobAge }<em class="vline"></em>学历：${resume.degree }
+								</div>
+								<div class="info-company">
+										<div class="company-text">
+											<div class="job-title">
+												<a href="">查看详情</a>
+											</div>
+											<p>学校：${resume.school }<em class="vline"></em>专业：${resume.professional }</p>
+										</div>
+									</div>
+								<div class="info-publis">
+									<br>
+									<p>期望薪资：${resume.salary }/月</p>
+								</div>
+								<a href="javascript:;"
+									data-url="/gchat/addRelation.json?jobId=c2cf94a2b99762eb1H1z3N21FFA~&lid=1sD6k6heEGM.search"
+									redirect-url="/geek/new/index/chat?id=96302df5d741f82f0XRy2dy7FlA~"
+									class="btn btn-startchat">立即沟通 </a>
+							</div>
+						</li>
+						</c:forEach>
+					</ul>
+					<div class="page">
+						<a href="/c101010100/?page=0" ka="page-prev" class="prev"></a> <a
+							href="javascript:;" class="cur" ka="page-cur">1</a> <a
+							href="/c101010100/?page=2" ka="page-2">2</a> <a
+							href="/c101010100/?page=3" ka="page-3">3</a> <span>...</span> <a
+							href="/c101010100/?page=2" ka="page-next" class="next"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/main.js"></script>
+		<input type="hidden" id="page_key_name" value="cpc_job_list" />
 </body>
 </html>

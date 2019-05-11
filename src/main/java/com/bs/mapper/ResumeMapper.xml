@@ -1,13 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bs.mapper.ResumeMapper">
+
+	<resultMap type="com.bs.entity.Resume" id="resume">
+		<id column="id" property="id"/>
+			<result column="userId" property="userId" />
+			<result column="name" property="name" />
+			<result column="sex" property="sex" />
+			<result column="age" property="age" />
+			<result column="telphone" property="telphone" />
+			<result column="degree" property="degree" />
+			<result column="job_age" property="jobAge" />
+			<result column="advantage" property="advantage" />
+			<result column="position" property="position" />
+			<result column="salary" property="salary" />
+			<result column="school" property="school" />
+			<result column="professional" property="professional" />
+			<result column="project_experience1"
+				property="project_experience1" />
+			<result column="project_experience2"
+				property="project_experience2" />
+			<result column="work_experience1"
+				property="work_experience1" />
+			<result column="work_experience2"
+				property="work_experience2" />
+			<result column="evaluate" property="evaluate" />
+	</resultMap>
 	<insert id="addResume" parameterType="com.bs.entity.Resume">
-	insert into
-	resume(userId,name,sex,age,telphone,degree,job_age,advantage,position,salary,school,professional,
-	project_experience1,project_experience2,work_experience1,work_experience2,evaluate)
-	value
-	(#{userId},#{name},#{sex},#{age},#{telphone},#{degree},#{jobAge},#{advantage},#{position},
-	#{salary},#{school},#{professional},#{project_experience1},#{project_experience2},
-	#{work_experience1},#{work_experience2},#{evaluate})
+		insert into
+		resume(userId,name,sex,age,telphone,degree,job_age,advantage,position,salary,school,professional,
+		project_experience1,project_experience2,work_experience1,work_experience2,evaluate)
+		value
+		(#{userId},#{name},#{sex},#{age},#{telphone},#{degree},#{jobAge},#{advantage},#{position},
+		#{salary},#{school},#{professional},#{project_experience1},#{project_experience2},
+		#{work_experience1},#{work_experience2},#{evaluate})
 	</insert>
+
+	<select id="findResume" parameterType="com.bs.entity.Resume"
+		resultMap="resume">
+		select id,userId,name,sex,age,telphone,degree,job_age,advantage,position,salary,school,professional,
+		project_experience1,project_experience2,work_experience1,work_experience2,evaluate
+		from resume
+		<where>
+			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="name!=null and name!=''">and name like '%${name}%'</if>
+			<if test="sex!=null and sex!=''">and sex=#{sex}</if>
+			<if test="age!=null and age!=''">and age=#{age}</if>
+			<if test="telphone!=null and telphone!=''">and telphone=#{telphone}</if>
+			<if test="degree!=null and degree!=''">and degree=#{degree}</if>
+			<if test="jobAge!=null and jobAge!=''">and job_age=#{jobAge}</if>
+			<if test="position!=null and position!=''">and position like '%${position}%'</if>
+			<if test="salary!=null and salary!=''">and salary=#{salary}</if>
+			<if test="school!=null and school!=''">and school=#{school}</if>
+			<if test="professional!=null and professional!=''">and professional=#{professional}</if>
+		</where>
+	</select>
+	<update id="updateResume" parameterType="com.bs.entity.Resume">
+		update resume
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null and name!=''">name=#{name},</if>
+			<if test="sex!=null and sex!=''">sex=#{sex},</if>
+			<if test="age!=null and age!=''">age=#{age},</if>
+			<if test="telphone!=null and telphone!=''">telphone=#{telphone},</if>
+			<if test="degree!=null and degree!=''">degree=#{degree},</if>
+			<if test="jobAge!=null and jobAge!=''">job_age=#{jobAge},</if>
+			<if test="advantage!=null and advantage!=''">advantage=#{advantage},</if>
+			<if test="position!=null and position!=''">position=#{position},</if>
+			<if test="salary!=null and salary!=''">salary=#{salary},</if>
+			<if test="school!=null and school!=''">school=#{school},</if>
+			<if test="professional!=null and professional!=''">professional=#{professional},</if>
+			<if test="project_experience1!=null and project_experience1!=''">project_experience1=#{project_experience1},</if>
+			<if test="project_experience2!=null and project_experience2!=''">project_experience2=#{project_experience2},</if>
+			<if test="work_experience1!=null and work_experience1!=''">work_experience1=#{work_experience1},</if>
+			<if test="work_experience2!=null and work_experience2!=''">work_experience2=#{work_experience2},</if>
+			<if test="evaluate!=null and evaluate!=''">evaluate=#{evaluate},</if>
+		</trim>
+		where id=#{id}
+	</update>
 </mapper>

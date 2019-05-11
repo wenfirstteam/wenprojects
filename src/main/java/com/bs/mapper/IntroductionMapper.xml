@@ -26,15 +26,15 @@
 		parameterType="com.bs.entity.Introduction">
 		UPDATE INTRODUCTION
 		<trim prefix="set" suffixOverrides=",">
-			<if test="userId!=null">user_id=#{userId},</if>
-			<if test="companyName!=null">company_name=#{companyName},</if>
-			<if test="name!=null">name=#{name},</if>
-			<if test="position!=null">position=#{position},</if>
-			<if test="email!=null">email=#{email},</if>
-			<if test="telphone!=null">telphone=#{telphone},</if>
-			<if test="address!=null">address=#{address},</if>
-			<if test="people!=null">people=#{people},</if>
-			<if test="icon!=null">icon=#{icon},</if>
+			<if test="userId!=null and userId!=''">user_id=#{userId},</if>
+			<if test="companyName!=null and companyName!=''">company_name=#{companyName},</if>
+			<if test="name!=null and name!=''">name=#{name},</if>
+			<if test="position!=null and position!=''">position=#{position},</if>
+			<if test="email!=null and email!=''">email=#{email},</if>
+			<if test="telphone!=null and telphone!=''">telphone=#{telphone},</if>
+			<if test="address!=null and address!=''">address=#{address},</if>
+			<if test="people!=null and people!=''">people=#{people},</if>
+			<if test="icon!=null and icon!=''">icon=#{icon},</if>
 		</trim>
 		WHERE id=#{id}
 	</update>

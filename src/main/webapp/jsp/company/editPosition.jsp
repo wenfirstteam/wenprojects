@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>汉中人才网-发布职位</title>
+<title>汉中人才网-编辑职位</title>
 <link href="../../css/resume.css" rel="stylesheet" type="text/css" />
 <link href="../../css/index.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -70,7 +71,7 @@ function logOut(){
 	});
 }
 function save(){
-	var $userId = $("#userId").val();
+	var $id = $("#id").val();
 	var $position_name = $("#position_name").val();
 	var $job_nature = $("#job_nature").val();
 	var $job_age = $("#job_age").val();
@@ -106,13 +107,13 @@ function save(){
 	}
 	$.ajax({
 		async : false,
-		url:"/rcw/position/addPosition.action", 
+		url:"/rcw/position/updatePosition.action", 
 		type:"POST",
-		data:{"userId":$userId,"position":$position_name,"jobNature":$job_nature,"jobAge":$job_age,"degree":$degree,
-			"salaryLow":$salary_low,"salaryHigh":$salary_high,"skillsRequired":$skills_required,"jobDescription":$job_description,"peopleNumber":$number},
+		data:{"id":$id,"position":$position_name,"jobNature":$job_nature,"jobAge":$job_age,"degree":$degree,
+			"salaryLow":$salary_low,"salaryHigh":$salary_high,"skillsRequired":$skills_required,"jobDescription":$job_description,"peopleNumber":$number,"publish":2},
 		success : function(msg) {
 			if (msg.status == 200) {
-				alert("发布成功！");
+				alert("修改成功！");
 				setTimeout(function() {
 					window.location.href = "company.jsp";
 				}, 1);
@@ -133,31 +134,43 @@ function save(){
 <body class="page-single">
 	<div id="header">
 		<div class="inner home-inner">
-			<div class="logo">
+    <div class="logo">
 				<font size="6" face="微软雅黑" color="#00d7c6"><B>汉中人才网</B></font>
 			</div>
-			<div class="nav-city">
-				<div class="city-box">
-					<div class="dorpdown-city"></div>
-				</div>
+        <div class="nav">
+				<ul>
+					<li class="cur"><a class="header-home"
+						href="">&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
+					<li class=""><a class="header-job"
+						href="company_talent.jsp">牛人</a></li>
+					<li class=""><a class="header_brand"
+						href="info.jsp">我的资料</a></li>
+					<li class=""><a class="header-article"
+						href="">资讯</a></li>
+				</ul>
 			</div>
-			<div class="user-nav">
+        <div class="user-nav">
                 <!--未登录-->
                 <div class="btns" vertical-align="middle" >
+                    <input style="display: none;" id="userId" value="${user.id}">
                     <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
-                    <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
+                    <a href="##" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
+                    <a href="add_position.jsp" ka="header-login" id="login1" class="btn btn-outline">发布职位<div id="isLogin1"></div></a>
                 </div>
         </div>
-		</div>
+    </div>
 	</div>
 	<div id="main">
 		<div id="container">
 		  <div class="profile-progress">
-                <h2>开启高效的招聘方式，只需<span class="step-num">2</span>步：</h2>
+                <h2>修改职位，只需<span class="step-num">2</span>步：</h2>
                 <ul>
                     <li class="active">
                         <div class="circle">1</div>
-                        <p>发布职位</p>
+                        <p>修改职位</p>
                     </li>
                     <li class="step-last">
                         <div class="circle">2</div>
@@ -166,21 +179,23 @@ function save(){
                 </ul>
             </div>
 			<div class="profile-manage">
-				<input style="display: none;" id="userId" value="${user.id}">
+				<input style="display: none;" id="id"
+					value="${positionList[0].id }">
 				<div class="form-row">
 					<div class="t">
 						<em>*</em>职位名称：
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="position_name" type="text"
-							name="position_name" placeholder="输入职位名称" class="ipt required"></span>
+							name="position_name" placeholder="输入职位名称" class="ipt required" value="${positionList[0].position }"></span>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="t"><em>*</em>工作性质：</div>
 					<div class="c">
 						<span class="ipt-wrap"> <select
-							class="ipt required" name="job_nature" id="job_nature">
+							class="ipt required" name="job_nature" id="job_nature" value="${positionList[0].position }">
+								<option value="">${positionList[0].jobNature }</option>
 								<option value="不限">不限</option>
 								<option value="全职">全职</option>
 								<option value="兼职<">兼职</option>
@@ -193,6 +208,7 @@ function save(){
 					<div class="c">
 						<span class="ipt-wrap"> <select
 							class="ipt required" name="job_age" id="job_age">
+								<option value="">${positionList[0].jobAge }</option>
 								<option value="不限">不限</option>
 								<option value="应届毕业生">应届毕业生</option>
 								<option value="1年以内">1年以内</option>
@@ -208,6 +224,7 @@ function save(){
 					<div class="c">
 						<span class="ipt-wrap"> <select
 							class="ipt required" name="degree" id="degree" >
+								<option value="">${positionList[0].degree }</option>
 								<option value="不限">不限</option>
 								<option value="初中及以下">初中及以下</option>
 								<option value="中专/中技">中专/中技</option>
@@ -225,9 +242,9 @@ function save(){
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="salary_low" type="text" oninput="value=value.replace(/[^\d]/g,'')"
-							name="salary_low" placeholder="最低" class="ipt1">&nbsp;&nbsp;~</span>&nbsp;&nbsp;
+							name="salary_low" placeholder="最低" class="ipt1" value="${positionList[0].salaryLow }">&nbsp;&nbsp;~</span>&nbsp;&nbsp;
 							<input id="salary_high" type="text" oninput="value=value.replace(/[^\d]/g,'')"
-							name="salary_high" placeholder="最高" class="ipt1">
+							name="salary_high" placeholder="最高" class="ipt1" value="${positionList[0].salaryHigh }">
 					</div>
 				</div>
 				<div class="form-row">
@@ -236,7 +253,7 @@ function save(){
 					</div>
 					<div class="c">
 						<span class="ipt-wrap"><input id="number" type="text"
-							name="number" placeholder="人数 （如 1~3或者3）" class="ipt required"></span>
+							name="number" placeholder="人数 （如 1~3或者3）" class="ipt required" value="${positionList[0].peopleNumber }"></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -244,7 +261,7 @@ function save(){
 					<div class="c">
 						<span class="ipt-wrap"><textarea rows="6" id="skills_required"
 								name="skills_required" placeholder="支持此职位需要的技能（最多250字）"
-								class="ipt required"></textarea></span>
+								class="ipt required">${positionList[0].skillsRequired }</textarea></span>
 					</div>
 				</div>
 				<div class="form-row">
@@ -252,7 +269,7 @@ function save(){
 					<div class="c">
 						<span class="ipt-wrap"><textarea rows="6" id="job_description"
 								name="job_description" placeholder="对此职位的简单描述（最多250字）"
-								class="ipt required"></textarea></span>
+								class="ipt required">${positionList[0].jobDescription }</textarea></span>
 					</div>
 				</div>
 				<div class="btns" align="right">

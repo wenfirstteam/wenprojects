@@ -30,16 +30,35 @@
 		id,userId,publish_position,job_nature,job_age,degree,salary_low,salary_high,skills_required,job_description,people_number,publish,publish_time
 		from publish_position
 		<where>
-			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="id!=null and id!=''">id=#{id}</if>
+			<if test="userId!=null and userId!=''">and userId=#{userId}</if>
 			<if test="position!=null and position!=''">and publish_position like '%${position}%'</if>
 			<if test="jobNature!=null and jobNature!=''">and job_nature=#{jobNature}</if>
 			<if test="jobAge!=null and jobAge!=''">and job_age=#{jobAge}</if>
 			<if test="degree!=null and degree!=''">and degree=#{degree}</if>
 			<if test="salaryLow!=null and salaryLow!=''">and salary_high <![CDATA[ >= ]]> #{salaryLow}</if>
 			<if test="peopleNumber!=null and peopleNumber!=''">and people_number=#{peopleNumber}</if>
-			<if test="publish!=null and publish!=''">and publish=#{publish}</if>
+			<if test="publish!=null">and publish=#{publish}</if>
 		</where>
 	</select>
+	<update id="updatePosition" parameterType="com.bs.entity.Resume">
+		update publish_position
+		<trim prefix="set" suffixOverrides=",">
+			<if test="position!=null and position!=''">publish_position=#{position},</if>
+			<if test="jobNature!=null and jobNature!=''">job_nature=#{jobNature},</if>
+			<if test="jobAge!=null and jobAge!=''">job_age=#{jobAge},</if>
+			<if test="degree!=null and degree!=''">degree=#{degree},</if>
+			<if test="salaryLow!=null and salaryLow!=''">salary_low=#{salaryLow},</if>
+			<if test="salaryHigh!=null and salaryHigh!=''">salary_high=#{salaryHigh},</if>
+			<if test="skillsRequired!=null and skillsRequired!=''">skills_required=#{skillsRequired},</if>
+			<if test="jobDescription!=null and jobDescription!=''">job_description=#{jobDescription},</if>
+			<if test="peopleNumber!=null and peopleNumber!=''">people_number=#{peopleNumber},</if>
+			<if test="publish!=null and publish!=''">publish=#{publish},</if>
+			<if test="publishTime!=null and publishTime!=''">publish_time=#{publishTime},</if>
+		</trim>
+		where id=#{id}
+	</update>
+	
 	<delete id="deletePosition" parameterType="int">
 		delete from publish_position where id=#{id}
 	</delete>

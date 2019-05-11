@@ -1,5 +1,7 @@
 package com.bs.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bs.entity.Resume;
@@ -20,5 +22,9 @@ public interface ResumeService
 	 * @throws
 	 */
 	String addResume(Resume resume);
+
+	String findResume(Resume resume, HttpServletRequest request);
+
+	String updateResume(Resume resume); 
 
 }

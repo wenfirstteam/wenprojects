@@ -97,14 +97,23 @@ function cancel(id){
 		data:{"id":id},
 		type:"GET",
 		success:function(msg){
-			if(msg.status == 200){
-				alert("取消发布成功");
-			}
-			else
-				alert(msg.message);
+			window.location.href = "company.jsp";
 		},
 		error:function(msg){
 			alert("系统异常！");
+		}
+	});
+}
+function edit(id){
+	$.ajax({
+		async : false,
+		url: "/rcw/position/findPositionFromCompany.action",
+		data:{"id":id},
+		type:"GET",
+		success:function(){
+			setTimeout(function(){
+				window.location.href = "editPosition.jsp";
+			},1);
 		}
 	});
 }
@@ -137,7 +146,7 @@ function cancel(id){
                 <div class="btns" vertical-align="middle" >
                     <input style="display: none;" id="userId" value="${user.id}">
                     <a href="" ka="header-register" id="login" class="btn btn-outline">${user.userName }<div id="isLogin"></div></a>
-                    <a href="" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
+                    <a href="##" ka="header-login" onclick="return logOut();" id="login1" class="btn btn-outline">退出<div id="isLogin1"></div></a>
                     <a href="add_position.jsp" ka="header-login" id="login1" class="btn btn-outline">发布职位<div id="isLogin1"></div></a>
                 </div>
         </div>
@@ -243,14 +252,14 @@ function cancel(id){
                                         <p>工作年限：${position.jobAge }<em class="vline"></em>学历：${position.degree }</p>
                                     </div>
                                     <div class="info-publis" style="display: block">
-                                        <button class="button2">编辑</button>
-                                        <p><button class="button2" onclick="cancel(${position.id})">取消发布</button></p>
+                                        <button class="button2" onclick="edit(${position.id })">编辑</button>
+                                        <p><button class="button2" onclick="cancel(${position.id })">取消发布</button></p>
                                     </div>
                                 </div>
                             </li>
                             </c:forEach>
                          </ul>
-        </div>
+      			  </div>
             </div>
         </div>
     </div>
