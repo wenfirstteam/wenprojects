@@ -31,4 +31,16 @@
 	
 	<!-- 加载配置文件，用于在代码中@Value获取，此处配置和spring-IOC不重复 -->
 	<context:property-placeholder location="classpath:*.properties" />
+	
+	<!-- 配置拦截器 -->
+     <mvc:interceptors>  
+	      <!-- 配置登陆拦截器 -->  
+	      <mvc:interceptor>  
+	          <mvc:mapping path="/**"/>
+	          <mvc:exclude-mapping path="/jsp/find/**"/>  
+	          <mvc:exclude-mapping path="/jsp/manage/**"/>  
+	          <mvc:exclude-mapping path="/jsp/login.jsp"/>  
+	          <bean class="com.bs.intercept.LoginHandlerIntercepter"></bean>  
+	      </mvc:interceptor>  
+ 	</mvc:interceptors>
 </beans>
