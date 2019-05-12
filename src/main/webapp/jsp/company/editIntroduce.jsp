@@ -169,8 +169,8 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
-					<li class=""><a class="header-job" href="company_talent.jsp">牛人</a></li>
-					<li class="cur"><a class="header_brand" href="info.jsp">我的资料</a></li>
+					<li class=""><a class="header-job" href="company_talent.jsp" onclick="findPeople()">牛人</a></li>
+					<li class="cur"><a class="header_brand" href="info.jsp" onclick="findInfo()">我的资料</a></li>
 					<li class=""><a class="header-article" href="">资讯</a></li>
 				</ul>
 			</div>

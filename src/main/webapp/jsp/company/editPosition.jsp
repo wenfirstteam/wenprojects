@@ -53,6 +53,7 @@
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 function logOut(){
 	$.ajax({
@@ -115,6 +116,7 @@ function save(){
 			if (msg.status == 200) {
 				alert("修改成功！");
 				setTimeout(function() {
+					findPositionByCompany();
 					window.location.href = "company.jsp";
 				}, 1);
 				return true;
@@ -140,14 +142,14 @@ function save(){
         <div class="nav">
 				<ul>
 					<li class="cur"><a class="header-home"
-						href="">&nbsp;&nbsp;&nbsp;&nbsp;
+						href="" onclick="findPositionByCompany()">&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
 					<li class=""><a class="header-job"
-						href="company_talent.jsp">牛人</a></li>
+						href="company_talent.jsp" onclick="findPeople()">牛人</a></li>
 					<li class=""><a class="header_brand"
-						href="info.jsp">我的资料</a></li>
+						href="info.jsp" onclick="findInfo()">我的资料</a></li>
 					<li class=""><a class="header-article"
 						href="">资讯</a></li>
 				</ul>

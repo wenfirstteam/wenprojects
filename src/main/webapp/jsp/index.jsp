@@ -36,6 +36,7 @@ body {
 }
 </style>
 <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../js/find.js"></script>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
@@ -75,28 +76,6 @@ function logOut(){
 			},1);
 		},
 		error:function(msg){
-			alert("系统异常！");
-		}
-	});
-}
-function show(position) {
-	$.ajax({
-		async : false,
-		url : "/rcw/position/findPositionFormUser.action",
-		data : {
-			"position" : position,
-			"publish"  : 1
-		},
-		type : "GET",
-		success : function(msg) {
-			if(msg.status != 200)
-			{
-				alert("查询出现错误，请刷新网页重试！");
-			}else{
-				window.location.href="";
-			}
-		},
-		error : function(msg) {
 			alert("系统异常！");
 		}
 	});
@@ -170,13 +149,13 @@ function findName() {
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 					<li class=""><a class="header-job"
-						href="find/position.jsp">职位</a></li>
+						href="find/position.jsp" onclick="findPosition()">职位</a></li>
 					<li class=""><a class="header_brand"
-						href="find/find_company.jsp">公司</a></li>
-					<li class=""><a class="header-article"
-						href="find/resume.jsp"><div id="info"></div></a></li>
+						href="find/find_company.jsp" onclick="findCompany()">公司</a></li>
 					<li class=""><a class="header-article"
 						href="https://news.zhipin.com/">资讯</a></li>
+					<li class=""><a class="header-article"
+						href="find/resume.jsp" onclick="resume()"><div id="info"></div></a></li>
 				</ul>
 			</div>
 	<div class="user-nav">
@@ -1976,16 +1955,16 @@ function findName() {
 							<!--职位tab列表-->
 							<div class="common-tab-box job-tab-box">
 								<h3>
-									<span class="" class="index_rcmd_job_type_1" onclick="show('开发')">&nbsp;&nbsp;开发&nbsp;&nbsp;</span><span
-										class="" class="index_rcmd_job_type_2" onclick="show('金融')">&nbsp;&nbsp;金融&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_3" onclick="show('建筑')">&nbsp;&nbsp;建筑&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_4" onclick="show('培训')">&nbsp;&nbsp;教育培训&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_5" onclick="show('汽车')">&nbsp;&nbsp;汽车&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_6" onclick="show('传媒')">&nbsp;&nbsp;娱乐传媒&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_7" onclick="show('医')">&nbsp;&nbsp;医疗&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_8" onclick="show('法律')">&nbsp;&nbsp;法律咨询&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_9" onclick="show('物流')">&nbsp;&nbsp;物流&nbsp;&nbsp;</span><span class=""
-										class="index_rcmd_job_type_10" onclick="show('物流')">&nbsp;&nbsp;采购&nbsp;&nbsp;</span>
+									<span class="" class="index_rcmd_job_type_1" onclick="return show('开发');">&nbsp;&nbsp;开发&nbsp;&nbsp;</span><span
+										class="" class="index_rcmd_job_type_2" onclick="return show('金融');">&nbsp;&nbsp;金融&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_3" onclick="return show('建筑');">&nbsp;&nbsp;建筑&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_4" onclick="return show('培训');">&nbsp;&nbsp;教育培训&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_5" onclick="return show('汽车');">&nbsp;&nbsp;汽车&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_6" onclick="return show('传媒');">&nbsp;&nbsp;娱乐传媒&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_7" onclick="return show('医疗');">&nbsp;&nbsp;医疗&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_8" onclick="return show('法律;')">&nbsp;&nbsp;法律咨询&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_9" onclick="return show('物流;')">&nbsp;&nbsp;物流&nbsp;&nbsp;</span><span class=""
+										class="index_rcmd_job_type_10" onclick="return show('物流;')">&nbsp;&nbsp;采购&nbsp;&nbsp;</span>
 								</h3>
 								<ul class="cur">
 								<c:forEach items="${positionList }" var="position" begin="0" end="8" step="1">

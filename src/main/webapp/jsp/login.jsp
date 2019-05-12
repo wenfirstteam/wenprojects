@@ -17,6 +17,7 @@ body {
 	background-image: url(../pic/bg.jpg);
 } 
 </style>
+<script type="text/javascript" src="../js/find.js"></script>
 <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	function login() {
@@ -42,10 +43,12 @@ body {
 				if (msg.status == 200) {
 					if(msg.data.flag==0){
 						setTimeout(function(){
+							show('开发');
 							window.location.href = "index.jsp";
 						},1);
 					}else if(msg.data.flag==1){
 						setTimeout(function(){
+							findPositionByCompany();
 							window.location.href = "company/company.jsp";
 						},1);
 					}else{
@@ -68,7 +71,7 @@ body {
 </head>
 <body>
 	<div class="big-bg">
-		<a href="index.jsp"><img class="advertisement-hotspot" src="../pic/logo.png"
+		<a href="index.jsp" onclick="show('开发');"><img class="advertisement-hotspot" src="../pic/logo.png"
 			style="left: 2.549999999999999%; width: 18.490000000000002%; top: 4.02%; height: 15.83%;" /></a>
 		<div class="login-box clearfix">
 			<div class="login-tit">

@@ -71,7 +71,7 @@ body {
 		$.ajax({
 			async : false,
 			url : "/rcw/position/findPositionFormUser.action",
-			data : {},
+			data : {"publish":1},
 			type : "GET",
 			success : function(msg) {
 				if(msg.status != 200)
@@ -132,6 +132,30 @@ body {
 			}
 		});
 	}
+	
+	function findInfo(id){
+		alert(id);
+		$.ajax({
+			async : false,
+			url : "/rcw/position/findPositionInfo.action",
+			data : {
+				"id":id
+			},
+			type : "GET",
+			success : function(msg) {
+				if(msg.status != 200)
+				{
+					alert("查询出现错误，请刷新网页重试！");
+				}else
+					setTimeout(function() {
+						window.location.href = "positionInfo.jsp";
+					}, 1);
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -153,11 +177,11 @@ body {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 						<li class="cur"><a class="header-job" href="">职位</a></li>
-						<li class=""><a class="header_brand" href="find_company.jsp">公司</a></li>
-						<li class=""><a class="header-article" href="resume.jsp"><div
-									id="info"></div></a></li>
+						<li class=""><a class="header_brand" href="find_company.jsp" onclick="findCompany()">公司</a></li>
 						<li class=""><a class="header-article"
 							href="https://news.zhipin.com/">资讯</a></li>
+						<li class=""><a class="header-article" href="resume.jsp" onclick="resume()"><div
+									id="info"></div></a></li>
 					</ul>
 				</div>
 				<div class="user-nav">
@@ -309,7 +333,7 @@ body {
 									<div class="info-company">
 										<div class="company-text">
 											<div class="job-title">
-												<a href="">查看详情</a>
+												<a href="javascript:findInfo(${position.id });">查看详情</a>
 											</div>
 											<p>需要人数：${position.peopleNumber }</p>
 										</div>

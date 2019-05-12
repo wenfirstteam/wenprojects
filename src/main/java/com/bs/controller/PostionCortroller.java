@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bs.entity.Position;
 import com.bs.entity.User;
+import com.bs.mapper.PositionMapper;
 import com.bs.result.ResponseResult;
 import com.bs.service.PositionService;
 
@@ -32,7 +33,6 @@ import com.bs.service.PositionService;
 @RequestMapping("/position")
 public class PostionCortroller
 {
-
 	@Autowired
 	private PositionService positionService;
 
@@ -97,6 +97,7 @@ public class PostionCortroller
 		String result = null;
 		try
 		{
+			
 			result = positionService.findPosition(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -142,6 +143,27 @@ public class PostionCortroller
 		try
 		{
 			result = positionService.updatePosition(position);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if ("".equals(result))
+			return ResponseResult.success();
+		return ResponseResult.failAddMessage(result);
+	}
+	/**
+	 * <p>Title: findPositionInfo</p> 
+	 * <p>Description: [查看职位信息]</p> 
+	 * @param position request
+	 *  @return ResponseResult 
+	 *  @throws
+	 */
+	@GetMapping("/findPositionInfo")
+	public @ResponseBody ResponseResult findPositionInfo(@Valid Position position,HttpServletRequest request)
+	{
+		String result = null;
+		try
+		{
+			result = positionService.findPositionInfo(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,7 @@
 package com.bs.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -63,6 +64,21 @@ public class PositionServiceImpl implements PositionService
 		if(result == 1)
 			return "";
 		return "提交失败！";
+	}
+
+	@Override
+	public String findPositionInfo(Position position,HttpServletRequest request)
+	{
+		Map<Object,Object> positionMap;
+		try {
+			positionMap = positionMapper.findPositionInfo(position);
+			HttpSession session = request.getSession();
+			session.setAttribute("positionMap", positionMap); 
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "查看失败！";
+		}
+		return "";
 	}
 
 }

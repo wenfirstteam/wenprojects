@@ -62,4 +62,11 @@
 	<delete id="deletePosition" parameterType="int">
 		delete from publish_position where id=#{id}
 	</delete>
+	
+	<select id="findPositionInfo" parameterType="com.bs.entity.Position" resultType="java.util.HashMap">
+		select a.id,a.userId,a.publish_position,a.job_nature,a.job_age,a.degree,a.salary_low,a.salary_high,a.skills_required,a.job_description,
+		a.people_number,a.publish,a.publish_time,b.id,b.company_name,b.name,b.position,b.email,b.telphone,b.address,b.people,b.icon
+		from publish_position as a inner join introduction as b on a.userId=b.userId
+		where a.id=#{id}
+	</select>
 </mapper>

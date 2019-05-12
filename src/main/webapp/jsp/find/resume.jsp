@@ -31,6 +31,7 @@ body {
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
@@ -111,13 +112,13 @@ function logOut(){
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 					<li class=""><a class="header-job"
-						href="find/position.jsp">职位</a></li>
+						href="find/position.jsp" onclick="findPosition()">职位</a></li>
 					<li class=""><a class="header_brand"
-						href="https://www.zhipin.com/gongsi/">公司</a></li>
-					<li class="cur"><a class="header-article"
-						href="resume.jsp"><div id="info"></div></a></li>
+						href="find_company.jsp" onclick="findCompany()">公司</a></li>
 					<li class=""><a class="header-article"
 						href="https://news.zhipin.com/">资讯</a></li>
+					<li class="cur"><a class="header-article"
+						href="resume.jsp"><div id="info"></div></a></li>
 				</ul>
 			</div>
 	<div class="user-nav">

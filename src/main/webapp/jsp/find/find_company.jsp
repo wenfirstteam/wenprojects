@@ -44,6 +44,7 @@ body {
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.ajax({
@@ -140,12 +141,12 @@ body {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
-						<li class=""><a class="header-job" href="position.jsp">职位</a></li>
+						<li class=""><a class="header-job" href="position.jsp" onclick="findPosition()">职位</a></li>
 						<li class="cur"><a class="header_brand" href="">公司</a></li>
-						<li class=""><a class="header-article" href="resume.jsp"><div
-									id="info"></div></a></li>
 						<li class=""><a class="header-article"
 							href="https://news.zhipin.com/">资讯</a></li>
+						<li class=""><a class="header-article" href="resume.jsp" onclick="resume()"><div
+									id="info"></div></a></li>
 					</ul>
 				</div>
 				<div class="user-nav">

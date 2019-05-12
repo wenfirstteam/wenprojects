@@ -30,6 +30,7 @@ body {
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
@@ -82,12 +83,12 @@ function logOut(){
 			<div class="nav">
 				<ul>
 					<li class=""><a class="header-home"
-						href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
+						href="company.jsp" onclick="findPositionByCompany()">&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
 					<li class=""><a class="header-job"
-						href="company_talent.jsp">牛人</a></li>
+						href="company_talent.jsp" onclick="findPeople()">牛人</a></li>
 					<li class="cur"><a class="header_brand"
 						href="">我的资料</a></li>
 					<li class=""><a class="header-article"
