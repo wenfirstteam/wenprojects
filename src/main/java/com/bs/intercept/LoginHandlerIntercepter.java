@@ -35,7 +35,8 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
                 if (req.getHeader("x-requested-with") != null && req.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")){
                 	res.setHeader("SESSIONSTATUS", "TIMEOUT");
                 	res.setHeader("CONTEXTPATH", projUrl+"/jsp/login.jsp");
-                	res.setStatus(HttpServletResponse.SC_FORBIDDEN); 
+                	res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                	res.setStatus(200);
                 }else{
                     // 如果不是 ajax 请求，则直接跳转即可
                 	res.sendRedirect(projUrl+"/jsp/login.jsp");
