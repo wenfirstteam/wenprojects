@@ -58,9 +58,6 @@
 							$('#login').attr('href', "../register.jsp");
 							$('#login1').attr('href', "../login.jsp");
 						}
-					},
-					error : function(msg) {
-						alert("系统异常！");
 					}
 				});
 		$.ajax({
@@ -73,9 +70,6 @@
 					alert("查询出现错误，请刷新网页重试！");
 				}
 			},
-			error : function(msg) {
-				alert("系统异常！");
-			}
 		});
 	})
 	function logOut() {
@@ -89,9 +83,6 @@
 					window.location.href = "../login.jsp";
 				}, 1);
 			},
-			error : function(msg) {
-				alert("系统异常！");
-			}
 		});
 	}
 
@@ -193,10 +184,6 @@
 					alert(msg.message);
 					return false;
 				}
-			},
-			error : function(data) {
-				alert("系统异常!");
-				return false;
 			}
 		});
 	}

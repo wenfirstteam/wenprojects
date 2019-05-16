@@ -65,9 +65,6 @@ body {
 					$('#login').attr('href', "../register.jsp");
 					$('#login1').attr('href', "../login.jsp");
 				}
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 		$.ajax({
@@ -80,9 +77,6 @@ body {
 				{
 					alert("查询载入出现错误，请刷新网页重试！");
 				}
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	})
@@ -96,9 +90,6 @@ body {
 				setTimeout(function() {
 					window.location.href = "../login.jsp";
 				}, 1);
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	}
@@ -121,9 +112,6 @@ body {
 					setTimeout(function() {
 						window.location.href = "";
 					}, 1);
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	}
@@ -137,9 +125,6 @@ body {
 				setTimeout(function() {
 					window.location.href = "companyInfo.jsp";
 				}, 1);
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	}

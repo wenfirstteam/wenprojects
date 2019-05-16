@@ -29,9 +29,6 @@
 					$('#login').attr('href', "../register.jsp");
 					$('#login1').attr('href', "../login.jsp");
 				}
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 		$.ajax({
@@ -44,9 +41,6 @@
 				{
 					alert("查询载入出现错误，请刷新网页重试！");
 				}
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	})
@@ -82,9 +76,6 @@
 					setTimeout(function() {
 						window.location.href = "positionInfo.jsp";
 					}, 1);
-			},
-			error : function(msg) {
-				alert("系统异常！");
 			}
 		});
 	}

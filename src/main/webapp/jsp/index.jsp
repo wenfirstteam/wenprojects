@@ -58,9 +58,6 @@ $(function(){
 				$('#login1').attr('href',"login.jsp");
 			}
 		},
-		error:function(msg){
-			alert("系统异常！");
-		}
 	});
 	
 })
@@ -74,9 +71,6 @@ function logOut(){
 			setTimeout(function(){
 				window.location.href = "login.jsp";
 			},1);
-		},
-		error:function(msg){
-			alert("系统异常！");
 		}
 	});
 }
@@ -97,9 +91,6 @@ function find(position) {
 				setTimeout(function() {
 					window.location.href = "find/position.jsp";
 				}, 1);
-		},
-		error : function(msg) {
-			alert("系统异常！");
 		}
 	});
 }
@@ -121,9 +112,6 @@ function findName() {
 				setTimeout(function() {
 					window.location.href = "find/position.jsp";
 				}, 1);
-		},
-		error : function(msg) {
-			alert("系统异常！");
 		}
 	});
 }
@@ -144,9 +132,6 @@ function find1(id) {
 				setTimeout(function() {
 					window.location.href = "find/position.jsp";
 				}, 1);
-		},
-		error : function(msg) {
-			alert("系统异常！");
 		}
 	});
 }

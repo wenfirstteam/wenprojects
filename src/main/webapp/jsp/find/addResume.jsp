@@ -137,10 +137,6 @@
 					alert(msg.message);
 					return false;
 				}
-			},
-			error : function(data) {
-				alert("系统异常!");
-				return false;
 			}
 		});
 	}

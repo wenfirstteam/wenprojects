@@ -1,5 +1,7 @@
 package com.bs.entity;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -8,9 +10,13 @@ import lombok.Data;
  * <p>2019年4月26日</p>
  */
 @Data
-public class News
+public class News implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 新闻id
 	 */

@@ -199,7 +199,7 @@ function findNews(){
 		async : false,
 		url:"/rcw/news/findNews.action", 
 		type:"Get",
-		data:{"flag":0},
+		data:{},
 		success : function(msg) {
 		}
 	});

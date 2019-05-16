@@ -104,6 +104,16 @@ body {
 			}
 		});
 	}
+	function findNews(){
+		$.ajax({
+			async : false,
+			url:"/rcw/news/findNews.action", 
+			type:"Get",
+			data:{},
+			success : function(msg) {
+			}
+		});
+	}
 	function resumeInfo(id){
 		$.ajax({
 			async : false,
@@ -273,13 +283,6 @@ body {
 						</li>
 						</c:forEach>
 					</ul>
-					<div class="page">
-						<a href="/c101010100/?page=0" ka="page-prev" class="prev"></a> <a
-							href="javascript:;" class="cur" ka="page-cur">1</a> <a
-							href="/c101010100/?page=2" ka="page-2">2</a> <a
-							href="/c101010100/?page=3" ka="page-3">3</a> <span>...</span> <a
-							href="/c101010100/?page=2" ka="page-next" class="next"></a>
-					</div>
 				</div>
 			</div>
 		</div>

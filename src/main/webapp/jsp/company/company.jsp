@@ -63,6 +63,16 @@ $(function(){
 		}
 	});
 });
+function findNews(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{},
+		success : function(msg) {
+		}
+	});
+}
 function findShow(){
 	$.ajax({
 		async : false,

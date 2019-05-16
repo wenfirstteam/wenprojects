@@ -61,10 +61,6 @@ body {
 					alert(msg.message);
 					return false;
 				}
-			},
-			error : function(msg) {
-				alert("系统异常！");
-				return false;
 			}
 		});
 	}

@@ -50,6 +50,16 @@ function findNews(id){
 		}
 	});
 }
+function findNews(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{},
+		success : function(msg) {
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -61,7 +71,7 @@ function findNews(id){
         <div class="nav">
 				<ul>
 					<li class=""><a class="header-home"
-						href="company.jsp">&nbsp;&nbsp;&nbsp;&nbsp;
+						href="company.jsp" onclick="findShow()">&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
