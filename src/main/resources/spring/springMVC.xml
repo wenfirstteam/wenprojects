@@ -37,6 +37,9 @@
 	      <mvc:interceptor>  
 	          <mvc:mapping path="/**/*.action"/>
 	          <mvc:exclude-mapping path="/user/*.action"/>  
+	          <mvc:exclude-mapping path="/news/*.action"/>  
+	          <mvc:exclude-mapping path="/position/*.action"/>  
+	          <mvc:exclude-mapping path="/upload/*.action"/>  
 	          <bean class="com.bs.intercept.LoginHandlerIntercepter"></bean>  
 	      </mvc:interceptor>  
  	</mvc:interceptors>

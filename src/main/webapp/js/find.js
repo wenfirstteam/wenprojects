@@ -6,10 +6,6 @@ function findPosition(){
 		type : "GET",
 		success : function(msg) {
 			findShow();
-			if(msg.status != 200)
-			{
-				alert("查询载入出现错误，请刷新网页重试！");
-			}
 		},
 		error : function(msg) {
 			alert("系统异常！");
@@ -24,10 +20,6 @@ function findCompany(){
 		type : "GET",
 		success : function(msg) {
 			findShow();
-			if(msg.status != 200)
-			{
-				alert("查询载入出现错误，请刷新网页重试！");
-			}
 		},
 		error : function(msg) {
 			alert("系统异常！");
@@ -42,10 +34,6 @@ function resume(){
 		type:"GET",
 		success:function(msg){
 			findShow();
-			if(msg.status != 200)
-			{
-				alert("查询出现错误，请刷新网页重试！");
-			}
 		},
 		error:function(msg){
 			alert("系统异常！");
@@ -62,10 +50,6 @@ function findPositionByCompany(){
 			type:"GET",
 			success:function(msg){
 				findShow();
-				if(msg.status != 200)
-				{
-					alert("查询出现错误，请刷新网页重试！");
-				}
 			},
 			error:function(msg){
 				alert("系统异常！");
@@ -82,9 +66,6 @@ function findPeople(){
 		type : "GET",
 		success : function(msg) {
 			findShow();
-			if (msg.status != 200) {
-				alert("查询载入出现错误，请刷新网页重试！");
-			}
 		},
 		error : function(msg) {
 			alert("系统异常！");
@@ -100,10 +81,6 @@ function findInfo(){
 		type:"GET",
 		success:function(msg){
 			findShow();
-			if(msg.status != 200)
-			{
-				alert("查询出现错误，请刷新网页重试！");
-			}
 		},
 		error:function(msg){
 			alert("系统异常！");
@@ -121,10 +98,7 @@ function show(position) {
 		},
 		type : "GET",
 		success : function(msg) {
-			if(msg.status != 200)
-			{
-				alert("查询出现错误，请刷新网页重试！");
-			}else{
+			if(msg.status == 200){
 				findShow();
 				window.location.href="";
 			}

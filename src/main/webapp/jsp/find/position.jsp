@@ -76,10 +76,6 @@ body {
 			data : {"publish":1},
 			type : "GET",
 			success : function(msg) {
-				if(msg.status != 200)
-				{
-					alert("查询载入出现错误，请刷新网页重试！");
-				}
 			},
 			error : function(msg) {
 				alert("系统异常！");
@@ -166,8 +162,6 @@ body {
 			success : function(msg) {
 				if(msg.status != 200)
 				{
-					alert("查询出现错误，请刷新网页重试！");
-				}else
 					setTimeout(function() {
 						window.location.href = "positionInfo.jsp";
 					}, 1);

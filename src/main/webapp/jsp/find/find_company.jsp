@@ -73,10 +73,6 @@ body {
 			data : {},
 			type : "GET",
 			success : function(msg) {
-				if(msg.status != 200)
-				{
-					alert("查询载入出现错误，请刷新网页重试！");
-				}
 			}
 		});
 	})
@@ -107,8 +103,6 @@ body {
 			success : function(msg) {
 				if(msg.status != 200)
 				{
-					alert("查询出现错误，请刷新网页重试！");
-				}else
 					setTimeout(function() {
 						window.location.href = "";
 					}, 1);

@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bs.result.ResponseResult;
-import com.bs.service.IntroductionService;
 
 import lombok.extern.slf4j.Slf4j;
 /**
