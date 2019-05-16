@@ -227,7 +227,7 @@
 					<li class="cur"><a class="header-article" href="resume.jsp"><div
 								id="info"></div></a></li>
 					<li class=""><a class="header-article"
-						href="https://news.zhipin.com/">资讯</a></li>
+					 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 				</ul>
 			</div>
 			<div class="user-nav">

@@ -42,7 +42,8 @@
 		project_experience1,project_experience2,work_experience1,work_experience2,evaluate
 		from resume
 		<where>
-			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="id!=null and id!=''">id=#{id}</if>
+			<if test="userId!=null and userId!=''">and userId=#{userId}</if>
 			<if test="name!=null and name!=''">and name like '%${name}%'</if>
 			<if test="sex!=null and sex!=''">and sex=#{sex}</if>
 			<if test="age!=null and age!=''">and age=#{age}</if>

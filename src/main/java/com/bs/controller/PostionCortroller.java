@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bs.entity.Position;
 import com.bs.entity.User;
-import com.bs.mapper.PositionMapper;
 import com.bs.result.ResponseResult;
 import com.bs.service.PositionService;
 
@@ -97,7 +96,6 @@ public class PostionCortroller
 		String result = null;
 		try
 		{
-			
 			result = positionService.findPosition(position,request);
 		}catch(Exception e) {
 			e.printStackTrace();

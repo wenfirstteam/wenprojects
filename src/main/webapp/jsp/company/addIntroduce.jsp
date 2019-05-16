@@ -45,7 +45,6 @@
 	}
 
 	function upload(file) {
-		alert("dddddddd");
 		let img = document.getElementById('img');
 		let formData = new FormData();
 		let temp = file.files[0];

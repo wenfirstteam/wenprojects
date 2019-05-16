@@ -29,9 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/upload")
 public class ImageController
 {
-	@Autowired
-	private IntroductionService introductionService;
-
 	/**
 	 * <p>Title: addIntroduction</p>  
 	 * <p>Description: [上传图片]</p> 

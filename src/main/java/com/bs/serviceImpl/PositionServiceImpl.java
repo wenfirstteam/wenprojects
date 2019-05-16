@@ -18,7 +18,6 @@ import com.bs.entity.Position;
 import com.bs.mapper.PositionMapper;
 import com.bs.service.PositionService;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 
 @Service
 public class PositionServiceImpl implements PositionService
@@ -42,9 +41,9 @@ public class PositionServiceImpl implements PositionService
 		try {
 			PageHelper.startPage(1, 10);
 			positionList = positionMapper.findIntroduce(position);
-			PageInfo<Position> pageInfo=new PageInfo<Position>(positionList);
+//			PageInfo<Position> pageInfo=new PageInfo<Position>(positionList);
 			HttpSession session = request.getSession();
-			session.setAttribute("positionList", pageInfo); 
+			session.setAttribute("positionList", positionList); 
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "查询失败！";

@@ -70,10 +70,10 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
-						<li class="cur"><a class="header-job" href="">职位</a></li>
+						<li class="cur"><a class="header-job" href="position.jsp">职位</a></li>
 						<li class=""><a class="header_brand" href="find_company.jsp">公司</a></li>
 						<li class=""><a class="header-article"
-							href="https://news.zhipin.com/">资讯</a></li>
+						 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 						<li class=""><a class="header-article" href="resume.jsp"><div
 									id="info"></div></a></li>
 					</ul>
@@ -106,14 +106,6 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="job-op">
-                        <div class="btn-container">
-                            <!-- 未登录 -->
-                                                 <a class="btn btn-startchat" ka="go_greet_tosign_34447986" href="javascript:;" redirect-url="/geek/new/index/chat?id=ba47f20652adef0b1HZ90tS-F1Y~" target="_blank"
-                          data-url="/gchat/addRelation.json?jobId=fabcc4c7642cc8f51HB-39q0GFQ~">立即沟通</a>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -128,9 +120,9 @@
                                  ${positionMap.company_name }
                                 </a>
                             </div>
-                                 <p><i class="icon-stage"></i>${positionMap.people }</p>
-                                <p><i class="icon-scale"></i>${positionMap.telphone }</p>
-                                <p><i class="icon-net"></i>${positionMap.email }</p>
+                                 <p><i class="icon-stage"></i>规模：${positionMap.people }</p>
+                                <p><i class="icon-scale"></i>电话：${positionMap.telphone }</p>
+                                <p><i class="icon-net"></i>邮箱：${positionMap.email }</p>
                     <p class="gray">此职位发布于：${positionMap.publish_time }</p>
                 </div>
 

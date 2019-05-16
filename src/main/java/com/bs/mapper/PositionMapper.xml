@@ -53,8 +53,8 @@
 			<if test="skillsRequired!=null and skillsRequired!=''">skills_required=#{skillsRequired},</if>
 			<if test="jobDescription!=null and jobDescription!=''">job_description=#{jobDescription},</if>
 			<if test="peopleNumber!=null and peopleNumber!=''">people_number=#{peopleNumber},</if>
-			<if test="publish!=null and publish!=''">publish=#{publish},</if>
-			<if test="publishTime!=null and publishTime!=''">publish_time=#{publishTime},</if>
+			<if test="publish!=null">publish=#{publish},</if>
+			<if test="publishTime!=null and publishTime!=''">publish_time=NOW(),</if>
 		</trim>
 		where id=#{id}
 	</update>

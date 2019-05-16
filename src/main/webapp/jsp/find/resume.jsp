@@ -107,16 +107,16 @@ function logOut(){
 			<div class="nav">
 				<ul>
 					<li class=""><a class="header-home"
-						href="https://www.zhipin.com/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						href="../index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a></li>
 					<li class=""><a class="header-job"
-						href="find/position.jsp" onclick="findPosition()">职位</a></li>
+						href="position.jsp" onclick="findPosition()">职位</a></li>
 					<li class=""><a class="header_brand"
 						href="find_company.jsp" onclick="findCompany()">公司</a></li>
 					<li class=""><a class="header-article"
-						href="https://news.zhipin.com/">资讯</a></li>
+					 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 					<li class="cur"><a class="header-article"
 						href="resume.jsp"><div id="info"></div></a></li>
 				</ul>

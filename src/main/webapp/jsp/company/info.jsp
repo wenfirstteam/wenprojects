@@ -92,7 +92,7 @@ function logOut(){
 					<li class="cur"><a class="header_brand"
 						href="">我的资料</a></li>
 					<li class=""><a class="header-article"
-						href="">资讯</a></li>
+						 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 				</ul>
 			</div>
 	<div class="user-nav">

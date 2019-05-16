@@ -127,6 +127,29 @@ function findName() {
 		}
 	});
 }
+
+function find1(id) {
+	$.ajax({
+		async : false,
+		url : "/rcw/position/findPositionFormUser.action",
+		data : {
+			"id" : id,
+		},
+		type : "GET",
+		success : function(msg) {
+			if(msg.status != 200)
+			{
+				alert("查询出现错误，请刷新网页重试！");
+			}else
+				setTimeout(function() {
+					window.location.href = "find/position.jsp";
+				}, 1);
+		},
+		error : function(msg) {
+			alert("系统异常！");
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -153,7 +176,7 @@ function findName() {
 					<li class=""><a class="header_brand"
 						href="find/find_company.jsp" onclick="findCompany()">公司</a></li>
 					<li class=""><a class="header-article"
-						href="https://news.zhipin.com/">资讯</a></li>
+						href="find/zixun.jsp" onclick="findNews()">资讯</a></li>
 					<li class=""><a class="header-article"
 						href="find/resume.jsp" onclick="resume()"><div id="info"></div></a></li>
 				</ul>
@@ -1970,7 +1993,7 @@ function findName() {
 								<c:forEach items="${positionList }" var="position" begin="0" end="8" step="1">
 									<li>
 										<div class="sub-li">
-											<a href="/job_detail/662cfca21e33d89d1nN709y0E1o~.html"
+											<a href="javascript:find1(${position.id });"
 												class="index_rcmd_job_1" class="job-info" target="_blank">
 												<p>
 													${position.position }<span class="salary">${position.salaryLow }-${position.salaryHigh }</span>

@@ -33,14 +33,21 @@
 	<context:property-placeholder location="classpath:*.properties" />
 	
 	<!-- 配置拦截器 -->
-     <mvc:interceptors>  
-	      <!-- 配置登陆拦截器 -->  
+     <!-- <mvc:interceptors>  
+	      配置登陆拦截器  
 	      <mvc:interceptor>  
 	          <mvc:mapping path="/**"/>
-	          <mvc:exclude-mapping path="/jsp/find/**"/>  
-	          <mvc:exclude-mapping path="/jsp/manage/**"/>  
+	          <mvc:exclude-mapping path="/jsp/find/editResume.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/find/find_company.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/find/position.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/find/positionInfo.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/find/resume.jsp"/>  
 	          <mvc:exclude-mapping path="/jsp/login.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/index.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/register.jsp"/>  
+	          <mvc:exclude-mapping path="/jsp/reset_pwd.jsp"/>  
+	          <mvc:exclude-mapping path="/rcw/user/login.action"/>  
 	          <bean class="com.bs.intercept.LoginHandlerIntercepter"></bean>  
 	      </mvc:interceptor>  
- 	</mvc:interceptors>
+ 	</mvc:interceptors> -->
 </beans>

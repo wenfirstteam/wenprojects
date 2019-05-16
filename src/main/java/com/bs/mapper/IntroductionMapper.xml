@@ -44,7 +44,8 @@
 		select id,userId,company_name,name,position,email,telphone,address,people,icon
 		from introduction
 		<where>
-			<if test="userId!=null and userId!=''">userId=#{userId}</if>
+			<if test="id!=null and id!=''">id=#{id}</if>
+			<if test="userId!=null and userId!=''">and userId=#{userId}</if>
 			<if test="companyName!=null and companyName!=''">and company_name like '%${companyName}%'</if>
 			<if test="name!=null and name!=''">and name=#{name}</if>
 			<if test="position!=null and position!=''">and position=#{position}</if>

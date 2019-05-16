@@ -44,8 +44,10 @@ body {
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 	$(function() {
+		findShow();
 		$.ajax({
 			async : false,
 			url : "/rcw/user/isLogin.action",
@@ -84,6 +86,26 @@ body {
 			}
 		});
 	})
+	function findNews(id){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{"id":id},
+		success : function(msg) {
+		}
+	});
+}
+	function findShow(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{"flag":0},
+		success : function(msg) {
+		}
+	});
+}
 	function logOut() {
 		$.ajax({
 			async : true,
@@ -134,7 +156,6 @@ body {
 	}
 	
 	function findInfo(id){
-		alert(id);
 		$.ajax({
 			async : false,
 			url : "/rcw/position/findPositionInfo.action",
@@ -179,7 +200,7 @@ body {
 						<li class="cur"><a class="header-job" href="">职位</a></li>
 						<li class=""><a class="header_brand" href="find_company.jsp" onclick="findCompany()">公司</a></li>
 						<li class=""><a class="header-article"
-							href="https://news.zhipin.com/">资讯</a></li>
+						 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 						<li class=""><a class="header-article" href="resume.jsp" onclick="resume()"><div
 									id="info"></div></a></li>
 					</ul>
@@ -290,25 +311,14 @@ body {
 			<div class="job-box">
 				<!-- 广告 -->
 				<div class="sider">
-
-
+				<c:forEach items="${newsList }" var="news">
 					<div class="promotion-img nomargin">
-						<a href="/activity/personality/index.html" target="_blank"
+						<a href="scan_news.jsp" onclick="findNews(${news.id })" target="_blank"
 							ka="ad_banner_0"><img
-							src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg"
-							alt="" /></a>
+							src="/icon/${news.pic }"
+							/></a>
 					</div>
-					<div class="promotion-img">
-						<a href="/app.html" target="_blank" ka="ad_banner_1"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png"
-							alt="" /></a>
-					</div>
-					<div class="promotion-img">
-						<a href="/user/login.html?initType=3" target="_blank"
-							ka="ad_banner_2"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png"
-							alt="" /></a>
-					</div>
+					</c:forEach>
 				</div>
 				<div class="job-list">
 					<div class="company-list"></div>
@@ -342,10 +352,6 @@ body {
 										<br>
 										<p>发布时间：${position.publishTime}</p>
 									</div>
-									<a href="javascript:;"
-										data-url="/gchat/addRelation.json?jobId=c2cf94a2b99762eb1H1z3N21FFA~&lid=1sD6k6heEGM.search"
-										redirect-url="/geek/new/index/chat?id=96302df5d741f82f0XRy2dy7FlA~"
-										class="btn btn-startchat">立即沟通 </a>
 								</div>
 							</li>
 						</c:forEach>

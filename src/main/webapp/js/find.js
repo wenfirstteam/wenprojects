@@ -5,6 +5,7 @@ function findPosition(){
 		data : {"publish":1},
 		type : "GET",
 		success : function(msg) {
+			findShow();
 			if(msg.status != 200)
 			{
 				alert("查询载入出现错误，请刷新网页重试！");
@@ -22,6 +23,7 @@ function findCompany(){
 		data : {},
 		type : "GET",
 		success : function(msg) {
+			findShow();
 			if(msg.status != 200)
 			{
 				alert("查询载入出现错误，请刷新网页重试！");
@@ -39,6 +41,7 @@ function resume(){
 		data:{},
 		type:"GET",
 		success:function(msg){
+			findShow();
 			if(msg.status != 200)
 			{
 				alert("查询出现错误，请刷新网页重试！");
@@ -58,6 +61,7 @@ function findPositionByCompany(){
 			data:{},
 			type:"GET",
 			success:function(msg){
+				findShow();
 				if(msg.status != 200)
 				{
 					alert("查询出现错误，请刷新网页重试！");
@@ -77,6 +81,7 @@ function findPeople(){
 		data : {},
 		type : "GET",
 		success : function(msg) {
+			findShow();
 			if (msg.status != 200) {
 				alert("查询载入出现错误，请刷新网页重试！");
 			}
@@ -94,6 +99,7 @@ function findInfo(){
 		data:{},
 		type:"GET",
 		success:function(msg){
+			findShow();
 			if(msg.status != 200)
 			{
 				alert("查询出现错误，请刷新网页重试！");
@@ -119,6 +125,7 @@ function show(position) {
 			{
 				alert("查询出现错误，请刷新网页重试！");
 			}else{
+				findShow();
 				window.location.href="";
 			}
 		},
@@ -144,3 +151,56 @@ $.ajaxSetup( {
             }
         }
 });
+//管理员查询未审核的信息
+function findWaitInfo(){
+	$.ajax({
+		async : false,
+		url : "/rcw/position/findPositionFormUser.action",
+		data : {
+			"publish":2
+		},
+		type : "GET",
+		success : function(msg) {},
+		error : function(msg) {
+			alert("系统异常！");
+		}
+	});
+}
+
+function updatePublish(publish,id){
+		$.ajax({
+			async : false,
+			url:"/rcw/position/updatePosition.action", 
+			type:"POST",
+			data:{
+				"id":id,
+				"publish":publish
+				},
+			success : function(msg) {
+				findWaitInfo();
+				window.location.href="manager.jsp";
+			}
+		});
+}
+//查找显示的新闻
+function findShow(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{"flag":0},
+		success : function(msg) {
+		}
+	});
+}
+//查找所有新闻
+function findNews(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{"flag":0},
+		success : function(msg) {
+		}
+	});
+}

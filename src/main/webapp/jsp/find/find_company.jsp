@@ -47,6 +47,7 @@ body {
 <script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 	$(function() {
+		findShow();
 		$.ajax({
 			async : false,
 			url : "/rcw/user/isLogin.action",
@@ -126,6 +127,22 @@ body {
 			}
 		});
 	}
+	function findCompanyInfo(id){
+		$.ajax({
+			async : false,
+			url : "/rcw/introduction/findIntroductionUser.action",
+			data : {"id":id},
+			type : "GET",
+			success : function(msg) {
+				setTimeout(function() {
+					window.location.href = "companyInfo.jsp";
+				}, 1);
+			},
+			error : function(msg) {
+				alert("系统异常！");
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -144,7 +161,7 @@ body {
 						<li class=""><a class="header-job" href="position.jsp" onclick="findPosition()">职位</a></li>
 						<li class="cur"><a class="header_brand" href="">公司</a></li>
 						<li class=""><a class="header-article"
-							href="https://news.zhipin.com/">资讯</a></li>
+						 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 						<li class=""><a class="header-article" href="resume.jsp" onclick="resume()"><div
 									id="info"></div></a></li>
 					</ul>
@@ -227,31 +244,20 @@ body {
 			<div class="job-box">
 				<!-- 广告 -->
 				<div class="sider">
-
-
+				<c:forEach items="${newsList }" var="news">
 					<div class="promotion-img nomargin">
-						<a href="/activity/personality/index.html" target="_blank"
+						<a href="scan_news.jsp" onclick="findNews(${news.id })" target="_blank"
 							ka="ad_banner_0"><img
-							src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg"
-							alt="" /></a>
+							src="/icon/${news.pic }"
+							/></a>
 					</div>
-					<div class="promotion-img">
-						<a href="/app.html" target="_blank" ka="ad_banner_1"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png"
-							alt="" /></a>
-					</div>
-					<div class="promotion-img">
-						<a href="/user/login.html?initType=3" target="_blank"
-							ka="ad_banner_2"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png"
-							alt="" /></a>
-					</div>
+					</c:forEach>
 				</div>
 				<div class="job-list">
 					<div class="company-list"></div>
 					<ul>
 						<c:forEach items="${introductionList }" var="introduction">
-							<li>
+							<li onclick="findCompanyInfo(${introduction.id})"> 
 								<div class="job-primary">
 									<div class="info-primary">
 										<img src="/icon/${introduction.icon }" width="80px" height="60px">

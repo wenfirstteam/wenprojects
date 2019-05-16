@@ -53,7 +53,8 @@ body {
 						},1);
 					}else{
 						setTimeout(function(){
-							window.location.href = "manager.jsp";
+							findWaitInfo();
+							window.location.href = "manage/manager.jsp";
 						},1);
 					}
 				} else{

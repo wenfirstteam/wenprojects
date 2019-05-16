@@ -46,6 +46,7 @@ body {
 <script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 $(function(){
+	findShow();
 	$.ajax({
 		async : false,
 		url: "/rcw/position/findPositionFromCompany.action",
@@ -62,6 +63,16 @@ $(function(){
 		}
 	});
 });
+function findShow(){
+	$.ajax({
+		async : false,
+		url:"/rcw/news/findNews.action", 
+		type:"Get",
+		data:{"flag":0},
+		success : function(msg) {
+		}
+	});
+}
 function logOut(){
 	$.ajax({
 		async : false,
@@ -140,7 +151,7 @@ function edit(id){
 					<li class=""><a class="header_brand"
 						href="info.jsp" onclick="findInfo()">我的资料</a></li>
 					<li class=""><a class="header-article"
-						href="">资讯</a></li>
+						 href="zixun.jsp" onclick="findNews()">资讯</a></li>
 				</ul>
 			</div>
         <div class="user-nav">
@@ -231,12 +242,15 @@ function edit(id){
         <div class="job-box">
         <!-- 广告 -->
             <div class="sider">
-
-
-                <div class="promotion-img nomargin"><a href="/activity/personality/index.html" target="_blank" ka="ad_banner_0"><img src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg" alt="" /></a></div>
-                <div class="promotion-img"><a href="/app.html" target="_blank" ka="ad_banner_1"><img src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png" alt="" /></a></div>
-                <div class="promotion-img"><a href="/user/login.html?initType=3" target="_blank" ka="ad_banner_2"><img src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png" alt="" /></a></div>
-            </div>
+				<c:forEach items="${newsList }" var="news">
+					<div class="promotion-img nomargin">
+						<a href="../find/scan_news.jsp" onclick="findNews(${news.id })" target="_blank"
+							ka="ad_banner_0"><img
+							src="/icon/${news.pic }"
+							/></a>
+					</div>
+					</c:forEach>
+				</div>
             <div class="job-list">
                     <div class="company-list">
                     </div>

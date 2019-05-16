@@ -44,6 +44,7 @@ body {
 }
 </style>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../js/find.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.ajax({
@@ -103,6 +104,23 @@ body {
 			}
 		});
 	}
+	function resumeInfo(id){
+		$.ajax({
+			async : false,
+			url: "/rcw/resume/findResumeByCompany.action",
+			data:{"id":id},
+			type:"GET",
+			success:function(msg){
+				if(msg.status != 200)
+				{
+					alert("查询出现错误，请刷新网页重试！");
+				}
+			},
+			error:function(msg){
+				alert("系统异常！");
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -120,7 +138,7 @@ body {
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职位管理</a></li>
 						<li class="cur"><a class="header-job" href="">牛人</a></li>
 						<li class=""><a class="header_brand" href="info.jsp" onclick="findInfo()">我的资料</a></li>
-						<li class=""><a class="header-article" href="">资讯</a></li>
+						<li class=""><a class="header-article" href="zixun.jsp" onclick="findNews()">资讯</a></li>
 					</ul>
 				</div>
 				<div class="user-nav">
@@ -218,25 +236,14 @@ body {
 			<div class="job-box">
 				<!-- 广告 -->
 				<div class="sider">
-
-
+				<c:forEach items="${newsList }" var="news">
 					<div class="promotion-img nomargin">
-						<a href="/activity/personality/index.html" target="_blank"
+						<a href="../find/scan_news.jsp" onclick="findNews(${news.id })" target="_blank"
 							ka="ad_banner_0"><img
-							src="https://z.zhipin.com/web/upload/market/coop/20180421-03.jpg"
-							alt="" /></a>
+							src="/icon/${news.pic }"
+							/></a>
 					</div>
-					<div class="promotion-img">
-						<a href="/app.html" target="_blank" ka="ad_banner_1"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-1.png"
-							alt="" /></a>
-					</div>
-					<div class="promotion-img">
-						<a href="/user/login.html?initType=3" target="_blank"
-							ka="ad_banner_2"><img
-							src="https://static.zhipin.com/zhipin/v151/web/geek/images/pro-2.png"
-							alt="" /></a>
-					</div>
+					</c:forEach>
 				</div>
 				<div class="job-list">
 					<ul>
@@ -253,7 +260,7 @@ body {
 								<div class="info-company">
 										<div class="company-text">
 											<div class="job-title">
-												<a href="">查看详情</a>
+												<a href="resumeInfo.jsp" onclick="resumeInfo(${resume.id })">查看详情</a>
 											</div>
 											<p>学校：${resume.school }<em class="vline"></em>专业：${resume.professional }</p>
 										</div>
@@ -262,10 +269,6 @@ body {
 									<br>
 									<p>期望薪资：${resume.salary }/月</p>
 								</div>
-								<a href="javascript:;"
-									data-url="/gchat/addRelation.json?jobId=c2cf94a2b99762eb1H1z3N21FFA~&lid=1sD6k6heEGM.search"
-									redirect-url="/geek/new/index/chat?id=96302df5d741f82f0XRy2dy7FlA~"
-									class="btn btn-startchat">立即沟通 </a>
 							</div>
 						</li>
 						</c:forEach>
