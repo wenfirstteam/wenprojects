@@ -39,7 +39,7 @@ public class EmailUtil {
 	            mMessageHelper.setText(text);//邮件的文本内容，true表示文本以html格式打开
 	            javaMailSender.send(mMessage);//发送邮件
 	        } catch (MessagingException e) {
-	        	result.put("sendResult", "fail");
+	        	result.put("sendResult", "fail"); 
 	            log.info("email send failed, message: " + e.getMessage());
 	            return result;
 	        } 
